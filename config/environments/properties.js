@@ -4,7 +4,7 @@ var properties = {
 	"gb_sms_url":"",
 	"gb_sms_host":"203.212.70.200",
 	"gb_sms_path":"/smpp/sendsms?",
-	"gb_sms_port":8080,
+	"gb_sms_port":80,
 	"gb_sms_req_type":"GET",
 	"gb_sms_senderId":"gbin",
 	"gb_registration_format":"Welcome to Glambin",

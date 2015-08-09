@@ -15,12 +15,12 @@ SMS_UTILS.prototype.sendSms=function(smsMessage,to){
        str += chunk;
       });
 
-      // response.on('end', function () {
-      //   console.log(str);
-      // });
+       response.on('end', function () {
+         console.log("end",str);
+       });
    
     };
-    
+   
     var message ="username=" + properties.gb_sms_username
             + "&password=" + properties.gb_sms_password + "&to="+to
             + "&text="+encodeURIComponent(smsMessage)
@@ -29,27 +29,28 @@ SMS_UTILS.prototype.sendSms=function(smsMessage,to){
       host: properties.gb_sms_host,
       path: properties.gb_sms_path+message,
       method:properties.gb_sms_req_type,
-      port:properties.gb_sms_port,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': smsMessage.length
-      } 
+      port:properties.gb_sms_port
     };
 
     try{
-      console.log("try block",options)
-      console.log(http,"===========",http.request,"=========",properties.gb_sms_host+properties.gb_sms_path+message)
-      var req = http.get(properties.gb_sms_host+properties.gb_sms_path+message, callback).on('error',function(e){
+     // console.log("try block",options)
+     // console.log(properties.gb_sms_host+properties.gb_sms_path+message)
+      var req = http.request(options, callback).on('error',function(e){
         console.log("Error: "+ "\n" + e.message); 
         console.log( e.stack );
       });
+
+ /*var req = http.get(properties.gb_sms_host+properties.gb_sms_path+message, callback).on('error',function(e){
+        console.log("Error: "+ "\n" + e.message);
+        console.log( e.stack );
+      });*/
      
       //This is the data we are posting, it needs to be a string or a buffer
-      //req.write(message);
+   //  req.write(message);
       req.end();
       }catch (e){
-        console.log("catch block")
-        console.log(e)
+        console.log("catch block",to,encodeURIComponent(smsMessage),e)
+       // console.log(e)
       }
 }
 module.exports =  SMS_UTILS ;
