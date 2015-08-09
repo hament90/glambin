@@ -1,0 +1,69 @@
+<div class="registration_form">
+	<div class="_reg_hd_name">
+		Achievements
+	</div>
+	<form action="/gb/srvc/save-upload-achivements" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="<%=gbId%>">
+		<div class="inlineparent __center">
+			<%if(achieve==undefined || achieve.length==0){%>
+				<div class="inlineparent inp_blck">
+					<div class="prf_prf_pic inlineparent">
+						<div class="prf_prs_pic_img">
+							<img src="../img/profile_pic.png">
+						</div>						
+						<div class="prf_prs_pic_opt inlineparent">
+							<input type="file" name="file[0]"/>
+							<div class="prs _opt_img upload" style="margin:0">Upload</div>
+							<div class="prs _opt_img rmv">Remove</div>
+						</div>
+					</div>
+					<div class="inlineparent achieve_md">
+						<div class="input_ttll_flds">
+							<input type="text" name="title[0]" placeholder="How would you like to define your Journey.."/>
+						</div>
+						<textarea class="desc_area" name="description[0]"></textarea>
+					</div>
+					<div class="inlineparent achieve_md">
+						<div class="input_ttll_flds">
+							<input type="text" name="date[0]" placeholder="Enter your Achivement Date"/>
+						</div>
+					</div>
+				</div>
+			<%}%>
+			<%if(achieve!=undefined && achieve.length>0){%>
+				<% for(var i=0; i<achieve.length; i++) { %>
+					<div class="inlineparent inp_blck">
+						<div class="prf_prf_pic inlineparent">
+							<div class="prf_prs_pic_img">
+								<img src="../img/profile_pic.png">
+							</div>						
+							<div class="prf_prs_pic_opt inlineparent">
+								<input type="file" name="file[<%=i%>]"/>
+								<div class="prs _opt_img upload" style="margin:0">Upload</div>
+								<div class="prs _opt_img rmv">Remove</div>
+							</div>
+						</div>
+						<div class="inlineparent achieve_md">
+							<div class="input_ttll_flds">
+								<input type="text" name="title[<%=i%>]" placeholder="How would you like to define your Journey.." value="<%=achieve[i].title%>"/>
+							</div>
+							<textarea class="desc_area" name="description[<%=i%>]"><%=achieve[i].description%></textarea>
+						</div>
+						<div class="inlineparent achieve_md">
+							<div class="input_ttll_flds">
+								<input type="text" name="date[<%=i%>]" value="<%=achieve[i].date%>" placeholder="Enter your Achivement Date"/>
+							</div>
+						</div>
+					</div>
+				<%}%>	
+			<%}%>	
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_other _bttn_add_on">Add More</div>
+		</div>
+		<input type="submit" value="submit">
+		<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+			<div class="_svd_sbmt __bg_button">Save and Continue</div>
+		</div>
+	</form>
+</div>

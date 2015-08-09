@@ -1,0 +1,27 @@
+{
+  "name": "app-name",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "bootable": "0.2.x",
+    "bootable-environment": "0.2.x",
+    "connect-powered-by": "0.1.x",
+    "cors": "2.5.2",
+    "ejs": "0.8.x",
+    "express": "3.x.x",
+    "locomotive": "0.4.x",
+    "locomotive-mongoose": "0.1.x",
+    "mongodb": "1.4.x",
+    "mongoose": "3.8.x",
+    "nodemailer": "0.5.x",
+    "multer": "~0.1.6",
+    "passport": "0.2.x",
+    "passport-local": "1.0.x",
+    "sha256": "^0.1.1",
+    "validator": "3.22.2",
+    "winston": "0.8.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

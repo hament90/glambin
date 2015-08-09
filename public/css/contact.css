@@ -1,0 +1,52 @@
+section#contact {
+    min-height: 500px;
+}
+article.content_centralize.inlineparent._cntct_pg {
+    height: inherit;
+    padding: 30px 0;
+    margin: 15px auto;
+}
+.inlineparent.feedBackForm {
+    width: 600px;
+    min-height: 450px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+}
+.form_header {
+    padding: 20px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background: #edeef0;
+    width: 100%;
+}
+.form_header h1 {
+    font-size: 30px;
+    font-weight: normal;
+}
+
+.form_header h4 {
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 20px;
+	margin-top: 8px;
+}
+.inlineparent.Cnct_add {
+    vertical-align: top;
+    width: 350px;
+    margin-left: 50px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    height: 605px;
+}
+.inlineparent._addrs.pdg_btm_lr_25 {
+    margin: 20px 0;
+    width: 85%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.inlineparent._addrs.pdg_btm_lr_25 p {
+    font-size: 14px;
+    margin-top: 5px;
+}

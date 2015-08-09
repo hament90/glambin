@@ -1,0 +1,211 @@
+<div class="registration_form">
+	<div class="_reg_hd_name">
+		Basic Information
+	</div>
+	<form action="/gb/srvc/save-general-register" method="post" name="generalForm">
+		<input type="hidden" name="id" value="<%= gbId %>">
+		<input type="hidden" name="primaryId" value="<%= primaryId %>">
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Name</label>
+			</div>
+			<div class="input_flds">
+				<input type="text" name="userName" value="<%= username %>" placeholder="Enter your Name"/>
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Email Address</label>
+			</div>
+			<div class="input_flds">
+				<input type="text" name="emailId" <% if (primaryId =='string') { %> disabled=true<%}%> value="<%= emailId %>" placeholder="Enter your Email Address"/>
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Phone</label>
+			</div>
+			<div class="input_flds">
+				<input type="text" name="phone" <% if (primaryId =='numeric') { %> disabled=true<%}%> value="<%= phone %>" placeholder="Enter your Mobile Phone"/>
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Date Of Birth</label>
+			</div>
+			<div class="input_flds">
+				<input type="text" value="<%if (birth!=undefined){ %><%= birth.getDate()%>/<%= birth.getMonth()+1%>/<%= birth.getFullYear()%><%}%>" name="birth" placeholder="Select your Date Of Birth"/>
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Gender</label>
+			</div>
+			<div class="__chse__opt inlineparent">
+				<div class="opt_mtn inlineparent">
+					<input type="radio" class="reg_radio_btn" name="gender" value="Male" <%if (gender!='' && gender=='Male'){ %>checked<%}%> />
+					<label>Male</label>	
+				</div>
+				<div class="opt_mtn inlineparent">
+					<input type="radio" class="reg_radio_btn" name="gender" value="Female" <% if (gender!='' && gender=='Female') { %>checked<%}%>/>
+					<label>Female</label>	
+				</div>
+				<div class="opt_mtn inlineparent">
+					<input type="radio" class="reg_radio_btn" name="gender" value="Other" <%if (gender!='' && gender=='Other'){ %>checked<%}%>/>
+					<label>Other</label>	
+				</div>
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Address</label>
+			</div>
+			<div class="input_flds inlineparent">
+				<div class="multiFields">
+					<%if (location!=undefined && location.addr!=undefined){%>
+						<input type="text" name="street" placeholder="Enter your house Address with landmark" value="<%= location.addr%>"/>
+					<%}%>
+					<%if (location==undefined || location.addr==undefined){%>
+						<input type="text" name="street" placeholder="Enter your house Address with landmark" value=""/>
+					<%}%>	
+				</div>
+				<div class="multiFields">
+					<%if (location!=undefined && location.area!=undefined){%>
+						<input type="text" name="area" placeholder="Enter your area" value="<%= location.area%>"/>
+					<%}%>
+					<%if (location==undefined || location.area==undefined){%>
+						<input type="text" name="area" placeholder="Enter your area" value=""/>
+					<%}%>	
+				</div>
+				<div class="multiFields">
+					<%if (location!=undefined && location.city!=undefined){%>
+						<input type="text" name="city" placeholder="Enter your city" value="<%= location.city%>"/>
+					<%}%>
+					<%if (location==undefined || location.city==undefined){%>	
+						<input type="text" name="city" placeholder="Enter your city" value=""/>
+					<%}%>	
+				</div>
+				<div class="multiFields">
+					<%if (location!=undefined && location.state!=undefined){%>
+						<input type="text" name="state" placeholder="Enter your state" value="<%= location.state%>"/>
+					<%}%>
+					<%if (location==undefined || location.state==undefined){%>	
+						<input type="text" name="state" placeholder="Enter your state" value=""/>
+					<%}%>	
+				</div>
+				<div class="multiFields">
+					<%if (location!=undefined && location.country!=undefined){%>
+						<input type="text" name="country" placeholder="Enter your country" value="<%= location.country%>"/>
+					<%}%>
+					<%if (location==undefined || location.country==undefined){%>		
+						<input type="text" name="country" placeholder="Enter your country" value=""/>
+					<%}%>
+				</div>	
+				<div class="multiFields">
+					<%if (location!=undefined && location.postal!=undefined){%>
+						<input type="text" name="postal" placeholder="Enter your pincode" value="<%= location.postal%>"/>
+					<%}%>
+					<%if (location==undefined || location.postal==undefined){%>		
+						<input type="text" name="postal" placeholder="Enter your pincode" value=""/>
+					<%}%>					
+				</div>	
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Tag line</label>
+				<span>Max 100 Character.</span>
+			</div>
+			<div class="input_flds">
+				<textarea placeholder="Address your persoanality" name="shortDesc"><%= shortDesc %></textarea>
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Description</label>
+			</div>
+			<div class="input_flds">
+				<textarea placeholder="Address your persoanality" name="description"><%= description %></textarea>
+			</div>
+		</div>
+		<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+			<div class="_svd_sbmt __bg_button" id='generalForm'>Save and Continue</div>
+		</div>
+	</form>
+</div>
+<div class="registration_form">
+	<div class="_reg_hd_name">
+		Personal Glambin Url
+	</div>
+	<form action="/gb/srvc/save-handle" method="post" name="handleForm">
+		<div class="__glm_url __center" style="margin-bottom:10px;">
+			<input type="hidden" name="id" value="<%= gbId %>">
+			<label>glambin.com</label>/<input type="text" class="_sep_inp" name='handle' value="<%= handle %>" placeholder="Enter your required Url"/>
+		</div>
+		<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+			<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$("#generalForm").click(function(e){
+			var generalValidator = new FormValidator('generalForm', [{
+			    name: 'userName',
+			    display: 'Name',
+			    rules: 'required'
+			}, {
+			    name: 'phone',
+			    rules: 'numeric|min_length[10]'
+			}, {
+			    name: 'emailId',
+			    rules: 'valid_email',
+			}], function(errors, event) {
+				console.log(errors, event)
+			    return errors.length;
+			    
+			});
+			var error=generalValidator._validateForm(e);
+			$(this).parents("form").ajaxSubmit({
+				beforeSubmit:function(arr, form, options){
+					if(generalValidator.errors.length>0){
+						return false;
+					}else{
+						return true;
+					}
+				},
+				success:function(data){
+				}	
+			});
+		
+		});
+
+		$(".saveData").click(function(e){
+			var generalValidator = new FormValidator('handleForm', [{
+			    name: 'handle',
+			    display: 'Handle',
+			    rules: 'required'
+			}], function(errors, event) {
+				console.log(errors, event)
+			    return errors.length;
+			    
+			});
+			var error=generalValidator._validateForm(e);
+			$(this).parents("form").ajaxSubmit({
+				beforeSubmit:function(arr, form, options){
+					if(generalValidator.errors.length>0){
+						return false;
+					}else{
+						return true;
+					}
+				},
+				success:function(data){
+					if(data.status){
+					
+					}
+				}	
+			});
+		});
+	});
+</script>

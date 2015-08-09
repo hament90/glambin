@@ -1,0 +1,42 @@
+<section id="cls_hdr" class="___hd_sctn">
+	<header class="inlineparent __hdr_main content_centralize pos_rel">
+		<div class="__logo">
+			<a href="/">
+				<h2>GLAMBIN</h2>
+			</a>
+		</div>
+		<%if(user!=undefined){%>
+			<div class="___profileView">	
+				<div class="usr_info_img ">
+					<img src="../img/hament.png" alt="User Image">
+				</div>
+				<div class="pos_abs elem_notif" style="">
+					<div class="inlineparent _usIn_dt">
+						<a href="/" style="float:left"> 
+							<div class="usr_info_chnnl"><%= user.username %></div>
+						</a>
+						<div class="logout"><a href="/gb/logout">Logout</a></div>
+					</div>
+					<div class="inlineparent _usIn_dt"> 
+						<div class="usr_info_chnnl">Notification</div>
+					</div>
+					<div class="inlineparent _usIn_dt"> 
+						<a href="/profile/<%= user.handle %>" style="float:left">
+							<div class="usr_info_chnnl">Profile</div>
+						</a>	
+					</div>
+					<div class="inlineparent _usIn_dt"> 
+						<a href="/gb/register-general-form" style="float:left">
+							<div class="usr_info_chnnl">Settings</div>
+						</a>	
+					</div>
+					<div class="inlineparent _usIn_dt"> 
+						<a href="/gb/settings" style="float:left">
+							<div class="usr_info_chnnl">privacy</div>
+						</a>
+					</div>
+				</div>
+			</div>	
+		<%}%>	 
+	</header>
+</section>

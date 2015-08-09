@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include ../partials/head.html.ejs %>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="/css/homelanding.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<% include ../partials/_section_header.html.ejs %>
+		<section>
+			
+			<div class="center-div">
+				<div class="row inlineparent">
+				<!-- left -->
+					<div class="col-md-3">
+						<div class="top-image wdth_100_per inlineparent bx_szg">
+							<div class="wdth_100_per __center">
+								<img src="../img/hament.png" class="img-circle wdth_100_per bx_szg"/>
+							</div>
+							<div class="wdth_100_per inlineparent">
+								<h1 class="wdth_100_per"><%=user.username%></h1>
+								<h2 class="wdth_100_per">Model/actress</h2>
+							</div>
+						</div>
+						<div class="row" style="margin:10px 0;">
+							<div class="center-text inlineparent wdth_100_per">
+								<div class="col-md-7 bx_szg">
+									<span class="text-top">345</span>
+									<span class="text-top1">Connection</span>
+								</div>
+								<div class="col-md-7 bx_szg">
+									<span class="text-top">35</span>
+									<span class="text-top1">Appreciation</span>
+								</div>
+							</div>
+
+						</div>
+						
+						<div class="left-bar">
+							<%if(user.location!=undefined){%>	
+								<p class="wdth_100_per"><img src="../img/landmark.png" class="imgl" width="11" height="20" /><%=user.location.area%>, <%=user.location.city%>, <%=user.location.state%>, <%=user.location.country%></p>
+							<%}%>
+							<p class="wdth_100_per" style="line-height: 1.6"><%=user.shortDesc%></p>
+							<p class="wdth_100_per"><img src="../img/mail.png" class="imgl1" style="width: 20px !important;"/><%=user.emailId%></p>
+							<p class="wdth_100_per"><img src="../img/phone.png" class="imgl1" style="width: 20px !important;"/> <%=user.phone%></p>
+							<h1 class="wdth_100_per __center" style="margin:20px 0 10px;" ><img src="../img/comment.png" width="15" height="20"/>Recommendation</h1>
+							<div class="inlineparent wdth_100_per">
+								<p style="line-height: 1.6">
+									<img src="../img/men.png" style="float:left;width:25px;margin-right:5px;" />
+									<span><%=user.username%></span>
+								</p>
+								<p class="wdth_100_per" style="line-height:1.6;"><%=user.shortDesc%></p>	
+								
+							</div>
+						</div>
+
+					</div>
+
+				<!-- left -->
+				<!-- mid -->
+					<div class="col-md-6" id="centerModal">
+						<div class="center wdth_100_per bx_szg">
+							<div class="search wdth_100_per bx_szg">
+								<input name="Search" type="text" class="form-control wdth_100_per bx_szg" placeholder="Search" id="searchPeople" />
+							</div>
+							<div class="menu inlineparent">
+								<ul class="wdth_100_per inlineparent">
+									<li><a href="#" class="active">Name</a></li>
+									<li><a href="#">Category</a></li>
+									<li><a href="#">Tags</a></li>
+									<li><a href="#">Neighbours</a></li>
+								</ul>
+							</div>
+							<div class="inlineparent" data-bind="event:{load:$root.listing()},template:{name:'listingTemp'}">
+								
+								
+							</div>
+						</div>
+						<script type="text/html" id="listingTemp">
+							<!--ko foreach:content-->
+								<div class="row result inlineparent" style="margin-top:2em;">
+								  	<div class="top-image1 inlineparent">
+									  	<img src="../img/girl.png" width="44" height="44" class="imgl1" /> 
+									  	<div class="inlineparent">
+										 	<h1 class="wdth_100_per" data-bind="text:username"></h1>
+							  				<h2 class="wdth_100_per">Model/actress</h2>
+									  	</div>
+									</div>
+									<div class="wdth_100_per inlineparent" style="background: #fff;">
+										<div class="inlineparent wdth_100_per ">
+											<div class="text resInfo_ bx_szg" style="width:100px;"data-bind="text:phone">9650193556</div>
+											<div class="text resInfo_ bx_szg" style="border-left: 0;" data-bind="text:emailId">hament@glambin.com</div>
+										</div>
+										<div class="inlineparent wdth_100_per bx_szg">
+											<div class="text resInfo_ wdth_100_per bx_szg" style="width: 100%;border-top: 0;"><!--ko text:location.area--><!--/ko-->,<!--ko text:location.city--><!--/ko--></div>
+											<div class="text resInfo_ wdth_100_per bx_szg" style="width: 100%;border-top: 0;margin:0" ><!--ko if:experience!=undefined--><!--ko text:experience.length--><!--/ko--><!--/ko--><!--ko if:experience==undefined-->0<!--/ko--> years of experience</div>	
+											<div class="text resInfo_ wdth_100_per bx_szg" style="width: 100%;border-top: 0;margin:0">View Profile</div>	
+											
+										</div>
+									</div>
+								</div>
+							<!--/ko-->
+						</script>
+					</div>
+					<div class="col-md-3">
+						<div class="left-bar">
+							<div class="top-image1">
+								<img src="../img/girl-pic.jpg" class="img-circle1"  />
+								<h1>Anne Hathway</h1>
+								<h2>Model/actress</h2>
+							</div>
+						</div>
+					</div>
+					<!-- right -->
+				</div>
+			</div>
+		</section>
+		<% include ../partials/_section_footer.html.ejs %>
+		<script type="text/javascript">
+			function userListing(){
+
+			}
+
+			userListing.prototype.init = function(first_argument) {
+				var _self=$(this);
+				_self.userListingViewModel={
+					content:ko.observableArray(),
+					listing:function(){
+						var _selfList=this;
+						$.ajax({
+							url:"/user-srvc/list-users",
+							type:"post",
+							success:function (data) {
+								if(data.status==0){
+								   ko.utils.arrayPushAll(_selfList.content,data.result);
+								}
+							}
+						});
+					}
+				}
+				ko.applyBindings(_self.userListingViewModel,document.getElementById('centerModal'));
+
+			};
+			
+			$(document).ready(function(){
+				var listing=new userListing();
+				listing.init();
+
+				$("#searchPeople").autocomplete({
+					source:function(req,res){
+						$.ajax({
+							url:"/gb/search/search-user?name="+req.term,
+							type:"post",
+							success:function(data){
+								if(data.status==0 && data.result.length>0){
+									res($.map(data.result,function (item) {
+										return {
+											label:item.username,
+											value:item.handle,
+										}
+									}));
+								}
+							}
+						});
+					},
+					minLength:3,
+					cache:false,
+					select:function(event,ui){
+						window.location.href="/profile/"+ui.item.value;
+					}
+				})
+			});
+		</script>
+	</body>
+</html>

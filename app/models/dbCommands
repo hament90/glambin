@@ -1,0 +1,2 @@
+db.gbuserverifications.ensureIndex({_id:1,signup_userId:1},{ unique:true, sparse:true })
+db.GBUserInfo.createIndex({"username":"text","category":"text","location.city":"text","location.area":"text","phone":"text"},{name:"text-search_user"})

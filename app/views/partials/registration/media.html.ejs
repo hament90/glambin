@@ -1,0 +1,92 @@
+<div class="registration_form">
+	<div class="_reg_hd_name">
+		MEDIA
+	</div>
+	<form action="/gb/srvc/save-media" method="post">
+		<input type="hidden" value="<%= gbId%>" name="id"/>
+		<% if(entertain.video==undefined || entertain.video==null ){%>
+			<div class="inlineparent inp_blck">
+				<div class="_lbl_tgs">
+					<label for="name">Videos</label>
+				</div>
+				<div class="input_flds">
+					<input type="text" name="video[0]" value="" />
+				</div>
+			</div>
+		<%}%>
+		<% if(entertain.video!=undefined && entertain.video!=null && entertain.video.length>0 ){%>
+			<% for(var i=0; i<entertain.video.length; i++) { %>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Videos</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="video[<%=i%>]" value="<%=entertain.video[i]%>" />
+					</div>
+				</div>
+			<%}%>
+			<div class="inlineparent inp_blck">
+				<div class="_lbl_tgs">
+					<label for="name">Videos</label>
+				</div>
+				<div class="input_flds">
+					<input type="text" name="video[<%=entertain.video.length%>]" value="" />
+				</div>	
+			</div>
+		<%}%>	
+		<div class="inlineparent inp_blck">
+			<div class="_other _bttn_add_on">Add More</div>
+		</div>
+		<div class="note"><b>Note *</b> Host your video from YouTube, metacafe, viemo etc and add link here</div>
+		<% if(entertain.audio==undefined || entertain.audio==null ){%>
+			<div class="inlineparent inp_blck">
+				<div class="_lbl_tgs">
+					<label for="name">Audio</label>
+				</div>
+				<div class="input_flds">
+					<input type="text" name="audio[0]" value="" />
+				</div>
+			</div>
+		<%}%>
+		<% if(entertain.audio!=undefined && entertain.audio!=null && entertain.audio.length>0){%>
+			<% for(var i=0; i<entertain.audio.length; i++) { %>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Audio</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="audio[<%=i%>]" value="<%=entertain.audio[i]%>"/>
+						<p></p>
+					</div>
+				</div>
+			<%}%>
+			<div class="inlineparent inp_blck">
+				<div class="_lbl_tgs">
+					<label for="name">Audio</label>
+				</div>
+				<div class="input_flds">
+					<input type="text" name="audio[<%=entertain.audio.length%>]" value="" />
+				</div>
+			</div>
+		<%}%>
+		<div class="inlineparent inp_blck">
+			<div class="_other _bttn_add_on">Add More</div>
+		</div>
+		<div class="note"><b>Note *</b> Host your Audio from YouTube, metacafe, viemo etc and add link here</div>
+		<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+			<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+		</div>
+	</form>
+	<script type="type/javascript">
+		$(document).ready(function(){
+			$(".saveData").click(function(){
+				var _self=$(this);
+				_self.parents("form").ajaxSubmit(function(data){
+					if(data.status==0){
+						$(".media").click();
+					}
+				});
+			});
+		});
+	</script>
+</div>

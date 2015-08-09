@@ -1,0 +1,156 @@
+<div class="registration_form">
+	<div class="_reg_hd_name">
+		My Connection
+	</div>
+	<form action="/gb/srvc/save-urls" method="post">
+		<input type="hidden" value="<%=gbId%>" name="id">
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Google+</label>
+			</div>
+			<div class="input_flds">
+				<% if(connectionInfo.google!=undefined){%>
+					<input type="text" name="google" value="<%= connectionInfo.google%>" placeholder="Enter your Google+ Profile URL."/>
+				<%}%>
+				<% if(connectionInfo.google==undefined){%>
+					<input type="text" name="google" value="<%=connectionInfo.google%>" placeholder="Enter your Yahoo emailId."/>
+				<%}%>		
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Yahoo</label>
+			</div>
+			<div class="input_flds">
+				<% if(connectionInfo.yahoo!=undefined){%>
+					<input type="text" name="yahoo" value="<%=connectionInfo.yahoo%>" placeholder="Enter your Yahoo emailId."/>
+				<%}%>
+				<% if(connectionInfo.yahoo==undefined){%>
+					<input type="text" name="yahoo" value="<%=connectionInfo.yahoo%>" placeholder="Enter your Yahoo emailId."/>
+				<%}%>	
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Rediff</label>
+			</div>
+			<div class="input_flds">
+				<% if(connectionInfo.rediff!=undefined){%>
+					<input type="text" name="rediff" value="<%=connectionInfo.rediff%>" placeholder="Enter your Rediffmail emailId."/>
+				<%}%>	
+				<% if(connectionInfo.rediff==undefined){%>
+					<input type="text" name="rediff" value="<%=connectionInfo.rediff%>" placeholder="Enter your Rediffmail emailId."/>
+				<%}%>	
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Facebook</label>
+			</div>
+			<div class="input_flds">
+				<% if(connectionInfo.fb!=undefined){%>
+					<input type="text" name="fb" value="<%=connectionInfo.fb%>" placeholder="Enter your Facebook Profile URL"/>
+				<%}%>	
+				<% if(connectionInfo.fb==undefined){%>
+					<input type="text" name="fb" placeholder="Enter your Facebook Profile URL"/>
+				<%}%>	
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Twitter</label>
+			</div>
+			<div class="input_flds">
+				<% if(connectionInfo.twitter!=undefined){%>
+					<input type="text" name="twitter" value="<%=connectionInfo.twitter%>" placeholder="Enter your Twitter Profile URL"/>
+				<%}%>	
+				<% if(connectionInfo.twitter==undefined){%>
+					<input type="text" name="twitter" placeholder="Enter your Twitter Profile URL"/>
+				<%}%>	
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">My Space</label>
+			</div>
+			<div class="input_flds">
+				<% if(connectionInfo.hotmail!=undefined){%>
+					<input type="text" name="hotmail" value="<%=connectionInfo.hotmail%>"placeholder="Enter your My Space Profile URL"/>
+				<%}%>	
+				<% if(connectionInfo.hotmail==undefined){%>
+					<input type="text" name="hotmail" placeholder="Enter your My Space Profile URL"/>
+				<%}%>	
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Tumblr</label>
+			</div>
+			<div class="input_flds">
+				<% if(connectionInfo.tumblr!=undefined){%>
+					<input type="text" name="tumblr" value="<%=connectionInfo.tumblr%>" placeholder="Enter your Tumblr Profile URL"/>
+				<%}%>	
+				<% if(connectionInfo.tumblr==undefined){%>
+					<input type="text" name="tumblr" placeholder="Enter your Tumblr Profile URL"/>
+				<%}%>	
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">LinkedIn</label>
+			</div>
+			<div class="input_flds">
+				<% if(connectionInfo.linkedin!=undefined){%>
+					<input type="text" name="linkedin" value="<%=connectionInfo.linkedin%>" placeholder="Enter your LinkedIn Profile URL"/>
+				<%}%>	
+				<% if(connectionInfo.linkedin==undefined){%>
+					<input type="text" name="linkedin" placeholder="Enter your LinkedIn Profile URL"/>
+				<%}%>
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Skype</label>
+			</div>
+			<div class="input_flds">
+				<% if(connectionInfo.skype!=undefined){%>
+					<input type="text" name="skype" value="<%=connectionInfo.skype%>" placeholder="Enter your Skype Profile URL"/>
+				<%}%>	
+				<% if(connectionInfo.skype==undefined){%>
+					<input type="text" name="skype" placeholder="Enter your Skype Profile URL"/>
+				<%}%>	
+			</div>
+		</div>
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Instagram</label>
+			</div>
+			<div class="input_flds">
+				<% if(connectionInfo.instagram!=undefined){%>
+					<input type="text" name="instagram" value="<%=connectionInfo.instagram%>" placeholder="Enter your Instagram Profile URL"/>
+				<%}%>
+				<% if(connectionInfo.instagram==undefined){%>
+					<input type="text" name="instagram" placeholder="Enter your Instagram Profile URL"/>
+				<%}%>		
+			</div>
+		</div>
+		<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+			<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+		</div>
+	</form>
+	<div class="inlineparent inp_blck">
+		<div class="_other _bttn_add_on">Add More</div>
+	</div>
+	<script type="type/javascript">
+		$(document).ready(function(){
+			$(".saveData").click(function(){
+				var _self=$(this);
+				_self.parents("form").ajaxSubmit(function(data){
+					if(data.status==0){
+					
+					}
+				});
+			});
+		});
+	</script>
+</div>

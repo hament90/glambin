@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include ../../partials/head.html.ejs %>
+		<script type="text/javascript" src="/js/library/jquery.form.js"></script>
+		<script type="text/javascript" src="/js/library/validate.min.js"></script>
+	</head>
+	<body>
+		<section id="cls_hdr" class="___hd_sctn">
+			<header class="inlineparent __hdr_main content_centralize">
+				<div class="__logo">
+					<h2>GLAMBIN</h2>
+				</div>
+			</header>
+		</section>
+		<section id="cls_bdy">
+			<article class=" __main__cntnt">
+				<div class="content_centralize inlineparent __center">
+					<div class="cntnt_ins">
+						<h1 class="nrml_wght">Discover how your life changes with us</h1>
+					</div>
+					
+					<div class="inlineparent __mod_login">
+						<div class="inlineparent">
+							<div class="head _lgn bld_wght" >
+								Login
+							</div>
+							<div class="_pipe"></div>
+							<div class="head _sgnup">
+								Sign Up
+							</div>
+							
+						</div>
+						<form method="post" action="/gb/login" class="_lgn" class="inlineparent" id="loginForm" name="loginForm">
+							<div class="inlineparent __center">
+								<div class="__eml__PH inlineparent">
+									<!-- <img src="../img/_login.png" alt="login" style="padding:10px;" /> -->
+									<input type="text" name="signUserId" placeholder="Enter your Email or Phone number"/>
+								</div>
+								<div class="__eml__PH inlineparent">
+									<!-- <img src="../img/_password.png" alt="password" style="padding: 10px;"/> -->
+									<input type="password" name="password" placeholder="Enter your Password" />
+								</div>
+								<div class="__eml__PH inlineparent forgot_pass floated_rgt"><a href="/gb/forgot-password">Forgot password ?</a></div>
+								
+							</div>
+							<div class="button _pln_button __center _lgn_hmbtn" id="login_btn">Login</div>
+						</form>
+						<form method="post" action="/gb/register-user" class="_sgnup dsp_nn inlineparent"  id="signUpForm" name="signUpForm">
+							<div class="inlineparent __center">
+								<div class="__eml__PH inlineparent">
+									<!-- <img src="../img/_login.png" alt="login" style="padding:10px;" /> -->
+									<input type="text" name="name" placeholder="Enter your name" />
+									<div class="pos_abs error dsp_nn">
+										<img src="../img/error.png"/>
+										<p class="error_txt pos_abs dsp_nn">
+										</p>
+									</div>
+								</div>
+								<div class="__eml__PH inlineparent">
+									<!-- <img src="../img/_login.png" alt="login" style="padding:10px;" /> -->
+									<input type="text" name="emailId" placeholder="Enter your Email or Phone number" />
+									<div class="pos_abs error dsp_nn">
+										<img src="../img/error.png"/>
+										<p class="error_txt pos_abs dsp_nn">
+										</p>
+									</div>
+								</div>
+								<div class="__eml__PH inlineparent">
+									<!-- <img src="../img/_password.png" alt="password" style="padding: 10px;"/> -->
+									<input type="password" name="password" placeholder="Enter your Password" />
+									<div class="pos_abs error dsp_nn">
+										<img src="../img/error.png"/>
+										<p class="error_txt pos_abs dsp_nn">
+										</p>
+									</div>
+								</div>
+								<div class="__eml__PH inlineparent">
+									<!-- <img src="../img/_password.png" alt="password" style="padding: 10px;"/> -->
+									<input type="password" name="confPassword" placeholder="Please confirm your Password" />
+									<div class="pos_abs error dsp_nn">
+										<img src="../img/error.png"/>
+										<p class="error_txt pos_abs dsp_nn">
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="button _pln_button __center _lgn_hmbtn" id="signin_btn">Sign Up</div>
+						</form>
+					</div>
+				</div>
+				<article id='how_works'>
+					<section id="we_have" class="content_centralize inlineparent">
+						<div class="search_we_have inlineparent">
+							<img src="../img/homeIcons/neighbours.png">
+							<h2>Neighbours</h2>
+						</div>
+						<div class="search_we_have inlineparent">
+							<img src="../img/homeIcons/search.png">
+							<h2>Search</h2>
+						</div>
+						<div class="search_we_have inlineparent">
+							<img src="../img/homeIcons/category.png">
+							<h2>Categories</h2>
+						</div>
+						<div class="search_we_have inlineparent">
+							<img src="../img/homeIcons/tags.png">
+							<h2>Tags</h2>
+						</div>
+						<div class="search_we_have inlineparent">
+							<img src="../img/homeIcons/people.png">
+							<h2>People</h2>
+						</div>
+						
+					</section>
+				</article>
+			</article>
+		</section>
+		<section class="__it_wrks">
+			<article class="content_centralize inlineparent">
+				<div class="_process_ inlineparent">
+					<h2> How It Works?</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</div>
+				<div class="inlineparent">
+					<img src="../img/_demo_page2.png">
+				</div>
+			</article>
+		</section>
+		<section id="cls_ftr">
+			<footer class="content_centralize ft_btm">
+				<ul class="inlineparent">
+					<li class="links">Home</li> | 
+					<li class="links">About Us</li> | 
+					<li class="links">Popular Pages</li> | 
+					<li class="links">Blog</li> | 
+					<li class="links">Terms Of use</li> | <li class="links">Privacy Policy</li> | <li class="links">Help</li> 
+				</ul>
+			</footer>
+		</section>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".__mod_login .head").click(function(){
+					var _self=$(this);
+					if(_self.hasClass("_lgn")){
+						$("form._lgn").removeClass("dsp_nn");
+						$("div._lgn").addClass("bld_wght");
+						$("div._sgnup").removeClass("bld_wght");
+						$("form._sgnup").addClass("dsp_nn");
+					}else{
+
+						$("form._sgnup").removeClass("dsp_nn");
+						$("div._sgnup").addClass("bld_wght");
+						$("div._lgn").removeClass("bld_wght");
+						$("form._lgn").addClass("dsp_nn");
+					}
+					$("input[type=text]").val('');
+				});
+
+				$("#login_btn").click(function(e){
+					$(this).parent("#loginForm").ajaxSubmit({
+						beforeSubmit:function (form,jqxhr,options) {
+							var generalValidator = new FormValidator('loginForm', [{
+							    name: 'signUserId',
+							    display: 'EmailId',
+							    rules: 'required'
+							}, {
+							    name: 'password',
+							    rules: 'required'
+							}], function(errors, event) {
+							    return errors.length;
+							});
+							var error=generalValidator._validateForm(e);
+							if(generalValidator.errors.length>0){
+								return false;	
+							}else{
+								var bool=true;
+								for (var i = 0; i < form.length; i++) {
+									if(form[i].name=="signUserId" && form[i].name!=''){
+										if(isNaN(form[i].name)){
+											bool=true;
+										}else if(isNaN(form[i].name)){
+											bool=true;
+										}else{
+											bool=false;
+										}
+									}
+								}
+								return bool;	
+							}
+						},
+						success:function(data){
+							window.location.href='/gb/register-general-form';
+						}
+					});
+				});
+				
+				$("#signin_btn").click(function(e){
+					$(this).parent("#signUpForm").ajaxSubmit({
+						beforeSubmit:function (form,jqxhr,options) {
+							var generalValidator = new FormValidator('signUpForm', [{
+							    name: 'name',
+							    display: 'name',
+							    rules: 'required'
+							}, {
+							    name: 'emailId',
+							    display: 'EmailId or Phone Number',
+							    rules: 'required|callback_check_emailId'
+							}, {
+							    name: 'password',
+							   	display: 'Password',
+							    rules: 'required|min_length[6]'
+							}, {
+							    name: 'confPassword',
+							    display: 'Confirm Password',
+							    rules: 'required|min_length[6]|matches[password]'
+							}], function(errors, event) {
+							    if(errors.length>0){
+							    	console.log(errors)
+							    	for(var i=0; i<errors.length;i++){
+								    	var err=$("input[name="+errors[i].name+"]").parent().find('.error');
+								    	err.show();
+								    	err.find(".error_txt").text(errors[i].message);
+							    		
+							    	}
+							    	return false;
+							    }
+
+							});
+							generalValidator.registerCallback('check_emailId', function(value) {
+							    var emailReg=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+							    if (isNaN(value) && emailReg.test(value)) {
+							        return true;
+							    }
+							    if(!isNaN(value) && value.length==10){
+							    	return true;
+							    }
+							    return false;
+							}).setMessage('check_emailId', 'Your emailId should be number or emailId.');
+							var error=generalValidator._validateForm(e);
+							if(generalValidator.errors.length>0){
+								return false;	
+							}else{
+								$('.error').hide();
+								return true;	
+							}
+						},
+						success:function(data){
+							if(data.status==0){
+								alert("please check your verification email or verification code.");
+							}
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
+<!-- <div class="signUpTdy inlineparent" id="__firstStep">
+	<div class="head">Sign Up</div>
+	<div class="__Signup inlineparent __center">
+		<input type="text" class="__signupBox" placeholder="Enter Email or Phone Number"/>
+		<div class="__signUpButton _pln_button">Sign Up</div>
+	</div>
+	<div class="__center wdth_100_per mrgn_tb" style="background: url(../img/icons/hzntl.png)repeat-x 10px;">
+		<div class="__divider">OR</div>
+	</div>
+	<div class="inlineparent __center wdth_100_per">
+		<div class="facebook _opn_source_btn">connect with <img src="../img/icons/fb.png"/></div>
+		<div class="twitter _opn_source_btn">connect with <img src="../img/icons/gp.png"/></div>
+		<div class="google _opn_source_btn">connect with <img src="../img/icons/tweet.png"/></div>
+	</div>
+</div> -->

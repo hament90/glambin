@@ -1,0 +1,66 @@
+.cvr_prfl_info {
+	background: url(../img/showCase/Anne_profile_.jpg) no-repeat 0 -75px;
+	width: 100%;
+	height: 310px;
+	margin-top: 3px;
+	background-size: 100%;
+}
+.inf_shd {
+    width:  325px;
+    height: inherit;
+    background: rgba(255, 255, 255, 0.50);
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.prf_pht {
+	width: 125px;
+	height: 125px;
+	overflow: hidden;
+	border-radius: 73px;
+	background: rgba(255, 255, 255, 0.5);
+	padding: 10px;
+}
+
+.prf_pht img {
+    border-radius: 65px;
+    width: inherit;
+    height: inherit;
+}
+.inf_shd.inlineparent h1 {
+	font-size: 24px;
+	word-break: break-word;
+	min-height: 55px;
+	max-height: 70px;
+	overflow: hidden;
+	margin-top: 15px;
+}
+section.wdth_100_per._clcl {
+    background: #fff;
+    height: 75px;
+}
+article.mainCnt.wdth_100_per {
+    min-height: 800px;
+}
+img._ppl_cnctd {
+	width: 55px;
+	max-height: 55px;
+	overflow: hidden;
+	border-radius: 30px;
+	margin: 10px 8px;
+	cursor: pointer;
+}
+.inlineparent._lft_bx {
+    width: 250px;
+    min-height: 500px;
+    margin: 30px 0;
+    background: #f9f9f9;
+    box-shadow: 0 0 3px #ccc;
+}
+._right_bx {
+    background: #fafafa;
+    width: 575px;
+    min-height: 500px;
+    box-shadow: 0 0 3px #ccc;
+    margin-left: 25px;
+}

@@ -1,0 +1,340 @@
+.content_centralize.__int_pgs{
+    width: 1024px;
+    margin-top: 15px;
+    padding: 15px 0;  
+    min-height: 400px;
+}
+.rg_chnnl{
+    background: #b1a893;
+    width: 100%;
+    min-height: 200px;
+    padding: 40px 0 0;
+    margin-top: 3px;
+}
+h2.snti_lne {
+    margin: 0;
+    color: #FFF;
+    font-size: 2em;
+    text-align: center;
+}
+.__mk_sre {
+    width: 1030px;
+    margin: 0 auto;
+    border-bottom: 1px solid #EEE;
+}
+h4.__snti_lne_cmbk {
+    margin: 10px;
+    color: #FFF;
+}
+
+.__tb_reg.inlineparent.active,.__tb_reg.inlineparent:hover{
+    background: #395662;
+}
+.__tb_reg.inlineparent {
+    width: 100px;
+    height: 102px;
+    background: #fff;
+    padding: 10px 5px;
+    position: relative;
+    cursor: pointer;
+}
+.__tb_reg.inlineparent.active h5,.__tb_reg.inlineparent:hover h5{
+    color: #fff;
+}
+.__tb_reg.inlineparent h5 {
+    font-size: 14px;
+    color: #777;
+    font-weight: normal;
+}
+
+.__tb_reg.active:before {
+    content: "";    width: 0;  height: 0;      border-top: 0;    
+    border-left: 15px solid rgba(255, 255, 255, 0);  
+    border-top: 15px solid #395662;
+    position: absolute;
+    bottom: -15px;
+    border-right: 15px solid rgba(255, 255, 255, 0);
+    right: 35%;
+}
+.__tb_reg.inlineparent img {
+    width: 65%;
+    background: #FFF;
+    border-radius: 30px;
+}
+.__img__Logo {
+    width: 65%;
+    height: 65px;
+    background: #FFF url(../img/__userRegister.png) no-repeat center;
+    border-radius: 7px;
+    border: 1px solid #ddd;
+    background-position: 0px -355px;
+}
+.__img__Logo.__connection{
+    background-position: -8px 2px;
+}
+.__img__Logo.__upload{
+     background-position: 2px -478px;
+}
+.__img__Logo.__edu{
+    background-position: 0px -177px;
+}
+.__img__Logo.__media{
+    background-position: -2px -295px;
+}
+.__img__Logo.__explore{
+    background-position: 2px -418px;
+}
+.__img__Logo.__achieve{
+      background-position: -1px -114px;
+}
+.__img__Logo.__prof{
+    background-position: -5px -57px;
+}
+.__img__Logo.__invite{
+    background-position: -3px -235px;
+}
+.multiFields {
+    margin: 5px;
+}
+/*.__img__Logo.__pass{
+    background: #FFF url(../img/__pass.png) no-repeat center;
+}*/
+section#rg_chnnl {
+    border-bottom: 1px solid #ddd;
+}
+.registration_form {
+    border: 1px solid #eee;
+    background: #FAFAFA;
+    margin-bottom: 20px;
+}
+
+.inlineparent.inp_blck {
+    width: 70%;
+    min-height: 25px;
+    padding: 5px;
+    margin: 0 10px 3px;
+}
+._lbl_tgs {
+    width: 40%;
+}
+
+.input_flds {
+    width: 55%;
+    border: 1px solid #DDDDDD;
+    padding: 7px;
+    margin-left: 2%;
+    background: #fff;
+}
+
+.input_flds input {
+    font-size: 14px;
+    color: #555;
+    width: 100%;
+}
+._reg_hd_name {
+    border-bottom: 1px solid #EEE;
+    padding: 8px;
+    background: #b1a893;
+    color: #FFF;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.input_flds textarea {
+    resize: none;
+    width: 98%;
+    border: 0;
+    height: 60px;
+    outline: 0;
+}
+.__chse__opt.inlineparent {
+    margin-left: 20px;
+}
+.opt_mtn label {
+    font-size: 14px;
+    color: #555;
+}
+
+.reg_radio_btn[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #FFF;
+    border: 1px solid #CACECE;
+    padding: 7px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    border-radius: 7px;
+}
+
+.opt_mtn {
+    margin-left: 5px;
+}
+.reg_radio_btn[type="radio"]:checked {
+    color: #7DC12D;
+}
+.reg_radio_btn:checked:after {
+    content: "\2714";
+    font-size: 10px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: #7DC12D;
+}  
+.prf_cvr_pic.inlineparent {
+    width: 500px;
+    margin: 0 auto;
+    border: 1px solid #EEE;
+    margin-bottom: 15px;    
+}
+.prf_cvr_pic_opt {
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+.cvr._opt_img{
+    width: 238px;
+}
+.prf_prf_pic.inlineparent {
+    width: 225px;  margin: 0 auto;  border: 1px solid #EEE;  margin-bottom: 15px;
+    margin-right: 30px;
+    background: #EEE;
+}
+.prs._opt_img {
+    width: 100px;
+}
+
+._opt_img {
+    text-align: center;
+    padding: 8px 5px;
+    background: #fff;
+    cursor: pointer;
+    color: #777;
+    border: 1px solid #eee;
+    margin-left: -5px;
+}
+
+.prf_cvr_pic_img,.prf_prs_pic_img {
+    background: #eee;
+}
+.ldd_pic_img.inlineparent {
+    width: 240px;
+    position: relative;
+}
+
+.ldd_pic_img.inlineparent img {
+    width: 100%;
+    height: 100%;
+}
+
+._rmv_upld_pic {
+    position: absolute;
+    right: 5px;
+    background: url(../img/cross.png) no-repeat center rgba(255, 255, 255, 0.48);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 13px;
+    top: 5px;
+    display: none;
+}
+._pic_img_upld {
+    width: 100%;
+}
+._pic_img_upld:hover ._rmv_upld_pic{
+    display: block;
+}
+.journey_detail textarea {
+    width: 55%;
+    height: 80%;
+    border: 1px solid #eee;
+    resize: none;
+    padding: 2%;
+}
+
+.journey_detail {
+    width: 500px;
+    height: 125px;
+    margin-left: 200px;
+    margin-bottom: 30px;
+}
+.input_ttll_flds {
+    width: 100%;
+    height: 40px;
+}
+
+.input_ttll_flds input {
+    width: 95%;
+    border: 1px solid #ddd;
+    padding: 2%;
+    color: #555;
+}
+
+textarea.desc_area {
+    width: 97%;
+    vertical-align: top;
+    border: 1px solid #ddd;
+    resize: none;
+    height: 160px;
+    overflow: hidden;
+    padding: 1%;
+}
+.inlineparent.achieve_md {
+    width: 60%;
+    vertical-align: top;
+}
+.input_flds.__half.inlineparent input {
+    width: 10%;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.input_flds.__half.inlineparent {
+    background: inherit;
+    border: 0;
+    padding: 0;
+}
+.inlineparent.inp_blck span {
+    font-size: 12px;
+    width: 100%;
+    float: left;
+    margin-top: 7px;
+    color: #bbb;
+    font-variant: small-caps;
+    word-spacing: 2px;
+}
+div#addmr {
+    background: #ddd;
+    width: 600px;
+}
+div#addmr .inlineparent.inp_blck{
+    width: 100%;
+}
+.close {
+    background: #EF4949;
+    width: 30px;
+    height: 30px;
+    float: right;
+}
+._head_reg {
+    background: #ccc;
+    height: 30px;
+    padding: 5px;
+}
+._head_reg label {
+    font-size: 16px;
+    line-height: 30px;
+    padding: 15px;
+    color: #C31313;
+}
+.__category.content_val_text.active {
+    background: rgba(171, 242, 193, 0.64);
+}
+.__category.content_val_text.active h3 {
+    color: #000000;
+}

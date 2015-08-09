@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Glambin</title>
+	  	<% include ../partials/head.html.ejs %>
+		<link rel="stylesheet" type="text/css" href="../css/reg.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/reg_category.css"/>
+		<script type="text/javascript" src="../js/library/jquery.form.js"></script>
+		<script type="text/javascript" src="../js/library/validate.min.js"></script>
+	</head>
+	<body>
+		<% include ../partials/_section_header.html.ejs %>
+		<section id="rg_chnnl">
+			<article class="rg_chnnl">
+				<div class="__mk_sre __center">
+					<div class="inlineparent snt_dpt">
+						<h2 class="snti_lne">
+							It's Time To Praise Yourself, Show Them Who You Are 
+						</h2>
+						<h4 class="__snti_lne_cmbk">
+							Wisdom ceases to be wisdom when it becomes too proud to weep, too grave to laugh, and too selfish to seek other than itself
+						</h4>
+					</div>
+					<div class="inlineparent" style="margin-top:45px;">
+						<div class="__tb_reg inlineparent general" data-bind="click:function(){$root.fetchData('general')}">
+							<div class="__img__Logo"></div>
+							<h5>Basics</h5>
+						</div>
+						<div class="__tb_reg inlineparent upload" data-bind="click:function(){$root.fetchData('upload')}">
+							<div class="__img__Logo __upload"></div>
+							<h5>Upload Picture</h5>
+						</div>
+						<div class="__tb_reg inlineparent education" data-bind="click:function(){$root.fetchData('education')}">
+							<div class="__img__Logo __edu"></div>
+							<h5>Education</h5>
+						</div>
+						<div class="__tb_reg inlineparent professional" data-bind="click:function(){$root.fetchData('professional')}">
+							<div class="__img__Logo __prof"></div>
+							<h5>Professional</h5>
+						</div>
+						<div class="__tb_reg inlineparent connection" data-bind="click:function(){$root.fetchData('connection')}">
+							<div class="__img__Logo __connection"></div>
+							<h5>Connections</h5>
+						</div>
+						<div class="__tb_reg inlineparent media" data-bind="click:function(){$root.fetchData('media')}">
+							<div class="__img__Logo __media"></div>
+							<h5>Media</h5>
+						</div>
+						<div class="__tb_reg inlineparent explore" data-bind="click:function(){$root.fetchData('explore')}">
+							<div class="__img__Logo __explore"></div>
+							<h5>Explore</h5>
+						</div>
+						<div class="__tb_reg inlineparent achievement" data-bind="click:function(){$root.fetchData('achievement')}">
+							<div class="__img__Logo __achieve"></div>
+							<h5>Achievements</h5>
+						</div>
+						<div class="__tb_reg inlineparent interest" data-bind="click:function(){$root.fetchData('interest')}">
+							<div class="__img__Logo __invite"></div>
+							<h5>Interests</h5>
+						</div>
+
+					</div>
+				</div>
+				
+			</article>
+			<article class="content_centralize __int_pgs" data-bind="html:content,event:{load:fetchData('general')},attr:{'id':dataId}">
+				
+			</article>
+			<p class="wdth_100_per __center" style="margin:5px 0;">NOTE*: you can publish your profile from settings page. After Publish your profile, your is searchable depending upon your account setting.</p>
+		</section>
+		<% include ../partials/_section_footer.html.ejs %>
+		<script type="text/javascript">
+			function __basicRegistrationProcess() {
+				// body...
+			}
+
+			__basicRegistrationProcess.prototype.init = function() {
+				var _self=this;
+				_self.registerProcessViewModel={
+					content: ko.observable(''),
+					dataId:ko.observable(''),
+    				fetchData: function(data){
+    					var __nself=this;
+    					__nself.dataId(data);
+    					$(".__tb_reg").removeClass("active");
+						$(".__tb_reg."+data).addClass("active");
+    					var url=null;
+    					if(data=='general'){
+    						url='/gb/register-basicinfo-form';
+    					}else if(data=='upload'){
+    						url='/gb/register-uploadpic-form';
+    					}else if(data=='education'){
+    						url='/gb/register-education-form';
+    					}else if(data=='professional'){
+    						url='/gb/register-professional-form';
+    					}else if(data=='connection'){
+    						url='/gb/register-connection-form';
+    					}else if(data=='explore'){
+    						url='/gb/register-explore-form';
+    					}else if(data=='achievement'){
+    						url='/gb/register-achivements-form';
+    					}else if(data=='interest'){
+    						url='/gb/register-interests-form';
+    					}else if(data=='media'){
+    						url='/gb/register-media-form';
+    					}
+    					if(url!=null){
+    						$.ajax({
+    							url:url,
+    							type:"GET",
+    							success:function(data){
+    								__nself.content(data);
+    							}
+    						});
+    					}
+    				}
+				};
+				ko.applyBindings(_self.registerProcessViewModel,document.getElementById('rg_chnnl'));
+			};
+			$(document).ready(function(){
+				var registration= new __basicRegistrationProcess();
+				registration.init();
+			});
+		</script>
+	</body>
+</html>

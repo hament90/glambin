@@ -1,0 +1,70 @@
+<div class="registration_form">
+	<div class="_reg_hd_name">
+		EXPLORE
+	</div>
+
+	<div class="inlineparent wdth_100_per">
+		<% if(blog==undefined || blog.length==0){%>
+			<form action="/gb/srvc/save-journey" method="post" class="wdth_100_per">
+				<input type="hidden" value="<%=gbId%>" name="id"/>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">My Life Journey</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="heading[0]" value="" placeholder="How would you like to define your Journey.."/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck journey_detail">
+					<div class="_lbl_tgs">
+						<label for="name"></label>
+					</div>
+					<textarea placeholder="Express your journey in your own words." name="description[0]"></textarea>
+				</div>
+				<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+					<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+				</div>
+			</form>	
+		<%}%>
+		<% if(blog!=undefined && blog.length>0){%>
+			<% for(var i=0; i<blog.length; i++) { %>
+				<form action="/gb/srvc/save-journey" method="post"  class="wdth_100_per">
+					<input type="hidden" value="<%=gbId%>" name="id"/>
+					<div class="inlineparent inp_blck">
+						<div class="_lbl_tgs">
+							<label for="name">My Life Journey</label>
+						</div>
+						<div class="input_flds">
+							<input type="text" name="heading[<%=i%>]" value="<%=blog[i].heading%>" placholder="How would you like to define your Journey.."/>
+						</div>
+					</div>
+					<div class="inlineparent inp_blck journey_detail">
+						<div class="_lbl_tgs">
+							<label for="name"></label>
+						</div>
+						<textarea placeholder="Express your journey in your own words." name="description[<%=i%>]"><%=blog[i].description%>"</textarea>
+					</div>
+					<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+						<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+					</div>
+				</form>
+			<%}%>
+		<%}%>
+	</div>
+	<div class="inlineparent inp_blck">
+		<div class="_other _bttn_add_on">Add More</div>
+	</div>
+	<script type="type/javascript">
+		$(document).ready(function(){
+			$(document).off("click",".saveData");
+			$(document).on("click",".saveData",function(){
+				var _self=$(this);
+				_self.parents("form").ajaxSubmit(function(data){
+					if(data.status==0){
+					
+					}
+				});
+			});
+		});
+	</script>
+</div>

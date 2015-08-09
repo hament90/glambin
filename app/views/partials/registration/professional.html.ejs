@@ -1,0 +1,322 @@
+<div class="registration_form">
+	<div class="_reg_hd_name">
+		Professional
+	</div>
+	<%if(profession==undefined || profession==null || profession.length==0){%>
+		<div class="__prof _cntnr">
+			<form action="/gb/srvc/save-work" method="post" name="profession">
+				<input type="hidden" name="id" value="<%=gbId%>">
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Company Name</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="company" placeholder="Enter your Company Name"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Postion</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="designation" placeholder="Enter your Email Address"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Domain</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="jobType" placeholder="Enter your working domain"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">City / Town</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="location" placeholder="Enter your Mobile Phone"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Time Period</label>
+					</div>
+					<div class="__chse__opt inlineparent">
+						<div class="opt_mtn inlineparent">
+							<input type="radio" class="reg_radio_btn" name="isPresent"/>
+							<label>Working Present</label>	
+						</div>
+						<div class="opt_mtn inlineparent">
+							<input type="radio" class="reg_radio_btn" name="isPresent"/>
+							<label>Past</label>	
+						</div>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Years of Experience</label>
+					</div>
+					<div class="input_flds __half inlineparent">
+						<input type="text" name="start"/>
+						<input type="text" name="end"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Personal Experience</label>
+					</div>
+					<div class="input_flds">
+						<textarea placeholder="Share your experiece" name="jobDesc"></textarea>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+					<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+				</div>
+			</form>
+		</div>		
+	<%}%>
+	<%if(profession!=undefined && profession!=null && profession.length>0){%>	
+		<% for (var i=0; i<profession.length ; i++){ %>
+			<% if(profession[i]._id!=undefined){%>
+				<div class="__prof _cntnr" id="<%=profession[i]._id%>">
+					<form action="/gb/srvc/save-work" method="post" name="profession<%=i%>">
+						<input type="hidden" name="id" value="<%=gbId%>">
+						<input type="hidden" name="pid" value="<%=profession[i]._id%>">
+						<div class="inlineparent inp_blck">
+							<div class="_lbl_tgs">
+								<label for="name">Company Name</label>
+							</div>
+							<div class="input_flds">
+								<input type="text" name="company" value="<%=profession[i].company%>" placeholder="Enter your Company Name"/>
+							</div>
+						</div>
+						<div class="inlineparent inp_blck">
+							<div class="_lbl_tgs">
+								<label for="name">Postion</label>
+							</div>
+							<div class="input_flds">
+								<input type="text" name="designation" value="<%=profession[i].designation%>" placeholder="Enter your Email Address"/>
+							</div>
+						</div>
+						<div class="inlineparent inp_blck">
+							<div class="_lbl_tgs">
+								<label for="name">Domain</label>
+							</div>
+							<div class="input_flds">
+								<input type="text" name="jobType" value="<%=profession[i].jobType%>" placeholder="Enter your working domain"/>
+							</div>
+						</div>
+						<div class="inlineparent inp_blck">
+							<div class="_lbl_tgs">
+								<label for="name">City / Town</label>
+							</div>
+							<div class="input_flds">
+								<input type="text" name="location" value="<%=profession[i].location!=undefined?profession[i].location:''%>" placeholder="Enter your Mobile Phone"/>
+							</div>
+						</div>
+						<div class="inlineparent inp_blck">
+							<div class="_lbl_tgs">
+								<label for="name">Time Period</label>
+							</div>
+							<div class="__chse__opt inlineparent">
+								<div class="opt_mtn inlineparent">
+									<input type="radio" class="reg_radio_btn" name="isPresent" <% if(profession[i].isPresent==true){%> selected <%}%>/>
+									<label>Working Present</label>	
+								</div>
+								<div class="opt_mtn inlineparent">
+									<input type="radio" class="reg_radio_btn" name="isPresent" <% if(profession[i].isPresent==false){%>selected<%}%>/>
+									<label>Past</label>	
+								</div>
+							</div>
+						</div>
+						<div class="inlineparent inp_blck">
+							<div class="_lbl_tgs">
+								<label for="name">Years of Experience</label>
+							</div>
+							<div class="input_flds __half inlineparent">
+								<%if(profession[i].period!=undefined &&profession[i].period!=null){%>
+									
+									<input type="text" name="start" value="<%=profession[i].period.year!=undefined?profession[i].period.year:''%>" />
+
+									<input type="text" name="end" value="<%=profession[i].period.month!=undefined?profession[i].period.month:''%>" />
+
+								<%}else{%>
+									<input type="text" name="start"/>
+									<input type="text" name="end"/>
+								<%}%>
+							</div>
+						</div>
+						<div class="inlineparent inp_blck">
+							<div class="_lbl_tgs">
+								<label for="name">Personal Experience</label>
+							</div>
+							<div class="input_flds">
+								<textarea placeholder="Share your experiece" name="jobDesc"><%=profession[i].jobDesc%></textarea>
+							</div>
+						</div>
+						<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+							<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+							<div class="_svd_sbmt __bg_button removeData" data-gid="<%=gbId%>" data-pid='<%=profession[i]._id%>' style="margin-right:10px;">Remove</div>
+						</div>
+					</form>	
+				</div>
+			<%}%>	
+		<%}%>	
+		<div class="__prof _cntnr">
+			<form action="/gb/srvc/save-work" method="post" name="profession">
+				<input type="hidden" name="id" value="<%=gbId%>">
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Company Name</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="company" placeholder="Enter your Company Name"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Postion</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="designation" placeholder="Enter your Email Address"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Domain</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="jobType" placeholder="Enter your working domain"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">City / Town</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="location" placeholder="Enter your Mobile Phone"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Time Period</label>
+					</div>
+					<div class="__chse__opt inlineparent">
+						<div class="opt_mtn inlineparent">
+							<input type="radio" class="reg_radio_btn" name="isPresent"/>
+							<label>Working Present</label>	
+						</div>
+						<div class="opt_mtn inlineparent">
+							<input type="radio" class="reg_radio_btn" name="isPresent"/>
+							<label>Past</label>	
+						</div>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Years of Experience</label>
+					</div>
+					<div class="input_flds __half inlineparent">
+						<input type="text" name="start"/>
+						<input type="text" name="end"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Personal Experience</label>
+					</div>
+					<div class="input_flds">
+						<textarea placeholder="Share your experiece" name="jobDesc"></textarea>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+					<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+				</div>
+			</form>
+		</div>	
+	<%}%>	
+	<!--<div class="inlineparent inp_blck">
+		<div class="_other _bttn_add_on">Add More</div>
+	</div>-->
+	
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(document).off("click",".saveData")
+			$(document).on("click",".saveData",function(e){
+				var _self=$(this);
+				var _parentForm=_self.parents("form");
+				var generalValidator = new FormValidator(_parentForm.attr("name"), [{
+				    name: 'company',
+				    display: 'Company Name',
+				    rules: 'required'
+				}, {
+				    name: 'jobType',
+				    display: 'Domain',
+				    rules: 'required'
+				}, {
+				    name: 'isPresent',
+				    display: 'Time Period',
+				    rules: 'required'
+				}, {
+				    name: 'location',
+				    display: 'location',
+				    rules: 'required'
+				}], function(errors, event) {
+				    return errors.length;
+				});
+				var error=generalValidator._validateForm(e);
+				_parentForm.ajaxSubmit({
+					beforeSubmit:function(form,jqxhr,options){
+						console.log(form,generalValidator)
+						if(generalValidator.errors.length>0){
+							return false;
+						}else{
+							return true;
+						}
+					},
+					success:function(data){
+						if(data.status==0){
+							$(".professional").click();
+						}
+					}
+				});
+			});
+
+			$("#professional").off("click",".removeData")
+			$("#professional").on("click",".removeData",function(){
+				var _self=$(this);
+				$.ajax({
+					url:"/gb/srvc/remove-work/"+_self.attr("data-gid")+"/"+_self.attr("data-pid"),
+					type:"post",
+					success:function(data){
+						if(data.status==0){
+							var container=_self.parents(".__prof._cntnr");
+							if($(".__prof._cntnr").length>1){
+								container.remove();
+							}else{
+								container.find("form")[0].reset();
+								container.find("input[name='pid']").remove();
+								container.find(".removeData").remove();
+
+							}
+						}else{
+
+						}
+					}
+				})
+			});
+
+			$("._other").click(function(){
+				$("#addmr").bPopup({
+					modalClose:false,
+					escClose:false,
+					closeClass:"cross",
+					appendTo:"#professional"
+				});
+
+			});
+		});
+	</script>
+</div>

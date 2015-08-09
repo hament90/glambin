@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Glambin</title>
+	  	<% include ../partials/head.html.ejs%>
+	  	<link rel="stylesheet" type="text/css" href="/css/setting.css">
+		<script type="text/javascript" src="../js/library/jquery.form.js"></script>
+		<script type="text/javascript" src="../js/library/validate.min.js"></script>
+	</head>
+	<body>
+		<% include ../partials/_section_header.html.ejs %>
+		<section>
+			<div class="container" id="body">
+				<div class="inlineparent bx_szg" id="userInfo">
+					<div class="inlineparent" style="max-width:150px;max-height:80px;">
+						<img src="/img/hament.png"/>
+					</div>
+					<div class="inlineparent info_cnt">
+						<h1 class="wdth_100_per">
+							<%=user.username%>
+						</h1>
+						<div class="shortInfo"><%=user.shortDesc%></div>
+						<div class="chnnl"></div>						
+					</div>
+					<div class="wdth_100_per inlineparent">
+						<div class="tags inlineparent">
+							<span>369</span> People Viewed
+						</div>
+						<div class="tags inlineparent">
+							<span>369</span> Search View
+						</div>
+						<div class="tags inlineparent">
+							<span>369</span> Connections
+						</div>
+						<div class="tags inlineparent">
+							<span>369</span> Messages
+						</div>
+					</div>
+				</div>
+				<div class="inlineparent mtnContainer" id="resetPassword">
+					<div class="header bx_szg wdth_100_per">
+						<h2>Reset Password</h2>
+					</div>
+					<div class="passwd_cntnr wdth_100_per bx_szg inlineparent">
+						<form action="/gb/reset-password" method="post" class="wdth_100_per">
+							<input type="text" class="__pass" name="userId" placeholder="Enter your UserId"/>	
+							<input type="password" class="__pass" name="oldPass" placeholder="Enter your old password"/>	
+							<input type="password" class="__pass" name="newPass"  placeholder="Enter your new password"/>	
+							<input type="password" class="__pass" name="conPass"  placeholder="Reconfirm your password"/>	
+							<div class="wdth_100_per txt_algn_rgt" style="margin-top:15px;">
+								<div class="_svd_sbmt __bg_button saveData">Save</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="inlineparent mtnContainer" id="Privacy">
+					<div class="header bx_szg wdth_100_per">
+						<h2>Privacy Settings</h2>
+					</div>
+					<div class="passwd_cntnr wdth_100_per bx_szg inlineparent" data-bind="event:{load:$root.loadSetting()}">
+						<div class="block inlineparent bx_szg"  id="conNotification">
+							<label>How would you like to get connect notification?</label>
+							<div class="inlineparent wdth_100_per bx_szg">
+								<div class="inlineparent">
+									<label class="subs">Default</label>	
+									<input type="radio" name="days" value="default" data-bind="checked:$root.conNotification()"/>
+								</div>
+								<div class="inlineparent">
+									<label class="subs">Daily</label>	
+									<input type="radio" name="days" value="daily" data-bind="checked:$root.conNotification()"/>
+								</div>
+								<div class="inlineparent">
+									<label class="subs">Weekly</label>	
+									<input type="radio" name="days" value="weelkly" data-bind="checked:$root.conNotification()"/>
+								</div>
+								<div class="inlineparent">
+									<label class="subs">monthly</label>	
+									<input type="radio" name="days" value="monthly" data-bind="checked:$root.conNotification()"/>
+								</div>
+							</div>
+						</div>
+						<div class="block inlineparent bx_szg" id="publish">
+							<label>Publish your profile</label>
+							<div class="inlineparent wdth_100_per bx_szg">
+								<div class="inlineparent">
+									<label class="subs">Active</label>	
+									<input type="radio" name="active" value="true" data-bind="checked:publish"/>
+								</div>
+								<div class="inlineparent">
+									<label class="subs">Deactivate</label>	
+									<input type="radio" name="active" value="false" data-bind="checked:publish"/>
+								</div>
+							</div>
+						</div>
+						<div class="block inlineparent bx_szg" id="searchable">
+							<label>Do you want to make your profile searchable</label>
+							<div class="inlineparent wdth_100_per bx_szg">
+								<div class="inlineparent">
+									<label class="subs">Yes</label>	
+									<input type="radio" name="searchable" value="true" data-bind="checked:searchable()">
+								</div>
+								<div class="inlineparent">
+									<label class="subs">No</label>	
+									<input type="radio" name="searchable" value="false" data-bind="checked:searchable()">
+								</div>
+							</div>
+						</div>
+						<div class="block inlineparent bx_szg" id="shareContacts">
+							<label>Would you like to show your contacts publicly?</label>
+							<div class="inlineparent wdth_100_per bx_szg">
+								<div class="inlineparent">
+									<label class="subs">Yes</label>	
+									<input type="radio" name="contact" value="true" data-bind="checked:$root.shareContacts()">
+								</div>
+								<div class="inlineparent">
+									<label class="subs">no</label>	
+									<input type="radio" name="contact" value="false" data-bind="checked:$root.shareContacts()">
+								</div>
+							</div>
+						</div>
+						<div class="block inlineparent bx_szg" id="recieveNotification">
+							<label>Would you like to recieve notification over your provided contact?</label>
+							<div class="inlineparent wdth_100_per bx_szg">
+								<div class="inlineparent">
+									<label class="subs">Yes</label>	
+									<input type="radio" name="noitfy" value="true" data-bind="checked:$root.recieveNotification"/>
+								</div>
+								<div class="inlineparent">
+									<label class="subs">No</label>	
+									<input type="radio" name="noitfy" value="false" data-bind="checked:$root.recieveNotification"/>
+								</div>
+							</div>
+						</div>
+						<div class="block inlineparent bx_szg" id="skipRegistration">
+							<label>Do you want to skip registration at login?</label>
+							<div class="inlineparent wdth_100_per bx_szg">
+								<div class="inlineparent">
+									<label class="subs">Yes</label>	
+									<input type="radio" name="reg" value="true" data-bind="checked:$root.skipRegistration"/>
+								</div>
+								<div class="inlineparent">
+									<label class="subs">No</label>	
+									<input type="radio" name="reg" value="false" data-bind="checked:$root.skipRegistration"/>
+								</div>
+							</div>
+						</div>
+						<div class="block inlineparent bx_szg" id="messageLimit">
+							<label>How many messages do you want to recievce in a day?</label>
+							<div class="inlineparent wdth_100_per bx_szg">
+								<div class="inlineparent">
+									<label class="subs">5 msgs</label>	
+									<input type="radio" name="limit" value="5" data-bind="checked:$root.messageLimit()"/>
+								</div>
+								<div class="inlineparent">
+									<label class="subs">10 msgs</label>	
+									<input type="radio" name="limit" value="10" data-bind="checked:$root.messageLimit()"/>
+								</div>
+								<div class="inlineparent">
+									<label class="subs">25 msgs</label>	
+									<input type="radio" name="limit" value="25" data-bind="checked:$root.messageLimit()"/>
+								</div>
+								<div class="inlineparent">
+									<label class="subs">50 msgs</label>	
+									<input type="radio" name="limit" value="50" data-bind="checked:$root.messageLimit()"/>
+								</div>
+							</div>
+						</div>
+						<div class="block inlineparent bx_szg" id="profileView">
+							<label>Would you like to show your complete profile?</label>
+							<span class="note bx_szg">If hide then basic attributes only hide if you want to control your complete page <a href="">Click Here</a></span>
+							<div class="inlineparent wdth_100_per bx_szg">
+								<div class="inlineparent">
+									<label class="subs">Show</label>	
+									<input type="radio" name="prfike" value="true" data-bind="checked:$root.profileView()"/>
+								</div>
+								<div class="inlineparent">
+									<label class="subs">Hide</label>	
+									<input type="radio" name="prfike" value="false" data-bind="checked:$root.profileView()"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<% include ../partials/_section_footer.html.ejs %>
+		<script type="text/javascript">
+			function settingsLoader(){
+
+			}
+			settingsLoader.prototype.init = function() {
+				var _self=this;
+
+				_self.settingViewModel={
+					publish:ko.observable(false),
+					searchable:ko.observable(false),
+					conNotification:ko.observable("default"),
+					shareContacts:ko.observable(false),
+					profileView:ko.observable(false),
+					recieveNotification:ko.observable(false),
+					skipRegistration:ko.observable(false),
+					messageLimit:ko.observable(5),
+					loadSetting:function(){
+						var _modelSelf=this;
+						$.ajax({
+							url:"/user-srvc/load-settings",
+							type:"post",
+							success:function(data) {
+								if(data.status==0){
+									if(data.result!=null){
+										_modelSelf.publish(data.result.isPublished.toString());
+										_modelSelf.searchable(data.result.isSearchable.toString());
+										if(data.result.setting!=null){
+											_modelSelf.profileView(data.result.setting.completeProfileView.toString());
+											_modelSelf.conNotification(data.result.setting.connectMessage.toString());
+											_modelSelf.shareContacts(data.result.setting.shareContact.toString());
+											_modelSelf.skipRegistration(data.result.setting.skipRegistration.toString());
+											_modelSelf.messageLimit(data.result.setting.messageLimit.toString());
+											_modelSelf.recieveNotification(data.result.setting.notification.toString())
+										}
+									}
+								}
+							}
+						});
+					}
+				};
+
+				ko.applyBindings(_self.settingViewModel,document.getElementById('Privacy'));
+
+			};
+			$(document).ready(function(){
+				var setting= new settingsLoader();
+				setting.init();
+
+				$(".saveData").click(function(e){
+					var _self=$(this);
+					var _parentForm=_self.parents("form");
+					var generalValidator = new FormValidator(_parentForm.attr("name"), [{
+					    name: 'userId',
+					    display: 'UserId',
+					    rules: 'required'
+					}, {
+					    name: 'oldPass',
+					    display: 'OLd Password',
+					    rules: 'required'
+					}, {
+					    name: 'newPass',
+					    display: 'OLd Password',
+					    rules: 'required'
+					}, {
+					    name: 'conPass',
+					    display: 'Reconfirm Password',
+					    rules: 'required'
+					}], function(errors, event) {
+					    return errors.length;
+					});
+					var error=generalValidator._validateForm(e);
+					_parentForm.ajaxSubmit({
+						beforeSubmit:function(form,jqxhr,options){
+							console.log(form,generalValidator)
+							if(generalValidator.errors.length>0){
+								return false;
+							}else{
+								// for (var i = 0; i < form.length; i++) {
+								// 	if(form[i].name=='userId'!=null && form[i].value!=''){
+								// 		if(isNaN(form[i].value)){
+
+								// 		}
+								// 	}
+									
+								// };
+								return true;
+							}
+						},
+						success:function(data){
+							if(data.status==0){
+								
+							}
+						}
+					});
+				});
+
+				$("#publish input[type='radio']").click(function(){
+					var _self=$(this);
+					$.ajax({
+						url:'/user-srvc/profile-publish',
+						type:"post",
+						data:{isActive:_self.val()},
+						success:function (data) {
+							console.log(data)
+							if(data.status==0){
+
+							}else{
+
+							}
+						}
+					})
+				});	
+
+				$("#searchable input[type='radio']").click(function(){
+					var _self=$(this);
+					$.ajax({
+						url:'/user-srvc/make-searchable',
+						type:"post",
+						data:{isSearchable:_self.val()},
+						success:function (data) {
+							console.log(data)
+							if(data.status==0){
+
+							}else{
+
+							}
+						}
+					})
+				});
+
+				$("#conNotification input[type='radio']").click(function(){
+					var _self=$(this);
+					$.ajax({
+						url:'/user-srvc/connect-notification',
+						type:"post",
+						data:{time:_self.val()},
+						success:function (data) {
+							console.log(data)
+							if(data.status==0){
+
+							}else{
+
+							}
+						}
+					})
+				});
+
+				$("#shareContacts input[type='radio']").click(function(){
+					var _self=$(this);
+					$.ajax({
+						url:'/user-srvc/share-contacts',
+						type:"post",
+						data:{isShare:_self.val()},
+						success:function (data) {
+							console.log(data)
+							if(data.status==0){
+
+							}else{
+
+							}
+						}
+					})
+				});
+
+				$("#profileView input[type='radio']").click(function(){
+					var _self=$(this);
+					$.ajax({
+						url:'/user-srvc/view-complete',
+						type:"post",
+						data:{isView:_self.val()},
+						success:function (data) {
+							console.log(data)
+							if(data.status==0){
+
+							}else{
+
+							}
+						}
+					});
+				});
+
+				$("#recieveNotification input[type='radio']").click(function(){
+					var _self=$(this);
+					$.ajax({
+						url:'/user-srvc/recieve-contacts-info',
+						type:"post",
+						data:{notification:_self.val()},
+						success:function (data) {
+							console.log(data)
+							if(data.status==0){
+
+							}else{
+
+							}
+						}
+					});
+				});
+
+				$("#messageLimit input[type='radio']").click(function(){
+					var _self=$(this);
+					$.ajax({
+						url:'/user-srvc/message-limit',
+						type:"post",
+						data:{limit:_self.val()},
+						success:function (data) {
+							console.log(data)
+							if(data.status==0){
+
+							}else{
+
+							}
+						}
+					});
+				});
+				
+				$("#skipRegistration input[type='radio']").click(function(){
+					var _self=$(this);
+					$.ajax({
+						url:'/user-srvc/skip-registration',
+						type:"post",
+						data:{doSkip:_self.val()},
+						success:function (data) {
+							console.log(data)
+							if(data.status==0){
+
+							}else{
+
+							}
+						}
+					});
+				});
+
+			});
+		</script>
+	</body>
+</script>		

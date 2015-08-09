@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include ../partials/head.html.ejs %>
+		<link href="/css/profileLanding.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/js/library/soundCloud.js"></script>
+	</head>
+
+	<body>
+		<% include ../partials/_section_header.html.ejs %>
+	
+		<div class="container" id="body">
+			<div class="top-strip">
+				<h1><%=username%></h1>
+			</div>
+			<div class="top-content inlineparent">
+				<div class="left inlineparent bx_szg">
+					<span class="email">@<%=handle%></span>
+					<p class="_prf_lnd_pgphone "><%=phone%></p>
+					<p class="_prf_lnd_pgahand "><%=birth.getDate()%>/<%=birth.getMonth()+1%>/<%=birth.getFullYear()%></p>
+					<p class="_sttl_lnd"><%=location.addr%>, <%=location.area%>, <%=location.city%>, <%=location.state%>, <%=location.country%>-<%=location.postal%></p>
+				</div>
+				<div class="right bx_szg"><!-- <img src="/img/showCase/Anne_profile_.j" /> --></div>
+				<%if(user==undefined || user.gbId!=gbId){%>
+					<div class="btn-top"><a href="#" id="connect" class="top-btn">Connect</a> <a href="#"  class="top-btn">Message</a> </div>
+				<%}%>
+				<div class="profile-image"><img src="images/profile.jpg" /></div>
+			</div>
+			<div class="content inlineparent">
+				<div class="part1 bx_szg">
+					<div class="testimonials bx_szg">
+						<p class="inlineparent _prf_lnd_pgmsg bx_szg" style="padding-left:35px">
+							<%=shortDesc%>
+						</p>
+					</div>
+					<div class="menu">
+						<ul class="inlineparent">
+							<li class="bx_szg inlineparent crsr_pntr" data-bind="click:function(){$root.showTab('about')}"><img src="/img/icons/talking.png" style="width:20px;opacity: .7;margin-right: 6px;" />About</li>
+							<li class="bx_szg inlineparent crsr_pntr" data-bind="click:function(){$root.showTab('media')}"><img src="/img/icons/game2.png" style="width:20px;opacity: .7;margin-right: 6px;" />Media</li>
+							<li class="bx_szg inlineparent crsr_pntr" data-bind="click:function(){$root.showTab('explore')}"><img src="/img/icons/magnifier11.png" style="width:20px;opacity: .7;margin-right: 6px;"/>Explore</li>
+							<li class="bx_szg inlineparent crsr_pntr" data-bind="click:function(){$root.showTab('achivements')}"style="border-right:0px;"><img src="/img/icons/award52.png" style="width:20px;opacity: .7;margin-right: 6px;" />Achivement</li>
+						</ul>
+					</div>
+					<div class="testimonials bx_szg" id="about" data-bind="visible:(isVisibleTb()=='about')">
+						<p class="text-small"><%=description%></p>
+						<% if(experience!=null && experience.length>0){%>
+							<div class="inner-con pos_rel">
+								<div class="inlineparent" style="margin:10px 0 20px;">
+									<div class="heading pos_abs">Experience</div><div class="line"></div>
+								</div>
+								<% for(var i=0;i<experience.length;i++){%>
+									<div class="matter">
+										<div class="top">
+											<div class="first"><%=i+1%></div>
+											<div class="second"><%=experience[i].designation%></div>
+											<div class="last"><img src="images/cont-icon.png" /> Since April, 2014 </div>
+										</div>
+
+										<div class="cont inlineparent">
+											<div class="title"><%=experience[i].company%></div>
+											<div class="image"><img src="images/window.png" /></div>
+										</div>
+										<p class="text-small" style="padding-left:35px; font-size:12px !important;"><%=experience[i].jobDesc%></p>
+									</div>
+								<%}%>		
+							</div>
+						<%}%>		
+						<% if(education!=null && education.length>0){%>
+							<div class="inner-con pos_rel">
+								<div class="inlineparent" style="margin:10px 0 20px;">
+									<div class="heading pos_abs">Education</div><div class="line"></div>
+								</div>
+								<%for(var i=0;i<education.length;i++){%>
+									<div class="matter">
+										<div class="top">
+											<div class="first"><%=i+1%></div>
+											<div class="second"><%=education[i].course%></div>
+											<div class="last"><img src="images/cont-icon.png" />
+											 	<%if(education[i].isPresent==true){%>
+											 		Since <b><%=education[i].period.startMonth%>, <%=education[i].period.startYear%></b>
+											 	<%}else{%>
+											 		From <b><%=education[i].period.startMonth%>, <%=education[i].period.startYear%></b> Till <b><%=education[i].period.endMonth%>, <%=education[i].period.endYear%></b>
+											 	<%}%>	
+											 </div>
+										</div>
+
+										<div class="cont">
+											<div class="title"><%=education[i].institute%></div>
+											<div class="image"><img src="images/window.png" /></div>
+
+										</div>
+										<p class="text-small" style="padding-left:35px; font-size:12px !important;"><%=education[i].description%></p>
+									</div>
+								<%}%>
+							</div>
+						<%}%>
+					</div>
+					<div class="testimonials bx_szg" id="media" data-bind="visible:(isVisibleTb()=='media')">
+						<div class="menu">
+							<span class="moments">Memories Lane</span>  <span class="view-all"><a href="#">View all</a></span>
+						</div>
+						<div class="testimonials bx_szg">
+							<div class="first-image"><img src="images/girl-1.jpg" /><img src="images/girl-2.jpg" /></div>
+							<div class="second-image"><img src="images/girl3.jpg" /></div>
+							<div class="third-image"><img src="images/girl-4.jpg" /></div>
+						</div>
+
+						<div class="menu">
+							<span class="moments">Moments Video</span>  
+						</div>
+						<div class="testimonials bx_szg">
+							<%if (media.video!=undefined && media.video.length>0){%>
+								<% for(var i=0;i<media.video.length;i++){%>
+									<%if (media.video[i]!=undefined && media.video[i]!=''){%>
+										<div class="video">
+											<div id="vframe<%=i%>" data-bind="event:{load:playVideo('<%=media.video[i]%>','vframe<%=i%>')}">
+											</div>
+
+										</div>
+									<%}%>
+								<%}%>
+							<%}%>
+							<%if (media.video==undefined || media.video.length==0){%>
+								Video has not posted.
+							<%}%>
+						</div>
+						<div class="space"></div>
+						<div class="menu">
+							<span class="moments">Moments Audio</span>  
+						</div>
+						<div class="testimonials bx_szg">
+							<%if (media.audio!=undefined && media.audio.length>0){%>
+								<% for(var i=0;i<media.audio.length;i++){%>
+									<div class="wdth_100_per" id="frame<%=i%>" data-bind="event:{load:playAudio('<%=media.audio[i]%>','frame<%=i%>')}">
+									</div>
+									
+								<%}%>
+							<%}%>
+							<%if (media.audio==undefined || media.audio.length==0){%>
+								Video has not posted.
+							<%}%>
+							<div style="height:200px;"></div>
+						</div>
+					</div>
+					<div class="testimonials bx_szg" id="explore"  data-bind="visible:(isVisibleTb()=='explore')">
+						<%if (explore!=null && explore.length>0){%>
+							<% for(var i=0;i<explore.length;i++){%>
+								<div class="menu">
+									<p class="big-text">Your story: <%=explore[i].heading%></p>
+								</div>
+								<div class="testimonials">
+									<p class="text-small"><%=explore[i].description%></p>
+								</div>
+							<%}%>	
+						<%}%>	
+					</div>
+					<div class="testimonials bx_szg" id="achievements" data-bind="visible:(isVisibleTb()=='achivements')">
+						<%if (achivements!=null && achivements.length>0){%>
+							<% for(var i=0;i<achivements.length;i++){%>
+								<div class="box">
+									<div class="box-left">
+										<!-- <img src="images/social.jpg" class="img-left" height="80px" width="auto" /> -->
+										<p class="big-text1"><%=achivements[i].title%></p>
+										<p class="text-small">
+											<%=achivements[i].description%>
+										</p>
+									</div>
+									<div class="box-right">
+										<p class="_12_fnt_sz _prf_lnd_pgcont-icon _dt">
+											<strong> Due</strong> 
+											<span style="color:#3399FF;"><%=(achivements[i].date.getMonth()+1)%> <%=(achivements[i].date.getFullYear())%></span>
+										</p>
+										<p style="margin:0">
+											<a href="#" class="button">100%</a>
+										</p>
+									</div>
+									<div class="box-bottom">
+										<span class="_prf_lnd_pgshake-hand crsr_pntr" style="line-height:20px; padding-left:25px;width:60px">Helped </span> 
+										<span class="_prf_lnd_pgleaf crsr_pntr" style="line-height:20px;padding-left:25px;width:60px">Thanks </span> 
+										<span class="_prf_lnd_pghand crsr_pntr" style="line-height:20px;padding-left:25px;width:60px">Rocked </span>
+									</div>
+								</div>	
+							<%}%>	
+						<%}%>	
+					</div>
+				</div>
+				<div class="part2">
+					<div class="head">
+						<ul class="inlineparent">
+							<li class="bx_szg"><a href="#">Connection</a></li>
+							<li class="bx_szg" style="border-right:0px;"><a href="#">Message</a></li>
+						</ul>
+					</div>
+					<div class="side-content">
+						<div class="img"><img src="images/image.png" /></div>
+						<div class="name">Petra Novakova</div>
+						<div class="last-green"></div>
+					</div>
+					<div class="side-content">
+						<div class="img"><img src="images/image1.png" /></div>
+						<div class="name">Katrina Novakova</div>
+						<div class="last-red"></div>
+					</div>
+					<div class="side-content">
+						<div class="img"><img src="images/image.png" /></div>
+						<div class="name">Petra Novakova</div>
+						<div class="last-green"></div>
+					</div>
+					<div class="side-content">
+						<div class="img"><img src="images/image1.png" /></div>
+						<div class="name">Katrina Novakova</div>
+						<div class="last-red"></div>
+					</div>
+					<div class="side-content">
+						<div class="img"><img src="images/image.png" /></div>
+						<div class="name">Petra Novakova</div>
+						<div class="last-green"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="gbId" value="<%=gbId%>" />
+		<% include ../partials/_section_footer.html.ejs %>
+		<% if(user==undefined){%>
+			<div class="connectPop bg_eee dsp_nn">
+				<div class="conHeader inlineparent">
+					<h1>Connect</h1>
+					<img src="/img/__add.png" class="__cls" />
+				</div>
+				<div class="conContent inlineparent">
+					<label>Enter your EmailId or Phone number.</label>
+					<input type="text" name="userId" class="bx_szg" placeholder="Enter your EmailId or Phone number" />
+					<div class="conSubmit __cls">Submit</div>						
+				</div>
+			</div>
+		<%}%>
+		<script type="text/javascript">
+			function profileLanding(){}
+			
+			profileLanding.prototype.init = function() {
+				var _self=this;
+				_self.landingViewModel={
+					isVisibleTb:ko.observable('about'),
+					showTab:function(data){
+						var _tbs=this;
+						_tbs.isVisibleTb(data);
+						console.log(data)
+					},
+					playVideo:function(data,frame){
+						if(data!=undefined){
+							if(data.indexOf("youtube")!=-1){
+								if(data.indexOf("?v=")!=-1){
+									var key=data.split("?v=");
+									if(key.length>0){
+										if($("#"+frame).html()!=undefined){
+											$("#"+frame).html("<iframe width='100%' height='166' scrolling='no' frameborder='no' src='http://www.youtube.com/embed/"+key[1]+"?autoplay=0'></iframe>");
+										};
+									}else{
+										return null;
+									}
+								}else{
+									return null;
+								}		
+							}else{
+								return null;
+							}
+						}else{
+							return null;
+						}
+					},
+					playAudio:function (data,frame) {
+						if(data!=undefined){
+							if(data.indexOf("soundcloud.com")!=-1){
+								$.get('https://api.soundcloud.com/resolve.json?url='+data+'&client_id=ab2743d33240b31b5f491167368e48f3',function(data){
+									if(data!=null)
+										if($("#"+frame).html()!=undefined){
+											$("#"+frame).html("<iframe width='100%' height='166' scrolling='no' frameborder='no' src='https://w.soundcloud.com/player/?url="+data.uri+"&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false'></iframe>");
+										}
+									else
+										return '';
+								});
+							}else{
+								return '';	
+							}
+						}else{
+							return '';
+						}
+					},
+				}
+				ko.applyBindings(_self.landingViewModel,document.getElementById('body'));
+			};
+			
+			function callConnect(userId){
+				console.log(userId);
+				if(userId!=undefined && userId!=''){
+					$.ajax({
+						url:"/profile-connect/"+$("#gbId").val(),
+						data:{xUser:userId},
+						type:"post",
+						success:function(data){
+							console.log(data);
+						}
+					})
+				}
+			}
+
+			$(document).ready(function(){
+				var profile=new profileLanding();
+				profile.init();
+
+				$(".conSubmit").click(function (argument) {
+					var _self=$(this);
+					var value=_self.parent().find("input").val();
+					if(value==undefined){
+						alert(0);
+						return false;
+					}
+					if(isNaN(value)){
+
+					}else{
+
+					}
+					callConnect(_self.parent().find("input").val());
+				});
+
+				$("#connect").click(function(){
+					<% if(user!=undefined && user.gbId!=gbId){%>
+						callConnect("<%user.gbId%>");				
+					<%}else{%>
+						$(".connectPop").bPopup({
+							modalClose:false,
+							escCLose:false,
+							closeClass:"__cls"
+						});
+					<%}%>
+				});
+			});
+		</script>
+	</body>
+</html>

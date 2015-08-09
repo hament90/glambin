@@ -1,0 +1,293 @@
+<div class="registration_form">
+	<div class="_reg_hd_name">
+		Education
+	</div>
+	<%if(education==undefined || education==null || education.length==0){%>
+		<div class="__edu _cntnr">
+			<form action="/gb/srvc/save-educate" method="post">
+				<input type="hidden" name="id" value="<%=gbId%>">
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Institute Name</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="institute" placeholder="Enter your School, College, Institute Name"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Course</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="course" placeholder="Enter your curriculum name"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Currently</label>
+					</div>
+					<div class="__chse__opt inlineparent">
+						<div class="opt_mtn inlineparent">
+							<input type="radio" class="reg_radio_btn" name="isPresent" value="true"/>
+							<label>Studying</label>	
+						</div>
+						<div class="opt_mtn inlineparent">
+							<input type="radio" class="reg_radio_btn" name="isPresent" value="false"/>
+							<label>Studied</label>	
+						</div>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Started from year</label>
+					</div>
+					<div class="input_flds __half inlineparent">
+						<input type="text" name="startYear" placeholder="Year"/>
+						<input type="text" name="startMonth" placeholder="Month"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Ends On</label>
+					</div>
+					<div class="input_flds __half inlineparent">
+						<input type="text" name="endYear" placeholder="Year"/>
+						<input type="text" name="endMonth" placeholder="Month"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Short Story</label>
+					</div>
+					<div class="input_flds">
+						<textarea placeholder="Share your experiece" name="description"></textarea>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+					<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+				</div>
+			</form>	
+		</div>	
+	<%}%>
+	<%if(education!=undefined && education!=null && education.length>0){%>	
+		<% for (var i=0; i<education.length ; i++){ %>
+			<div class="__edu _cntnr" id=""<%=education[i]._id%>"">
+				<form action="/gb/srvc/save-educate" method="post">
+					<input type="hidden" name="id" value="<%=gbId%>">
+					<input type="hidden" name="eid" value="<%=education[i]._id%>">
+					<div class="inlineparent inp_blck">
+						<div class="_lbl_tgs">
+							<label for="name">Institute Name</label>
+						</div>
+						<div class="input_flds">
+							<input type="text" name="institute" placeholder="Enter your School, College, Institute Name" value='<%=education[i].institute%>'/>
+						</div>
+					</div>
+					<div class="inlineparent inp_blck">
+						<div class="_lbl_tgs">
+							<label for="name">Course</label>
+						</div>
+						<div class="input_flds">
+							<input type="text" name="course" placeholder="Enter your curriculum name" value='<%=education[i].course%>'/>
+						</div>
+					</div>
+					<div class="inlineparent inp_blck">
+						<div class="_lbl_tgs">
+							<label for="name">Currently</label>
+						</div>
+						<div class="__chse__opt inlineparent">
+							<div class="opt_mtn inlineparent">
+								<input type="radio" class="reg_radio_btn" name="isPresent" value='true'<%if(education[i].isPresent!=undefined && education[i].isPresent){%>selected<%}%> />
+								<label>Studying</label>	
+							</div>
+							<div class="opt_mtn inlineparent">
+								<input type="radio" class="reg_radio_btn" name="isPresent" value='false' <%if(education[i].isPresent!=undefined && education[i].isPresent ){%>selected<%}%>/>
+								<label>Studied</label>	
+							</div>
+						</div>
+					</div>
+					<div class="inlineparent inp_blck">
+						<div class="_lbl_tgs">
+							<label for="name">Started from year</label>
+						</div>
+						<div class="input_flds __half inlineparent">
+							
+							<input type="text" name="startYear" placeholder="Year" value='<%=education[i].period!=undefined && education[i].period.startYear!=undefined?education[i].period.startYear:"" %>'/>
+							
+							<input type="text" name="startMonth" placeholder="Month" value='<%=education[i].period!=undefined && education[i].period.startMonth!=undefined?education[i].period.startMonth:"" %>'/>
+						</div>
+					</div>
+					<div class="inlineparent inp_blck">
+						<div class="_lbl_tgs">
+							<label for="name">Ends On</label>
+						</div>
+						<div class="input_flds __half inlineparent">
+							<input type="text" name="endYear" placeholder="Year" value='<%=education[i].period!=undefined && education[i].period.endYear!=undefined?education[i].period.endYear:"" %>'/>
+							<input type="text" name="endMonth" placeholder="Month" value='<%=education[i].period!=undefined && education[i].period.endMonth!=undefined?education[i].period.endMonth:"" %>'/>
+						</div>
+					</div>
+					<div class="inlineparent inp_blck">
+						<div class="_lbl_tgs">
+							<label for="name">Short Story</label>
+						</div>
+						<div class="input_flds">
+							<textarea placeholder="Share your experiece" name="description"><%=education[i].description!=undefined?education[i].description:''%></textarea>
+						</div>
+					</div>
+					<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+						<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+						<div class="_svd_sbmt __bg_button removeData" data-gid="<%=gbId%>" data-eid="<%=education[i]._id%>" style="margin-right:10px;">Remove</div>
+					</div>
+				</form>	
+			</div>	
+		<%}%>	
+		<div class="__edu _cntnr">
+			<form action="/gb/srvc/save-educate" method="post">
+				<input type="hidden" name="id" value="<%=gbId%>">
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Institute Name</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="institute" placeholder="Enter your School, College, Institute Name"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Course</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="course" placeholder="Enter your curriculum name"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Currently</label>
+					</div>
+					<div class="__chse__opt inlineparent">
+						<div class="opt_mtn inlineparent">
+							<input type="radio" class="reg_radio_btn" name="isPresent" value="true"/>
+							<label>Studying</label>	
+						</div>
+						<div class="opt_mtn inlineparent">
+							<input type="radio" class="reg_radio_btn" name="isPresent" value="false"/>
+							<label>Studied</label>	
+						</div>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Started from year</label>
+					</div>
+					<div class="input_flds __half inlineparent">
+						<input type="text" name="startYear" placeholder="Year"/>
+						<input type="text" name="startMonth" placeholder="Month"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Ends On</label>
+					</div>
+					<div class="input_flds __half inlineparent">
+						<input type="text" name="endYear" placeholder="Year"/>
+						<input type="text" name="endMonth" placeholder="Month"/>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Short Story</label>
+					</div>
+					<div class="input_flds">
+						<textarea placeholder="Share your experiece" name="description"></textarea>
+					</div>
+				</div>
+				<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+					<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+				</div>
+			</form>	
+		</div>
+	<%}%>	
+	<div class="inlineparent inp_blck">
+		<div class="_other _bttn_add_on">Add More</div>
+	</div>	
+	<script type='text/javascript'>
+		$(document).ready(function(){
+			$("#education").off("click",".saveData")
+			$("#education").on("click",".saveData",function(e){
+				var _self=$(this);
+				var _parentForm=_self.parents("form");
+				var generalValidator = new FormValidator(_parentForm.attr("name"), [{
+				    name: 'institute',
+				    display: 'Institute',
+				    rules: 'required'
+				}, {
+				    name: 'course',
+				    display: 'Course',
+				    rules: 'required'
+				}, {
+				    name: 'isPresent',
+				    display: 'Currently',
+				    rules: 'required'
+				}, {
+				    name: 'startYear',
+				    display: 'Started from year',
+				    rules: 'numeric'
+				}, {
+				    name: 'endYear',
+				    display: 'Started from year',
+				    rules: 'numeric'
+				}, {
+				    name: 'startMonth',
+				    display: 'Started from year',
+				    rules: 'numeric'
+				}, {
+				    name: 'endMonth',
+				    display: 'Started from year',
+				    rules: 'numeric'
+				}], function(errors, event) {
+				    return errors.length;
+				});
+				var error=generalValidator._validateForm(e);
+				_parentForm.ajaxSubmit({
+					beforeSubmit:function(form,jqxhr,options){
+						console.log(form,generalValidator)
+						if(generalValidator.errors.length>0){
+							return false;
+						}else{
+							return true;
+						}
+					},
+					success:function(data){
+						if(data.status==0){
+							$(".education").click();
+						}
+					}
+				});
+			});
+
+			$(document).off("click",".removeData");
+			$(document).on("click",".removeData",function(){
+				var _self=$(this);
+				$.ajax({
+					url:"/gb/srvc/remove-education/"+_self.attr("data-gid")+"/"+_self.attr("data-eid"),
+					type:"POST",
+					success:function(data){
+						if(data.status){
+							var container=_self.parents(".__edu._cntnr");
+							if($(".__edu._cntnr").length>1){
+								container.remove();
+							}else{
+								container.find("form")[0].reset();
+								container.find("input[name='pid']").remove();
+								container.find(".removeData").remove();
+
+							}
+						}else{
+
+						}	
+					}
+				});
+			});
+		});
+	</script>
+</div>

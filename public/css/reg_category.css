@@ -1,0 +1,31 @@
+.category_img_blck {
+    max-width: 170px;
+    max-height: 180px;
+    overflow: hidden;
+    margin: 10px;
+    border: 4px solid #E4E4E4;
+    box-shadow: 4px 4px 10px #ABABAB;
+}
+
+.category_img_blck > img {
+    box-sizing: border-box;
+    width: 100%;
+}
+.ctgry_lst{
+	width: 100%;
+	margin: 10px auto;
+}
+.content_val_text {
+   width: 96%;
+	line-height: 20px;
+	background: rgba(237, 236, 236, 0.64);
+	bottom: 0;
+	padding: 4%;
+}
+.content_val_text h3 {
+    color: #2C2C2C;
+}
+.content_val_text img {
+    float: right;
+    margin-right: 10px;
+}
