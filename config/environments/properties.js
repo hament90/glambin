@@ -6,7 +6,7 @@ var properties = {
 	"gb_sms_path":"/smpp/sendsms?",
 	"gb_sms_port":80,
 	"gb_sms_req_type":"GET",
-	"gb_sms_senderId":"gbin",
+	"gb_sms_senderId":"GLMBIN",
 	"gb_registration_format":"Welcome to Glambin",
 	"gb_phone_sms" : "Your requirement has been successfully published",
 	"gb_revice_mail" : "hny.srch@gmail.com",

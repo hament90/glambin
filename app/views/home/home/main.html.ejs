@@ -41,7 +41,7 @@
 									<!-- <img src="../img/_password.png" alt="password" style="padding: 10px;"/> -->
 									<input type="password" name="password" placeholder="Enter your Password" />
 								</div>
-								<div class="__eml__PH inlineparent forgot_pass floated_rgt"><a href="/gb/forgot-password">Forgot password ?</a></div>
+								<div class="__eml__PH inlineparent forgot_pass"><a href="/gb/forgot-password">Forgot password ?</a></div>
 								
 							</div>
 							<div class="button _pln_button __center _lgn_hmbtn" id="login_btn">Login</div>
@@ -132,6 +132,16 @@
 				</div>
 			</article>
 		</section>
+		<div id="OTPPopup" class="inlineparent dsp_nn">
+			<h1 class="wdth_100_per pdg_btm_lr_25 bx_szg" style="font-size:1.6em;">Enter your OTP <img src="../img/cross.png" class="closePopup floated_rgt" alt="closePopUp" style="margin-top:5px"></h1>
+			<div class="__eml__PH inlineparent wdth_100_per">
+				<input type="password" name="otp" placeholder="Enter your OTP." id="OTPval"/>
+			</div>
+			<p class="wdth_100_per messageOTP" >Your Code is valid for 180 seconds.</p>
+			<input type="hidden" value="" id="GBUserPhone"/>
+			<input type="hidden" value="" id="GBUserCode"/>
+			<div class="button _pln_button __center _lgn_hmbtn" id="subMitOtp">Submit</div>
+		</div>
 		<section id="cls_ftr">
 			<footer class="content_centralize ft_btm">
 				<ul class="inlineparent">
@@ -252,7 +262,27 @@
 						},
 						success:function(data){
 							if(data.status==0){
-								alert("please check your verification email or verification code.");
+								if(data.result!=null && Object.keys(data.result).length>0){
+									$("#GBUserCode").val(data.result.userCode);
+									$("#GBUserPhone").val(data.result.emailId);
+									$("#OTPPopup").bPopup({
+										modalClose:false,
+										closeClass:"closePopup",
+										escClose:false
+									});
+								}
+							}
+						}
+					});
+				});
+
+				$("#subMitOtp").click(function(){
+					$.ajax({
+						url:"/gb/user-verify/pending-verification/"+$("#GBUserCode").val()+$("#OTPval").val(),
+						type:"GET",
+						success:function(data){
+							if(data.status==0){
+								$(".messageOTP").text("Your account has been verfied.")
 							}
 						}
 					});
@@ -261,18 +291,3 @@
 		</script>
 	</body>
 </html>
-<!-- <div class="signUpTdy inlineparent" id="__firstStep">
-	<div class="head">Sign Up</div>
-	<div class="__Signup inlineparent __center">
-		<input type="text" class="__signupBox" placeholder="Enter Email or Phone Number"/>
-		<div class="__signUpButton _pln_button">Sign Up</div>
-	</div>
-	<div class="__center wdth_100_per mrgn_tb" style="background: url(../img/icons/hzntl.png)repeat-x 10px;">
-		<div class="__divider">OR</div>
-	</div>
-	<div class="inlineparent __center wdth_100_per">
-		<div class="facebook _opn_source_btn">connect with <img src="../img/icons/fb.png"/></div>
-		<div class="twitter _opn_source_btn">connect with <img src="../img/icons/gp.png"/></div>
-		<div class="google _opn_source_btn">connect with <img src="../img/icons/tweet.png"/></div>
-	</div>
-</div> -->

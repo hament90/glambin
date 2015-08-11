@@ -46,5 +46,27 @@ MainService.prototype.sendRealTimeOTP=function(message,destination){
 	var sendOTP= new sms();
 	return sendOTP.sendSms(message,destination);
 }
+MainService.prototype.getVerificationCode=function(code){
+
+	if(code !=undefined){
+		if(code.indexOf(this.specialUrlChar)>-1){
+			var split= code.split(this.specialUrlChar);
+			return split[1];	
+		}
+	}else{
+		return null;
+	}
+}
+MainService.prototype.getVerificationUserIdCode=function(code){
+
+	if(code !=undefined){
+		if(code.indexOf(this.specialUrlChar)>-1){
+			var split= code.split(this.specialUrlChar);
+			return split[0];	
+		}
+	}else{
+		return null;
+	}
+}
 
 module.exports = MainService;

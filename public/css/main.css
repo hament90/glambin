@@ -59,6 +59,12 @@ input[type="checkbox"], input[type="radio"] {
 .crsr_pntr{
     cursor: pointer;
 }
+.floated_lft{
+    float:left;
+}
+.floated_rgt{
+    float:right;
+}
 ._svd_sbmt.__bg_button {
     color: #fff;
     padding: 6px 10px;
@@ -96,8 +102,19 @@ input[type="checkbox"], input[type="radio"] {
 .wdth_100_per{
     width: 100%;
 }
+.__center,.__mod_login .head{
+    text-align: center;
+}
 .mrgn_tb{
     margin: 25px 0;
+}
+.bx_szg,.brdr_bx,.__mod_login .head, .signUpTdy .head,img.profile_pic,.usr_info_img img,.attrAddBlck,.attrAddBlck .inp_blck input,.attrAddBlck .txtArea,.attrAddBlck .inp_blck select{
+     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.__mod_login .head.bld_wght{
+    color: #5e5e5e;
 }
 ._handle{
     line-height: 22px;
@@ -108,11 +125,6 @@ input[type="checkbox"], input[type="radio"] {
 header.content_centralize.__hdr_main {
     height: 75px;
     text-align: right;
-}
-.bx_szg,.brdr_bx,.__mod_login .head, .signUpTdy .head,img.profile_pic,.usr_info_img img,.attrAddBlck,.attrAddBlck .inp_blck input,.attrAddBlck .txtArea,.attrAddBlck .inp_blck select{
-     box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
 }
 /*
     pictures profile
@@ -131,17 +143,11 @@ section.___hd_sctn{
     margin: 8px 5px;
     font-size: 2.5em;
 }
-.__center{
-    text-align: center;
-}
-.__mod_login .head.bld_wght{
-    color: #5e5e5e;
-}
+
 .__mod_login .head {
     padding: 0px 10px;
     font-size: 30px;
     color:#ABABAB;
-    text-align: center;
     text-transform: uppercase;
     cursor: pointer;
 }
@@ -203,7 +209,7 @@ section.___hd_sctn{
     color: #ccc;
     letter-spacing: 1px;
 }
-.__mod_login input {
+.__mod_login input ,#OTPPopup input{
     padding: 10px;
     color: #808080;
     width: 275px;
@@ -279,7 +285,12 @@ section#cls_ftr {
     background: rgba(43, 138, 187, 0.65);
     position: relative;
 }
-
+div#OTPPopup {
+    width: 500px;
+    background-color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
 #__finalStp .__Signup {
     margin: 5px 25px;
     height: 150px;

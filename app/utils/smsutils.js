@@ -21,6 +21,7 @@ SMS_UTILS.prototype.sendSms=function(smsMessage,to){
    
     };
    
+
     var message ="username=" + properties.gb_sms_username
             + "&password=" + properties.gb_sms_password + "&to="+to
             + "&text="+encodeURIComponent(smsMessage)
@@ -33,7 +34,7 @@ SMS_UTILS.prototype.sendSms=function(smsMessage,to){
     };
 
     try{
-     // console.log("try block",options)
+      console.log("try block",options)
      // console.log(properties.gb_sms_host+properties.gb_sms_path+message)
       var req = http.request(options, callback).on('error',function(e){
         console.log("Error: "+ "\n" + e.message); 

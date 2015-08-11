@@ -54,10 +54,17 @@ RegisterService.prototype.registerUser = function(dataModel) {
 					} else{
 						console.log("====================================================================================","http://localhost:3000/gb/user-verify/"+verificationData.verificationType+"/"+verificationData.verificationCode,"====================================================================================")
 						if(!isNaN(dataModel.emailId)){
-							_ownObj.sendRealTimeOTP("Your Registration Code is "+ _ownObj.getSixDigitCode(dataModel.emailId),dataModel.emailId);
-							
+							_ownObj.sendRealTimeOTP("Your Registration Code is "+ _ownObj.getVerificationCode(verificationData.verificationCode),dataModel.emailId);
 						}
-						_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,verificationData.verificationCode,null);
+						var responseObj=null;
+						if(verificationData.type==_gb_constant.VERIFICATION_USER_REGISTER.MOBILE){
+							responseObj={
+								type:verificationData.type,
+								userCode:_ownObj.getVerificationUserIdCode(verificationData.verificationCode)+_ownObj.specialUrlChar,
+								emailId:dataModel.emailId
+							}
+						}
+						_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,responseObj,null);
 					}
 				});			
 			}else{
@@ -72,6 +79,15 @@ RegisterService.prototype.verifyUser=function (verifyObj) {
 	var _ownObj = this;
 	var cd_crrctn= verifyObj.id.split(_ownObj.specialUrlChar);
 	if(cd_crrctn.length>0 ){
+		console.log("check-object-verification",verifyObj,{
+				_id:cd_crrctn[0],
+				verificationCode:verifyObj.id,
+				verificationType:_gb_constant.USER_STATUS.PENDING_VERFICATION ,
+				triedBefore:{$gt:0},
+				expiresOn:{$gt:_ownObj.getToday()},
+				createdOn:{$lt:_ownObj.getToday()}
+			});
+		
 		GBUserVerificationModel.findOneAndUpdate(
 			{
 				_id:cd_crrctn[0],
@@ -98,6 +114,7 @@ RegisterService.prototype.verifyUser=function (verifyObj) {
 				if( err){
 					console.error("Error while verifiying data from server. Error :- ",err!=null?(mongoErr.resolveError(err.code).code):err +","+(err!=null?(mongoErr.resolveError(err.code).msg):err))
 				} else {
+					console.log("verify-user",data)
 					if(data!=null){
 						var infoData = new GBUserInfoModel({
 							"gbId":data.gbId,
