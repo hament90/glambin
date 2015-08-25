@@ -11,28 +11,55 @@
 	
 		<div class="container" id="body">
 			<div class="top-strip">
-				<h1><%=username%></h1>
+				<h1 class=""><%=username%></h1>
 			</div>
 			<div class="top-content inlineparent">
 				<div class="left inlineparent bx_szg">
 					<span class="email">@<%=handle%></span>
 					<p class="_prf_lnd_pgphone "><%=phone%></p>
-					<p class="_prf_lnd_pgahand "><%=birth.getDate()%>/<%=birth.getMonth()+1%>/<%=birth.getFullYear()%></p>
-					<p class="_sttl_lnd"><%=location.addr%>, <%=location.area%>, <%=location.city%>, <%=location.state%>, <%=location.country%>-<%=location.postal%></p>
+					<%if(birth!=undefined && birth!=null){%>
+						<p class="_prf_lnd_pgahand ">
+							<%=birth.getDate()%>/<%=birth.getMonth()+1%>/<%=birth.getFullYear()%>
+						</p>
+					<%}%>
+					<%if(location!=undefined && location!=null && Object.keys(location).length!=0 && location.state!=undefined && location.state!=null){%>
+						<p class="_sttl_lnd">
+							<%if(location.addr!=undefined && location.addr!=null){%>
+								<%=location.addr%>,
+							<%}%>
+							<%if(location.area!=undefined && location.area!=null){%>
+								<%=location.area%>,
+							<%}%>
+							<%if(location.city!=undefined && location.city!=null){%>
+								<%=location.city%>,
+							<%}%>
+							<%if(location.state!=undefined && location.state!=null){%>
+								<%=location.state%>,
+							<%}%>
+							<%if(location.country!=undefined && location.country!=null){%>
+								<%=location.country%>
+							<%}%>
+							<%if(location.postal!=undefined && location.postal!=null){%>
+								-<%=location.postal%>
+							<%}%>
+						</p>
+					<%}%>
 				</div>
 				<div class="right bx_szg"><!-- <img src="/img/showCase/Anne_profile_.j" /> --></div>
 				<%if(user==undefined || user.gbId!=gbId){%>
-					<div class="btn-top"><a href="#" id="connect" class="top-btn">Connect</a> <a href="#"  class="top-btn">Message</a> </div>
+					<div class="btn-top"><a href="#" id="connect" class="top-btn">Connect</a></div>
 				<%}%>
 				<div class="profile-image"><img src="images/profile.jpg" /></div>
 			</div>
 			<div class="content inlineparent">
 				<div class="part1 bx_szg">
-					<div class="testimonials bx_szg">
-						<p class="inlineparent _prf_lnd_pgmsg bx_szg" style="padding-left:35px">
-							<%=shortDesc%>
-						</p>
-					</div>
+					<%if(shortDesc!=undefined && shortDesc!=null){%>
+						<div class="testimonials bx_szg">
+							<p class="inlineparent _prf_lnd_pgmsg bx_szg" style="padding-left:35px">
+								<%=shortDesc%>
+							</p>
+						</div>
+					<%}%>
 					<div class="menu">
 						<ul class="inlineparent">
 							<li class="bx_szg inlineparent crsr_pntr" data-bind="click:function(){$root.showTab('about')}"><img src="/img/icons/talking.png" style="width:20px;opacity: .7;margin-right: 6px;" />About</li>
@@ -42,7 +69,9 @@
 						</ul>
 					</div>
 					<div class="testimonials bx_szg" id="about" data-bind="visible:(isVisibleTb()=='about')">
-						<p class="text-small"><%=description%></p>
+						<%if(description!=undefined && description!=null){%>
+							<p class="text-small"><%=description%></p>
+						<%}%>
 						<% if(experience!=null && experience.length>0){%>
 							<div class="inner-con pos_rel">
 								<div class="inlineparent" style="margin:10px 0 20px;">

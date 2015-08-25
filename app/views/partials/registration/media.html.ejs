@@ -4,47 +4,49 @@
 	</div>
 	<form action="/gb/srvc/save-media" method="post">
 		<input type="hidden" value="<%= gbId%>" name="id"/>
-		<% if(entertain.video==undefined || entertain.video==null ){%>
-			<div class="inlineparent inp_blck">
-				<div class="_lbl_tgs">
-					<label for="name">Videos</label>
-				</div>
-				<div class="input_flds">
-					<input type="text" name="video[0]" value="" />
-				</div>
-			</div>
-		<%}%>
-		<% if(entertain.video!=undefined && entertain.video!=null && entertain.video.length>0 ){%>
-			<% for(var i=0; i<entertain.video.length; i++) { %>
+		<div class="">
+			<% if(entertain.video==undefined || entertain.video==null || entertain.video.length==0){%>
 				<div class="inlineparent inp_blck">
 					<div class="_lbl_tgs">
 						<label for="name">Videos</label>
 					</div>
 					<div class="input_flds">
-						<input type="text" name="video[<%=i%>]" value="<%=entertain.video[i]%>" />
+						<input type="text" name="video[0]" value=""  placeholder="Enter YouTube Video url Only"/>
 					</div>
 				</div>
 			<%}%>
-			<div class="inlineparent inp_blck">
-				<div class="_lbl_tgs">
-					<label for="name">Videos</label>
+			<% if(entertain.video!=undefined && entertain.video!=null && entertain.video.length>0 ){%>
+				<% for(var i=0; i<entertain.video.length; i++) { %>
+					<div class="inlineparent inp_blck">
+						<div class="_lbl_tgs">
+							<label for="name">Videos</label>
+						</div>
+						<div class="input_flds">
+							<input type="text" name="video[<%=i%>]" value="<%=entertain.video[i]%>"   placeholder="Enter YouTube Video url Only"/>
+						</div>
+					</div>
+				<%}%>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Videos</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="video[<%=entertain.video.length%>]" value=""   placeholder="Enter YouTube Video url Only"/>
+					</div>	
 				</div>
-				<div class="input_flds">
-					<input type="text" name="video[<%=entertain.video.length%>]" value="" />
-				</div>	
-			</div>
-		<%}%>	
+			<%}%>
+		</div>		
 		<div class="inlineparent inp_blck">
 			<div class="_other _bttn_add_on">Add More</div>
 		</div>
 		<div class="note"><b>Note *</b> Host your video from YouTube, metacafe, viemo etc and add link here</div>
-		<% if(entertain.audio==undefined || entertain.audio==null ){%>
+		<% if(entertain.audio==undefined || entertain.audio==null || entertain.audio.length==0){%>
 			<div class="inlineparent inp_blck">
 				<div class="_lbl_tgs">
 					<label for="name">Audio</label>
 				</div>
 				<div class="input_flds">
-					<input type="text" name="audio[0]" value="" />
+					<input type="text" name="audio[0]" value="" placeholder="Enter SoundCloud Audio url Only" />
 				</div>
 			</div>
 		<%}%>
@@ -55,7 +57,7 @@
 						<label for="name">Audio</label>
 					</div>
 					<div class="input_flds">
-						<input type="text" name="audio[<%=i%>]" value="<%=entertain.audio[i]%>"/>
+						<input type="text" name="audio[<%=i%>]" value="<%=entertain.audio[i]%>"  placeholder="Enter SoundCloud Audio url Only"/>
 						<p></p>
 					</div>
 				</div>
@@ -65,7 +67,7 @@
 					<label for="name">Audio</label>
 				</div>
 				<div class="input_flds">
-					<input type="text" name="audio[<%=entertain.audio.length%>]" value="" />
+					<input type="text" name="audio[<%=entertain.audio.length%>]" value=""  placeholder="Enter SoundCloud Audio url Only"/>
 				</div>
 			</div>
 		<%}%>
