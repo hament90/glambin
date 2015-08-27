@@ -3,7 +3,7 @@
 		EXPLORE
 	</div>
 
-	<div class="inlineparent wdth_100_per">
+	<div class="inlineparent wdth_100_per" id="ExpContainer">
 		<% if(blog==undefined || blog.length==0){%>
 			<form action="/gb/srvc/save-journey" method="post" class="wdth_100_per">
 				<input type="hidden" value="<%=gbId%>" name="id"/>
@@ -52,7 +52,30 @@
 		<%}%>
 	</div>
 	<div class="inlineparent inp_blck">
-		<div class="_other _bttn_add_on">Add More</div>
+		<div class="_other _bttn_add_on addmoreExplorer">Add More</div>
+	</div>
+	<div class="dsp_nn" id="exPlorerForm">
+		<form action="/gb/srvc/save-journey" method="post" class="wdth_100_per">
+			<input type="hidden" value="<%=gbId%>" name="id"/>
+			<div class="inlineparent inp_blck">
+				<div class="_lbl_tgs">
+					<label for="name">My Life Journey</label>
+				</div>
+				<div class="input_flds">
+					<input type="text" name="heading[0]" value="" placeholder="How would you like to define your Journey.."/>
+				</div>
+			</div>
+			<div class="inlineparent inp_blck journey_detail">
+				<div class="_lbl_tgs">
+					<label for="name"></label>
+				</div>
+				<textarea placeholder="Express your journey in your own words." name="description[0]"></textarea>
+			</div>
+			<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+				<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+				<div class="_svd_sbmt __bg_button cancelData" style="margin-right:10px;">Cancel</div>
+			</div>
+		</form>	
 	</div>
 	<script type="type/javascript">
 		$(document).ready(function(){
@@ -64,6 +87,14 @@
 					
 					}
 				});
+			});
+
+			$(".addmoreExplorer").click(function(){
+				$("#ExpContainer").append($("#exPlorerForm").html());
+			});
+			
+			$("#ExpContainer").on("click",".cancelData",function(){
+				$(this).parents("form").remove();
 			});
 		});
 	</script>

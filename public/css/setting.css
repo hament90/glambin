@@ -1,7 +1,20 @@
-div#resetPassword,div#Privacy ,#userInfo{
+div#Privacy ,#userInfo{
     width: 80%;
     margin: 20px auto;
     border: 1px solid #ccc;
+}
+div#resetPassword{
+	width: 40%;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+	padding: 20px;
+}
+div#resetPassword .__pass{
+	width: 100%;
+	margin: 0;
+	padding: 8px 10px;
+	font-size: 14px;
+	margin-top: 15px;
 }
 #userInfo{
 	padding: 15px;

@@ -19,6 +19,10 @@ RootService.prototype.__proto__=mainService.prototype ;
 // 	_ownObj.emit("done",null,null,null,null);
 // };
 
+RootService.prototype.sendNewVerificationCode=function(credentials){
+	
+}
+
 RootService.prototype.setNewPassword = function(credentials) {
 	var _ownObj = this;
 	console.log(credentials);

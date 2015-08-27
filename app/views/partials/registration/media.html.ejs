@@ -4,7 +4,7 @@
 	</div>
 	<form action="/gb/srvc/save-media" method="post">
 		<input type="hidden" value="<%= gbId%>" name="id"/>
-		<div class="">
+		<div class="VideoContainer">
 			<% if(entertain.video==undefined || entertain.video==null || entertain.video.length==0){%>
 				<div class="inlineparent inp_blck">
 					<div class="_lbl_tgs">
@@ -37,48 +37,71 @@
 			<%}%>
 		</div>		
 		<div class="inlineparent inp_blck">
-			<div class="_other _bttn_add_on">Add More</div>
+			<div class="_other _bttn_add_on addVideo">Add More</div>
 		</div>
 		<div class="note"><b>Note *</b> Host your video from YouTube, metacafe, viemo etc and add link here</div>
-		<% if(entertain.audio==undefined || entertain.audio==null || entertain.audio.length==0){%>
-			<div class="inlineparent inp_blck">
-				<div class="_lbl_tgs">
-					<label for="name">Audio</label>
-				</div>
-				<div class="input_flds">
-					<input type="text" name="audio[0]" value="" placeholder="Enter SoundCloud Audio url Only" />
-				</div>
-			</div>
-		<%}%>
-		<% if(entertain.audio!=undefined && entertain.audio!=null && entertain.audio.length>0){%>
-			<% for(var i=0; i<entertain.audio.length; i++) { %>
+		<div class="AudioContainer" >
+			<% if(entertain.audio==undefined || entertain.audio==null || entertain.audio.length==0){%>
 				<div class="inlineparent inp_blck">
 					<div class="_lbl_tgs">
 						<label for="name">Audio</label>
 					</div>
 					<div class="input_flds">
-						<input type="text" name="audio[<%=i%>]" value="<%=entertain.audio[i]%>"  placeholder="Enter SoundCloud Audio url Only"/>
-						<p></p>
+						<input type="text" name="audio[0]" value="" placeholder="Enter SoundCloud Audio url Only" />
 					</div>
 				</div>
 			<%}%>
-			<div class="inlineparent inp_blck">
-				<div class="_lbl_tgs">
-					<label for="name">Audio</label>
+			<% if(entertain.audio!=undefined && entertain.audio!=null && entertain.audio.length>0){%>
+				<% for(var i=0; i<entertain.audio.length; i++) { %>
+					<div class="inlineparent inp_blck">
+						<div class="_lbl_tgs">
+							<label for="name">Audio</label>
+						</div>
+						<div class="input_flds">
+							<input type="text" name="audio[<%=i%>]" value="<%=entertain.audio[i]%>"  placeholder="Enter SoundCloud Audio url Only"/>
+							<p></p>
+						</div>
+					</div>
+				<%}%>
+				<div class="inlineparent inp_blck">
+					<div class="_lbl_tgs">
+						<label for="name">Audio</label>
+					</div>
+					<div class="input_flds">
+						<input type="text" name="audio[<%=entertain.audio.length%>]" value=""  placeholder="Enter SoundCloud Audio url Only"/>
+					</div>
 				</div>
-				<div class="input_flds">
-					<input type="text" name="audio[<%=entertain.audio.length%>]" value=""  placeholder="Enter SoundCloud Audio url Only"/>
-				</div>
-			</div>
-		<%}%>
+			<%}%>
+		</div>	
 		<div class="inlineparent inp_blck">
-			<div class="_other _bttn_add_on">Add More</div>
+			<div class="_other _bttn_add_on addAudio">Add More</div>
 		</div>
 		<div class="note"><b>Note *</b> Host your Audio from YouTube, metacafe, viemo etc and add link here</div>
 		<div class="inlineparent inp_blck" style="margin-bottom:10px;">
 			<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
 		</div>
 	</form>
+	<div class="dsp_nn" id="videoHiddenbar">
+
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Videos</label>
+			</div>
+			<div class="input_flds">
+				<input type="text" value=""  placeholder="Enter YouTube Video url Only"/>
+			</div>
+		</div>
+	</div>
+	<div class="dsp_nn" id="audioHiddenBar">
+		<div class="inlineparent inp_blck">
+			<div class="_lbl_tgs">
+				<label for="name">Audio</label>
+			</div>
+			<div class="input_flds">
+				<input type="text" value="" placeholder="Enter SoundCloud Audio url Only" />
+			</div>
+		</div>
+	</div>
 	<script type="type/javascript">
 		$(document).ready(function(){
 			$(".saveData").click(function(){
@@ -88,6 +111,18 @@
 						$(".media").click();
 					}
 				});
+			});
+
+			$(".addAudio").click(function(){
+				var block=$("#audioHiddenBar");
+				block.find("input").attr("name","audio["+(Number($(".AudioContainer > .inp_blck").length)+1)+"]")
+				$(".AudioContainer").append(block.html());
+			});
+
+			$(".addVideo").click(function(){
+				var block=$("#videoHiddenbar");
+				block.find("input").attr("name","video["+(Number($(".VideoContainer > .inp_blck").length)+1)+"]");
+				$(".VideoContainer").append(block.html());
 			});
 		});
 	</script>

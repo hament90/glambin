@@ -28,6 +28,23 @@ homeSrvcController.resetPassword=function(){
     settingSvc.setNewPassword(value);
 }
 
+homeSrvcController.resetPassword=function(){
+  var _nself = this;
+  if (!_nself.req.isAuthenticated()){
+    var value=_nself.req.body;
+    var settingSvc = new rootService();
+    settingSvc.on("done", function(status,msg,result,page){
+        _nself.processJson(status,msg,result,page);
+    });
+    settingSvc.sendNewVerificationCode(value);
+
+  }else{
+    return _nself.res.redirect("/gb/404");
+  }
+    
+
+}
+
 homeSrvcController.logout=function(){
 	var _nself = this;
 	if (!_nself.req.isAuthenticated())
