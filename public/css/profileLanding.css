@@ -272,9 +272,8 @@
     font-size: 14px;
     color: #5c5c5c;
     padding: 10px;
-    border-right: 1px solid #5c5c5c;
     font-weight: bold;
-    width: 49%;
+    width: 100%;
     text-align: center;
 }
 .content .part2 .head ul li a {

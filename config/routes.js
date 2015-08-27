@@ -29,17 +29,17 @@ module.exports = function routes() {
 **/
  
  //Register New User Verification Url 
-  this.match("/gb/user-verify/"+_gb_constant.USER_STATUS.PENDING_VERFICATION+"/:id",{controller:"registration/registration",action:"verification",via:"GET"})
+  	this.match("/gb/user-verify/"+_gb_constant.USER_STATUS.PENDING_VERFICATION+"/:id",{controller:"registration/registration",action:"verification",via:"GET"})
   
 // setting pages url
-  this.match("/gb/settings",{controller:"home/home",action:"settings",via:"GET"})
-  this.match("/gb/forgot-password",{controller:"home/home",action:"forgotPassword",via:"GET"})
+	this.match("/gb/settings",{controller:"home/home",action:"settings",via:"GET"})
+	this.match("/gb/forgot-password",{controller:"home/home",action:"forgotPassword",via:"GET"})
 
-  this.match("/gb/reset-password",{controller:"home/srvc/homeService",action:"resetPassword",via:"post"})
-
+  	this.match("/gb/reset-password",{controller:"home/srvc/homeService",action:"resetPassword",via:"post"})
+	this.match("/gb/srvc/forgot-password",{controller:"home/srvc/homeService",action:"forgotPassword",via:"post"})
 
 //search call
-  this.match("/gb/search/search-user",{controller:"search/search",action:"searchUsers",via:"post"})
+  	this.match("/gb/search/search-user",{controller:"search/search",action:"searchUsers",via:"post"})
 
 
 // Registeration form Url for user UI pages
