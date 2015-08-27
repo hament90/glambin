@@ -12,7 +12,8 @@ var VERIFICATION_STATUS={
     ACTIVE:"confirmed-user",
     PENDING:"pending-verification-user",
     CONNECT:"connect-user",
-    SUSPENDED:"suspended"
+    SUSPENDED:"suspended",
+    FORGET_PASSWORD :"forget-password"
 };
 
 var VERIFICATION_USER_REGISTER={

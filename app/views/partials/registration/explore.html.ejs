@@ -79,14 +79,16 @@
 	</div>
 	<script type="type/javascript">
 		$(document).ready(function(){
-			$(document).off("click",".saveData");
-			$(document).on("click",".saveData",function(){
+			$("#ExpContainer").off("click",".saveData");
+			$("#ExpContainer").on("click",".saveData",function(){
 				var _self=$(this);
 				_self.parents("form").ajaxSubmit(function(data){
 					if(data.status==0){
 					
 					}
+					return false;
 				});
+				return false;
 			});
 
 			$(".addmoreExplorer").click(function(){

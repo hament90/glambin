@@ -5,9 +5,10 @@ div#Privacy ,#userInfo{
 }
 div#resetPassword{
 	width: 40%;
-    margin: 20px auto;
+    margin: 100px auto;
     border: 1px solid #ccc;
 	padding: 20px;
+	background: #fff;
 }
 div#resetPassword .__pass{
 	width: 100%;

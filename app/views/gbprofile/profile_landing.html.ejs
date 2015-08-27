@@ -195,10 +195,12 @@
 										</p>
 									</div>
 									<div class="box-right">
-										<p class="_12_fnt_sz _prf_lnd_pgcont-icon _dt">
-											<strong> Due</strong> 
-											<span style="color:#3399FF;"><%=(achivements[i].date.getMonth()+1)%> <%=(achivements[i].date.getFullYear())%></span>
-										</p>
+										<% if(achivements[i].date!=undefined){%>
+											<p class="_12_fnt_sz _prf_lnd_pgcont-icon _dt">
+												<strong> Due</strong> 
+												<span style="color:#3399FF;"><%=(achivements[i].date.getMonth()+1)%> <%=(achivements[i].date.getFullYear())%></span>
+											</p>
+										<%}%>
 										<p style="margin:0">
 											<a href="#" class="button">100%</a>
 										</p>
@@ -222,27 +224,22 @@
 					<div class="side-content">
 						<div class="img"><img src="images/image.png" /></div>
 						<div class="name">Petra Novakova</div>
-						<div class="last-green"></div>
 					</div>
 					<div class="side-content">
 						<div class="img"><img src="images/image1.png" /></div>
 						<div class="name">Katrina Novakova</div>
-						<div class="last-red"></div>
 					</div>
 					<div class="side-content">
 						<div class="img"><img src="images/image.png" /></div>
 						<div class="name">Petra Novakova</div>
-						<div class="last-green"></div>
 					</div>
 					<div class="side-content">
 						<div class="img"><img src="images/image1.png" /></div>
 						<div class="name">Katrina Novakova</div>
-						<div class="last-red"></div>
 					</div>
 					<div class="side-content">
 						<div class="img"><img src="images/image.png" /></div>
 						<div class="name">Petra Novakova</div>
-						<div class="last-green"></div>
 					</div>
 				</div>
 			</div>

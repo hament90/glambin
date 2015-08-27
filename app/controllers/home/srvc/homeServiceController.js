@@ -28,7 +28,7 @@ homeSrvcController.resetPassword=function(){
     settingSvc.setNewPassword(value);
 }
 
-homeSrvcController.resetPassword=function(){
+homeSrvcController.forgotPassword=function(){
   var _nself = this;
   if (!_nself.req.isAuthenticated()){
     var value=_nself.req.body;
@@ -41,8 +41,6 @@ homeSrvcController.resetPassword=function(){
   }else{
     return _nself.res.redirect("/gb/404");
   }
-    
-
 }
 
 homeSrvcController.logout=function(){
