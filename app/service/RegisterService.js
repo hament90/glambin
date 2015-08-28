@@ -119,11 +119,7 @@ RegisterService.prototype.verifyUser=function (verifyObj) {
 						var infoData = new GBUserInfoModel({
 							"gbId":data.gbId,
 							"username":data.name,
-							"auth.emailId":data.signUserId,
-							"auth.password":	{
-								"key":data.securitySalt,
-								"algo":"SHA-256"
-							},
+							"signUserId":data.signUserId,
 							"primaryId":(isNaN(data.signUserId)?"string":"numeric"),
 							"phone":(isNaN(data.signUserId)?0:parseInt(data.signUserId,10)),
 							"emailId":(isNaN(data.signUserId)?data.signUserId:null),

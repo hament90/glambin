@@ -9,62 +9,46 @@
 	<body>
 		<% include ../partials/_section_header.html.ejs %>
 		<section>
-			
 			<div class="center-div">
-				<div class="row inlineparent">
+				<div class="row wdth_100_per bg_fff bx_szg">
 				<!-- left -->
-					<div class="col-md-3">
-						<div class="top-image wdth_100_per inlineparent bx_szg">
-							<div class="wdth_100_per __center">
-								<img src="../img/hament.png" class="img-circle wdth_100_per bx_szg"/>
-							</div>
-							<div class="wdth_100_per inlineparent">
-								<h1 class="wdth_100_per"><%=user.username%></h1>
-								<h2 class="wdth_100_per">Model/actress</h2>
-							</div>
+					<div class="headerBarSearch">
+						<div class="top-image inlineparent bx_szg wdth_100_per">
+							<h1 class="wdth_100_per __center"><%=user.username%></h1>
 						</div>
-						<div class="row" style="margin:10px 0;">
-							<div class="center-text inlineparent wdth_100_per">
-								<div class="col-md-7 bx_szg">
-									<span class="text-top">345</span>
-									<span class="text-top1">Connection</span>
-								</div>
-								<div class="col-md-7 bx_szg">
-									<span class="text-top">35</span>
-									<span class="text-top1">Appreciation</span>
-								</div>
-							</div>
-
-						</div>
-						
-						<div class="left-bar">
+						<input type="hidden" value="<%=user.signUserId%>" id="signUserId"/>
+						<div class="left-bar inlineparent">
 							<%if(user.location!=undefined){%>	
-								<p class="wdth_100_per"><img src="../img/landmark.png" class="imgl" width="11" height="20" /><%=user.location.area%>, <%=user.location.city%>, <%=user.location.state%>, <%=user.location.country%></p>
+								<p class="wdth_100_per bx_szg"><img src="../img/landmark.png" class="imgl" width="11" height="20" />
+									<%if(user.location.area!=undefined){%>
+										<%=user.location.area%>,
+									<%}%>
+									<%if(user.location.city!=undefined){%>
+										<%=user.location.city%>,
+									<%}%>
+									<%if(user.location.state!=undefined){%>
+										<%=user.location.state%>,
+									<%}%>
+									<%if(user.location.country!=undefined){%>
+										<%=user.location.country%>
+									<%}%>
+							   </p>
 							<%}%>
-							<p class="wdth_100_per" style="line-height: 1.6"><%=user.shortDesc%></p>
-							<p class="wdth_100_per"><img src="../img/mail.png" class="imgl1" style="width: 20px !important;"/><%=user.emailId%></p>
-							<p class="wdth_100_per"><img src="../img/phone.png" class="imgl1" style="width: 20px !important;"/> <%=user.phone%></p>
-							<h1 class="wdth_100_per __center" style="margin:20px 0 10px;" ><img src="../img/comment.png" width="15" height="20"/>Recommendation</h1>
-							<div class="inlineparent wdth_100_per">
-								<p style="line-height: 1.6">
-									<img src="../img/men.png" style="float:left;width:25px;margin-right:5px;" />
-									<span><%=user.username%></span>
-								</p>
-								<p class="wdth_100_per" style="line-height:1.6;"><%=user.shortDesc%></p>	
-								
-							</div>
+							<%if(user.emailId!=undefined){%>
+								<p class="wdth_100_per bx_szg"><img src="../img/mail.png" class="imgl1" style="width: 20px !important;"/><%=user.emailId%></p>
+							<%}%>
+							<%if(user.phone!=undefined){%>	
+								<p class="wdth_100_per bx_szg"><img src="../img/phone.png" class="imgl1" style="height: 20px !important;width: 10px !important;"/> <%=user.phone%></p>
+							<%}%>
 						</div>
-
-					</div>
-
-				<!-- left -->
-				<!-- mid -->
-					<div class="col-md-6" id="centerModal">
+						<%if(user.shortDesc!=undefined && user.shortDesc!=''){%>
+							<p class="wdth_100_per bx_szg shortDesc" style="line-height: 1.6"><%=user.shortDesc%></p>
+						<%}%>
 						<div class="center wdth_100_per bx_szg">
 							<div class="search wdth_100_per bx_szg">
 								<input name="Search" type="text" class="form-control wdth_100_per bx_szg" placeholder="Search" id="searchPeople" />
 							</div>
-							<div class="menu inlineparent">
+							<div class="menu inlineparent dsp_nn">
 								<ul class="wdth_100_per inlineparent">
 									<li><a href="#" class="active">Name</a></li>
 									<li><a href="#">Category</a></li>
@@ -72,47 +56,65 @@
 									<li><a href="#">Neighbours</a></li>
 								</ul>
 							</div>
-							<div class="inlineparent" data-bind="event:{load:$root.listing()},template:{name:'listingTemp'}">
-								
-								
+						</div>
+
+					</div>
+
+				<!-- left -->
+				<!-- mid -->
+					<div class="wdth_100_per" id="centerModal" style="margin-bottom:14px;">
+						<div class="headerBarSearch inlineparent" style="margin-top:15px;">
+							<div class="categorymodel inlineparent" data-bind="event:{load:$root.categoryListing()}">
+								<!--ko foreach:category-->
+									<div data-bind="click:function(){$root.catClick($data.value)},attr:{'class':'__categorylist wdth_100_per bx_szg '+$data.value}"><!--ko text:$data.key--><!--/ko--></div>
+								<!--/ko-->		
+							</div>
+							<div class="inlineparent resultModal" style="vertical-align:top;margin-top:15px;" data-bind="event:{load:$root.listing()},template:{name:'listingTemp'}">
 							</div>
 						</div>
-						<script type="text/html" id="listingTemp">
-							<!--ko foreach:content-->
-								<div class="row result inlineparent" style="margin-top:2em;">
-								  	<div class="top-image1 inlineparent">
-									  	<img src="../img/girl.png" width="44" height="44" class="imgl1" /> 
-									  	<div class="inlineparent">
-										 	<h1 class="wdth_100_per" data-bind="text:username"></h1>
-							  				<h2 class="wdth_100_per">Model/actress</h2>
-									  	</div>
+
+						
+					</div>
+					<script type="text/html" id="listingTemp">
+						<!--ko foreach:content-->
+							<div class="row result bg_fff inlineparent wdth_100_per bx_szg">
+							  	<div class="top-image1 inlineparent">
+								  	<img src="../img/girl.png" width="25" height="25" class="imgl1" /> 
+								  	<div class="inlineparent">
+									 	<h1 class="wdth_100_per inlineparent resHead" data-bind=""><!--ko text:username--><!--/ko--> <span>Model/actress</span></h1>
+								  	</div>
+								</div>
+								<div class="wdth_100_per inlineparent">
+									<div class="inlineparent wdth_100_per ">
+										<div class="text resInfo_ bx_szg" style="width:100px;"data-bind="text:phone">9650193556</div>
+										<div class="text resInfo_ bx_szg" style="border-left: 0;" data-bind="text:emailId">hament@glambin.com</div>
+										<!--ko if:location!=null-->
+											<div class="text resInfo_ bx_szg"><!--ko text:location.area--><!--/ko-->,<!--ko text:location.city--><!--/ko--></div>
+										<!--/ko-->
+										<div class="text resInfo_ bx_szg"><!--ko if:experience!=undefined--><!--ko text:experience.length--><!--/ko--><!--/ko--><!--ko if:experience==undefined-->0<!--/ko--> years of experience</div>	
 									</div>
-									<div class="wdth_100_per inlineparent" style="background: #fff;">
-										<div class="inlineparent wdth_100_per ">
-											<div class="text resInfo_ bx_szg" style="width:100px;"data-bind="text:phone">9650193556</div>
-											<div class="text resInfo_ bx_szg" style="border-left: 0;" data-bind="text:emailId">hament@glambin.com</div>
-										</div>
-										<div class="inlineparent wdth_100_per bx_szg">
-											<div class="text resInfo_ wdth_100_per bx_szg" style="width: 100%;border-top: 0;"><!--ko text:location.area--><!--/ko-->,<!--ko text:location.city--><!--/ko--></div>
-											<div class="text resInfo_ wdth_100_per bx_szg" style="width: 100%;border-top: 0;margin:0" ><!--ko if:experience!=undefined--><!--ko text:experience.length--><!--/ko--><!--/ko--><!--ko if:experience==undefined-->0<!--/ko--> years of experience</div>	
-											<div class="text resInfo_ wdth_100_per bx_szg" style="width: 100%;border-top: 0;margin:0">View Profile</div>	
-											
+									<div class="inlineparent wdth_100_per bx_szg">
+										<!--ko if:shortDesc!=null && shortDesc!=undefined && shortDesc!=''-->
+											<div class="text resInfo_ wdth_100_per bx_szg"><!--ko text:shortDesc--><!--/ko--></div>	
+										<!--/ko--> 
+										<!--ko if:(category!=null && category.length>0)-->
+											<div class="text resInfo_ wdth_100_per bx_szg inlineparent">
+											<!--ko foreach:$data.category-->
+												<div class="Categorytags bx_szg"><!--ko text:$data--><!--/ko--></div>
+											<!--/ko-->	
+											</div>
+										<!--/ko-->
+										<div class="inlineparent text resInfo_ wdth_100_per bx_szg" style="text-align:right;">
+											<p class="__conn" data-bind="click:function(){$root.connect(gbId)}">Connect</p>
+											<a class=" bx_szg" data-bind="attr:{'href':'/profile/'+gbId}">
+												<div class="bx_szg vpRo">View Profile</div>	
+											</a>
 										</div>
 									</div>
 								</div>
-							<!--/ko-->
-						</script>
-					</div>
-					<div class="col-md-3">
-						<div class="left-bar">
-							<div class="top-image1">
-								<img src="../img/girl-pic.jpg" class="img-circle1"  />
-								<h1>Anne Hathway</h1>
-								<h2>Model/actress</h2>
 							</div>
-						</div>
-					</div>
-					<!-- right -->
+						<!--/ko-->
+					</script>
 				</div>
 			</div>
 		</section>
@@ -126,6 +128,7 @@
 				var _self=$(this);
 				_self.userListingViewModel={
 					content:ko.observableArray(),
+					category:ko.observableArray(),
 					listing:function(){
 						var _selfList=this;
 						$.ajax({
@@ -134,6 +137,42 @@
 							success:function (data) {
 								if(data.status==0){
 								   ko.utils.arrayPushAll(_selfList.content,data.result);
+								}
+							}
+						});
+					},
+					categoryListing:function(){
+						var _selfList=this;
+						$.ajax({
+							url:"../json/category.json",
+							type:"get",
+							success:function (data) {
+								ko.utils.arrayPushAll(_selfList.category,data.category);
+							}
+						});
+					},
+					catClick:function(id){
+						$(".__categorylist").removeClass("active");
+						$(".__categorylist."+id).addClass("active");
+						$.ajax({
+							url:"/user-srvc/list-users?category="+id,
+							type:"post",
+							success:function (data) {
+								if(data.status==0){
+									_selfList.content([]);
+								   ko.utils.arrayPushAll(_selfList.content,data.result);
+								}
+							}
+						});	
+					},
+					connect:function(gbId){
+						$.ajax({
+							url:'/profile-connect/'+gbId,
+							type:"post",
+							data:{xUser:$("#signUserId").val()},
+							success:function(data){
+								if(data.status==0){
+									alert("Thanks for connecting..")	
 								}
 							}
 						});

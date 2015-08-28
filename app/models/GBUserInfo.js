@@ -7,6 +7,7 @@ var GBUserInfoSchema =new mongoose.Schema({
     gbId:{type:String,required:true},
     emailId:{type:String,trim: true,unique: true},
     phone:{type:Number},
+    signUserId:{type: String,unique:true,index:true},
     primaryId: { type: String },
     username: {type: String,required: true },
     birth: { type: Date },
@@ -16,6 +17,7 @@ var GBUserInfoSchema =new mongoose.Schema({
     category:[{
         type:String       
     }],
+    connectedBy:[{type: String}],
     connectedTo:[{type: String}],
     isPublished:{type: Boolean ,default:false},
     isSearchable:{type: Boolean ,default:false},

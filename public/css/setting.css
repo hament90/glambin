@@ -16,6 +16,7 @@ div#resetPassword .__pass{
 	padding: 8px 10px;
 	font-size: 14px;
 	margin-top: 15px;
+	box-sizing:border-box;
 }
 #userInfo{
 	padding: 15px;

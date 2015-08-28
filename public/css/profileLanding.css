@@ -28,7 +28,7 @@
     position: relative;
 }
 .top-content .left {
-    width: 30%;
+    width: 29%;
     height: auto;
     padding: 15px 30px;
     vertical-align: bottom;
@@ -106,6 +106,7 @@
     background: #fff;
     padding: 10px;
     overflow: auto;
+    box-sizing:border-box;
 }
 .content .part1 .testimonials> p{
     width: 100%;

@@ -68,19 +68,26 @@ ProfileServiceController.prototype.connectify = function(dataModel) {
 					if (err) {
 						_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 					} else{
+						console.log("====================Connect=================",user,dataModel);
 						if(user!=null){
-							if(dataModel.isUser!=VERIFICATION_STATUS.CONNECT){
+							//if(dataModel.isUser!=VERIFICATION_STATUS.CONNECT){
 								GBUserInfoModel.update({"gbId": "gb-"+dataModel.gbId},{$addToSet:{"connectedTo":dataModel.connectId}},function (err,updateCount) {
 									if (err) {
 										_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 									} else{
-										_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
-										
+										GBUserInfoModel.update({"gbId":dataModel.connectId},{$addToSet:{"connectedBy": "gb-"+dataModel.gbId}},function (err,updateCount) {
+											if (err) {
+												_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+											} else{
+												_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
+											}
+										});
 									}
-								});		
-							}else{
-								_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
-							}
+								});
+
+							// }else{
+							// 	_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
+							// }
 						}else{
 							_ownObj.emit("done",STATUS.USER_ERROR.stats,STATUS.USER_ERROR.msg,null,null);
 						}
@@ -234,7 +241,7 @@ ProfileServiceController.prototype.searchProfile = function(dataModel) {
 	// 	query.
 	
 	var model=GBUserInfoModel.find(query);
-	model.select("handle gbId username shortDesc location profilePic profileCoverPic phone emailId experience");
+	model.select("handle gbId username shortDesc location profilePic profileCoverPic phone emailId experience category");
 	model.exec(function(err, user){
 		if(err){
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
