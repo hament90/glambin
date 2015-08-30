@@ -231,7 +231,6 @@
 							    rules: 'required|min_length[6]|matches[password]'
 							}], function(errors, event) {
 							    if(errors.length>0){
-							    	console.log(errors)
 							    	for(var i=0; i<errors.length;i++){
 								    	var err=$("input[name="+errors[i].name+"]").parent().find('.error');
 								    	err.show();
@@ -252,6 +251,7 @@
 							    }
 							    return false;
 							}).setMessage('check_emailId', 'Your emailId should be number or emailId.');
+							
 							var error=generalValidator._validateForm(e);
 							if(generalValidator.errors.length>0){
 								return false;	
