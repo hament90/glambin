@@ -5,7 +5,7 @@ var GBUserInfoSchema =new mongoose.Schema({
 	id:{type:String,default:Schema.ObjectId},
 	handle:{type: String,default:Schema.ObjectId},
     gbId:{type:String,required:true},
-    emailId:{type:String,trim: true,unique: true},
+    emailId:{type:String},
     phone:{type:Number},
     signUserId:{type: String,unique:true,index:true},
     primaryId: { type: String },
