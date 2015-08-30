@@ -12,6 +12,11 @@
 					</div>
 					<div class="input_flds">
 						<input type="text" name="video[0]" value=""  placeholder="Enter YouTube Video url Only"/>
+						<div class="pos_abs error dsp_nn">
+							<img src="../img/error.png"/>
+							<p class="error_txt pos_abs dsp_nn">
+							</p>
+						</div>	
 					</div>
 				</div>
 			<%}%>
@@ -23,6 +28,11 @@
 						</div>
 						<div class="input_flds">
 							<input type="text" name="video[<%=i%>]" value="<%=entertain.video[i]%>"   placeholder="Enter YouTube Video url Only"/>
+							<div class="pos_abs error dsp_nn">
+								<img src="../img/error.png"/>
+								<p class="error_txt pos_abs dsp_nn">
+								</p>
+							</div>	
 						</div>
 					</div>
 				<%}%>
@@ -32,6 +42,11 @@
 					</div>
 					<div class="input_flds">
 						<input type="text" name="video[<%=entertain.video.length%>]" value=""   placeholder="Enter YouTube Video url Only"/>
+						<div class="pos_abs error dsp_nn">
+							<img src="../img/error.png"/>
+							<p class="error_txt pos_abs dsp_nn">
+							</p>
+						</div>	
 					</div>	
 				</div>
 			<%}%>
@@ -48,6 +63,11 @@
 					</div>
 					<div class="input_flds">
 						<input type="text" name="audio[0]" value="" placeholder="Enter SoundCloud Audio url Only" />
+						<div class="pos_abs error dsp_nn">
+							<img src="../img/error.png"/>
+							<p class="error_txt pos_abs dsp_nn">
+							</p>
+						</div>	
 					</div>
 				</div>
 			<%}%>
@@ -60,6 +80,11 @@
 						<div class="input_flds">
 							<input type="text" name="audio[<%=i%>]" value="<%=entertain.audio[i]%>"  placeholder="Enter SoundCloud Audio url Only"/>
 							<p></p>
+							<div class="pos_abs error dsp_nn">
+								<img src="../img/error.png"/>
+								<p class="error_txt pos_abs dsp_nn">
+								</p>
+							</div>	
 						</div>
 					</div>
 				<%}%>
@@ -69,6 +94,11 @@
 					</div>
 					<div class="input_flds">
 						<input type="text" name="audio[<%=entertain.audio.length%>]" value=""  placeholder="Enter SoundCloud Audio url Only"/>
+						<div class="pos_abs error dsp_nn">
+							<img src="../img/error.png"/>
+							<p class="error_txt pos_abs dsp_nn">
+							</p>
+						</div>	
 					</div>
 				</div>
 			<%}%>
@@ -89,6 +119,11 @@
 			</div>
 			<div class="input_flds">
 				<input type="text" value=""  placeholder="Enter YouTube Video url Only"/>
+				<div class="pos_abs error dsp_nn">
+					<img src="../img/error.png"/>
+					<p class="error_txt pos_abs dsp_nn">
+					</p>
+				</div>	
 			</div>
 		</div>
 	</div>
@@ -99,14 +134,42 @@
 			</div>
 			<div class="input_flds">
 				<input type="text" value="" placeholder="Enter SoundCloud Audio url Only" />
+				<div class="pos_abs error dsp_nn">
+					<img src="../img/error.png"/>
+					<p class="error_txt pos_abs dsp_nn">
+					</p>
+				</div>	
 			</div>
 		</div>
 	</div>
 	<script type="type/javascript">
 		$(document).ready(function(){
-			$(".saveData").click(function(){
+			$(".saveData").click(function(e){
 				var _self=$(this);
-				_self.parents("form").ajaxSubmit(function(data){
+				var _parentForm=_self.parents("form");
+				var generalValidator = new FormValidator(_parentForm.attr("name"), [{
+				    name: 'audio[*]',
+				    display: 'Company Name',
+				    rules: 'valid_url'
+				},{
+				    name: 'video[*]',
+				    display: 'Company Name',
+				    rules: 'valid_url'
+				}], function(errors, event) {
+					$(".error").hide();
+					console.log(errors)
+					if(errors.length>0){
+						for(var i=0; i<errors.length;i++){
+					    	var err=$("input[name="+errors[i].name+"]").parents(".inp_blck").find('.error');
+					    	err.show();
+					    	err.find(".error_txt").text(errors[i].message);
+				    	}
+				    	return false;
+					}
+				    return errors.length;
+				});
+				var error=generalValidator._validateForm(e);
+				_parentForm.ajaxSubmit(function(data){
 					if(data.status==0){
 						$(".media").click();
 					}

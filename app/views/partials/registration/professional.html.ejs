@@ -12,7 +12,12 @@
 							<label for="name">Company Name</label>
 						</div>
 						<div class="input_flds">
-							<input type="text" name="company" placeholder="Enter your Company Name"/>
+							<input type="text" name="company" placeholder="Enter your company or organisation"/>
+							<div class="pos_abs error dsp_nn">
+								<img src="../img/error.png"/>
+								<p class="error_txt pos_abs dsp_nn">
+								</p>
+							</div>	
 						</div>
 					</div>
 					<div class="inlineparent inp_blck">
@@ -20,7 +25,12 @@
 							<label for="name">Postion</label>
 						</div>
 						<div class="input_flds">
-							<input type="text" name="designation" placeholder="Enter your Email Address"/>
+							<input type="text" name="designation" placeholder="Enter your position"/>
+							<div class="pos_abs error dsp_nn">
+								<img src="../img/error.png"/>
+								<p class="error_txt pos_abs dsp_nn">
+								</p>
+							</div>	
 						</div>
 					</div>
 					<div class="inlineparent inp_blck">
@@ -29,6 +39,11 @@
 						</div>
 						<div class="input_flds">
 							<input type="text" name="jobType" placeholder="Enter your working domain"/>
+							<div class="pos_abs error dsp_nn">
+								<img src="../img/error.png"/>
+								<p class="error_txt pos_abs dsp_nn">
+								</p>
+							</div>	
 						</div>
 					</div>
 					<div class="inlineparent inp_blck">
@@ -36,7 +51,12 @@
 							<label for="name">City / Town</label>
 						</div>
 						<div class="input_flds">
-							<input type="text" name="location" placeholder="Enter your Mobile Phone"/>
+							<input type="text" name="location" placeholder="Enter your location"/>
+							<div class="pos_abs error dsp_nn">
+								<img src="../img/error.png"/>
+								<p class="error_txt pos_abs dsp_nn">
+								</p>
+							</div>	
 						</div>
 					</div>
 					<div class="inlineparent inp_blck">
@@ -52,6 +72,11 @@
 								<input type="radio" class="reg_radio_btn" name="isPresent"/>
 								<label>Past</label>	
 							</div>
+							<div class="pos_abs error dsp_nn">
+								<img src="../img/error.png"/>
+								<p class="error_txt pos_abs dsp_nn">
+								</p>
+							</div>	
 						</div>
 					</div>
 					<div class="inlineparent inp_blck">
@@ -62,6 +87,11 @@
 							<input type="text" name="start"/>
 							<input type="text" name="end"/>
 						</div>
+						<div class="pos_abs error dsp_nn">
+							<img src="../img/error.png"/>
+							<p class="error_txt pos_abs dsp_nn">
+							</p>
+						</div>	
 					</div>
 					<div class="inlineparent inp_blck">
 						<div class="_lbl_tgs">
@@ -71,7 +101,7 @@
 							<textarea placeholder="Share your experiece" name="jobDesc"></textarea>
 						</div>
 					</div>
-					<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+					<div class="inlineparent inp_blck buttonBars" style="margin-bottom:10px;">
 						<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
 					</div>
 				</form>
@@ -90,6 +120,11 @@
 								</div>
 								<div class="input_flds">
 									<input type="text" name="company" value="<%=profession[i].company%>" placeholder="Enter your Company Name"/>
+									<div class="pos_abs error dsp_nn">
+										<img src="../img/error.png"/>
+										<p class="error_txt pos_abs dsp_nn">
+										</p>
+									</div>	
 								</div>
 							</div>
 							<div class="inlineparent inp_blck">
@@ -97,7 +132,12 @@
 									<label for="name">Postion</label>
 								</div>
 								<div class="input_flds">
-									<input type="text" name="designation" value="<%=profession[i].designation%>" placeholder="Enter your Email Address"/>
+									<input type="text" name="designation" value="<%=profession[i].designation%>" placeholder="Enter your position"/>
+									<div class="pos_abs error dsp_nn">
+										<img src="../img/error.png"/>
+										<p class="error_txt pos_abs dsp_nn">
+										</p>
+									</div>	
 								</div>
 							</div>
 							<div class="inlineparent inp_blck">
@@ -106,6 +146,11 @@
 								</div>
 								<div class="input_flds">
 									<input type="text" name="jobType" value="<%=profession[i].jobType%>" placeholder="Enter your working domain"/>
+									<div class="pos_abs error dsp_nn">
+										<img src="../img/error.png"/>
+										<p class="error_txt pos_abs dsp_nn">
+										</p>
+									</div>	
 								</div>
 							</div>
 							<div class="inlineparent inp_blck">
@@ -113,7 +158,12 @@
 									<label for="name">City / Town</label>
 								</div>
 								<div class="input_flds">
-									<input type="text" name="location" value="<%=profession[i].location!=undefined?profession[i].location:''%>" placeholder="Enter your Mobile Phone"/>
+									<input type="text" name="location" value="<%=profession[i].location!=undefined?profession[i].location:''%>" placeholder="Enter your location"/>
+									<div class="pos_abs error dsp_nn">
+										<img src="../img/error.png"/>
+										<p class="error_txt pos_abs dsp_nn">
+										</p>
+									</div>	
 								</div>
 							</div>
 							<div class="inlineparent inp_blck">
@@ -129,6 +179,11 @@
 										<input type="radio" class="reg_radio_btn" name="isPresent" <% if(profession[i].isPresent==false){%>selected<%}%>/>
 										<label>Past</label>	
 									</div>
+									<div class="pos_abs error dsp_nn">
+										<img src="../img/error.png"/>
+										<p class="error_txt pos_abs dsp_nn">
+										</p>
+									</div>	
 								</div>
 							</div>
 							<div class="inlineparent inp_blck">
@@ -147,6 +202,11 @@
 										<input type="text" name="end"/>
 									<%}%>
 								</div>
+								<div class="pos_abs error dsp_nn">
+									<img src="../img/error.png"/>
+									<p class="error_txt pos_abs dsp_nn">
+									</p>
+								</div>	
 							</div>
 							<div class="inlineparent inp_blck">
 								<div class="_lbl_tgs">
@@ -156,7 +216,7 @@
 									<textarea placeholder="Share your experiece" name="jobDesc"><%=profession[i].jobDesc%></textarea>
 								</div>
 							</div>
-							<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+							<div class="inlineparent inp_blck buttonBars" style="margin-bottom:10px;">
 								<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
 								<div class="_svd_sbmt __bg_button removeData" data-gid="<%=gbId%>" data-pid='<%=profession[i]._id%>' style="margin-right:10px;">Remove</div>
 							</div>
@@ -168,7 +228,7 @@
 	</div>	
 	<div id="hiddenProfFrom" class="dsp_nn">		
 		<div class="__prof _cntnr">
-			<form action="/gb/srvc/save-work" method="post" name="profession">
+			<form action="/gb/srvc/save-work" method="post" name="professionHidden">
 				<input type="hidden" name="id" value="<%=gbId%>">
 				<div class="inlineparent inp_blck">
 					<div class="_lbl_tgs">
@@ -183,7 +243,12 @@
 						<label for="name">Postion</label>
 					</div>
 					<div class="input_flds">
-						<input type="text" name="designation" placeholder="Enter your Email Address"/>
+						<input type="text" name="designation" placeholder="Enter your position"/>
+						<div class="pos_abs error dsp_nn">
+							<img src="../img/error.png"/>
+							<p class="error_txt pos_abs dsp_nn">
+							</p>
+						</div>	
 					</div>
 				</div>
 				<div class="inlineparent inp_blck">
@@ -192,6 +257,11 @@
 					</div>
 					<div class="input_flds">
 						<input type="text" name="jobType" placeholder="Enter your working domain"/>
+						<div class="pos_abs error dsp_nn">
+							<img src="../img/error.png"/>
+							<p class="error_txt pos_abs dsp_nn">
+							</p>
+						</div>	
 					</div>
 				</div>
 				<div class="inlineparent inp_blck">
@@ -199,7 +269,12 @@
 						<label for="name">City / Town</label>
 					</div>
 					<div class="input_flds">
-						<input type="text" name="location" placeholder="Enter your Mobile Phone"/>
+						<input type="text" name="location" placeholder="Enter your location"/>
+						<div class="pos_abs error dsp_nn">
+							<img src="../img/error.png"/>
+							<p class="error_txt pos_abs dsp_nn">
+							</p>
+						</div>	
 					</div>
 				</div>
 				<div class="inlineparent inp_blck">
@@ -215,6 +290,11 @@
 							<input type="radio" class="reg_radio_btn" name="isPresent"/>
 							<label>Past</label>	
 						</div>
+						<div class="pos_abs error dsp_nn">
+							<img src="../img/error.png"/>
+							<p class="error_txt pos_abs dsp_nn">
+							</p>
+						</div>	
 					</div>
 				</div>
 				<div class="inlineparent inp_blck">
@@ -225,6 +305,11 @@
 						<input type="text" name="start"/>
 						<input type="text" name="end"/>
 					</div>
+					<div class="pos_abs error dsp_nn">
+						<img src="../img/error.png"/>
+						<p class="error_txt pos_abs dsp_nn">
+						</p>
+					</div>	
 				</div>
 				<div class="inlineparent inp_blck">
 					<div class="_lbl_tgs">
@@ -234,7 +319,7 @@
 						<textarea placeholder="Share your experiece" name="jobDesc"></textarea>
 					</div>
 				</div>
-				<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+				<div class="inlineparent inp_blck buttonBars" style="margin-bottom:10px;">
 					<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
 				</div>
 			</form>
@@ -267,7 +352,25 @@
 				    name: 'location',
 				    display: 'location',
 				    rules: 'required'
+				}, {
+				    name: 'start',
+				    display: 'Experience of months',
+				    rules: 'numeric|exact_length[2]'
+				}, {
+				    name: 'end',
+				    display: 'Experience of year',
+				    rules: 'numeric|exact_length[4]'
 				}], function(errors, event) {
+					$(".error").hide();
+					console.log(errors)
+					if(errors.length>0){
+						for(var i=0; i<errors.length;i++){
+					    	var err=$("input[name="+errors[i].name+"]").parents(".inp_blck").find('.error');
+					    	err.show();
+					    	err.find(".error_txt").text(errors[i].message);
+				    	}
+				    	return false;
+					}
 				    return errors.length;
 				});
 				var error=generalValidator._validateForm(e);
@@ -282,7 +385,13 @@
 					},
 					success:function(data){
 						if(data.status==0){
-							$(".professional").click();
+							_parentForm.find(".buttonBars").find(".successMsg").remove();
+							_parentForm.find(".buttonBars").append("<div class='pos_abs successMsg'>Thanks for updating yur information</div>");
+							setTimeout(function(){
+								_parentForm.find(".buttonBars").find(".successMsg").hide()
+								$(".professional").click();
+							},2000)		
+							
 						}
 					}
 				});

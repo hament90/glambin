@@ -2,7 +2,7 @@
 	<div class="_reg_hd_name">
 		My Connection
 	</div>
-	<form action="/gb/srvc/save-urls" method="post">
+	<form action="/gb/srvc/save-urls" method="post" name="connectForm">
 		<input type="hidden" value="<%=gbId%>" name="id">
 		<div class="inlineparent inp_blck">
 			<div class="_lbl_tgs">
@@ -16,6 +16,11 @@
 					<input type="text" name="google" placeholder="Enter your Google emailId."/>
 				<%}%>		
 			</div>
+			<div class="pos_abs error dsp_nn">
+				<img src="../img/error.png"/>
+				<p class="error_txt pos_abs dsp_nn">
+				</p>
+			</div>	
 		</div>
 		<div class="inlineparent inp_blck">
 			<div class="_lbl_tgs">
@@ -29,6 +34,11 @@
 					<input type="text" name="yahoo" placeholder="Enter your Yahoo emailId."/>
 				<%}%>	
 			</div>
+			<div class="pos_abs error dsp_nn">
+				<img src="../img/error.png"/>
+				<p class="error_txt pos_abs dsp_nn">
+				</p>
+			</div>	
 		</div>
 		<div class="inlineparent inp_blck">
 			<div class="_lbl_tgs">
@@ -42,6 +52,11 @@
 					<input type="text" name="rediff" placeholder="Enter your Rediffmail emailId."/>
 				<%}%>	
 			</div>
+			<div class="pos_abs error dsp_nn">
+				<img src="../img/error.png"/>
+				<p class="error_txt pos_abs dsp_nn">
+				</p>
+			</div>	
 		</div>
 		<div class="inlineparent inp_blck">
 			<div class="_lbl_tgs">
@@ -55,6 +70,11 @@
 					<input type="text" name="fb" placeholder="Enter your Facebook Profile URL"/>
 				<%}%>	
 			</div>
+			<div class="pos_abs error dsp_nn">
+				<img src="../img/error.png"/>
+				<p class="error_txt pos_abs dsp_nn">
+				</p>
+			</div>	
 		</div>
 		<div class="inlineparent inp_blck">
 			<div class="_lbl_tgs">
@@ -68,6 +88,11 @@
 					<input type="text" name="twitter" placeholder="Enter your Twitter Profile URL"/>
 				<%}%>	
 			</div>
+			<div class="pos_abs error dsp_nn">
+				<img src="../img/error.png"/>
+				<p class="error_txt pos_abs dsp_nn">
+				</p>
+			</div>	
 		</div>
 		<div class="inlineparent inp_blck">
 			<div class="_lbl_tgs">
@@ -81,6 +106,11 @@
 					<input type="text" name="hotmail" placeholder="Enter your My Space Profile URL"/>
 				<%}%>	
 			</div>
+			<div class="pos_abs error dsp_nn">
+				<img src="../img/error.png"/>
+				<p class="error_txt pos_abs dsp_nn">
+				</p>
+			</div>	
 		</div>
 		<div class="inlineparent inp_blck">
 			<div class="_lbl_tgs">
@@ -94,6 +124,11 @@
 					<input type="text" name="tumblr" placeholder="Enter your Tumblr Profile URL"/>
 				<%}%>	
 			</div>
+			<div class="pos_abs error dsp_nn">
+				<img src="../img/error.png"/>
+				<p class="error_txt pos_abs dsp_nn">
+				</p>
+			</div>	
 		</div>
 		<div class="inlineparent inp_blck">
 			<div class="_lbl_tgs">
@@ -107,6 +142,11 @@
 					<input type="text" name="linkedin" placeholder="Enter your LinkedIn Profile URL"/>
 				<%}%>
 			</div>
+			<div class="pos_abs error dsp_nn">
+				<img src="../img/error.png"/>
+				<p class="error_txt pos_abs dsp_nn">
+				</p>
+			</div>	
 		</div>
 		<div class="inlineparent inp_blck">
 			<div class="_lbl_tgs">
@@ -120,6 +160,11 @@
 					<input type="text" name="skype" placeholder="Enter your Skype Profile URL"/>
 				<%}%>	
 			</div>
+			<div class="pos_abs error dsp_nn">
+				<img src="../img/error.png"/>
+				<p class="error_txt pos_abs dsp_nn">
+				</p>
+			</div>	
 		</div>
 		<div class="inlineparent inp_blck">
 			<div class="_lbl_tgs">
@@ -133,8 +178,13 @@
 					<input type="text" name="instagram" placeholder="Enter your Instagram Profile URL"/>
 				<%}%>		
 			</div>
+			<div class="pos_abs error dsp_nn">
+				<img src="../img/error.png"/>
+				<p class="error_txt pos_abs dsp_nn">
+				</p>
+			</div>	
 		</div>
-		<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+		<div class="inlineparent inp_blck buttonBars" style="margin-bottom:10px;">
 			<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
 		</div>
 	</form>
@@ -143,11 +193,70 @@
 	</div>
 	<script type="type/javascript">
 		$(document).ready(function(){
-			$(".saveData").click(function(){
+			$(".saveData").click(function(e){
 				var _self=$(this);
-				_self.parents("form").ajaxSubmit(function(data){
+				var _parentForm=_self.parents("form");
+				var generalValidator = new FormValidator(_parentForm.attr("name"), [{
+				    name: 'google',
+				    display: 'Google',
+				    rules: 'valid_url'
+				},{
+				    name: 'yahoo',
+				    display: 'Yahoo',
+				    rules: 'valid_url'
+				},{
+				    name: 'rediff',
+				    display: 'Rediffmail',
+				    rules: 'valid_url'
+				},{
+				    name: 'fb',
+				    display: 'Facebook',
+				    rules: 'valid_url'
+				},{
+				    name: 'twitter',
+				    display: 'Twitter',
+				    rules: 'valid_url'
+				},{
+				    name: 'hotmail',
+				    display: 'My Space',
+				    rules: 'valid_url'
+				},{
+				    name: 'tumblr',
+				    display: 'Tumblr',
+				    rules: 'valid_url'
+				},{
+				    name: 'linkedin',
+				    display: 'LinkedIn',
+				    rules: 'valid_url'
+				},{
+				    name: 'instagram',
+				    display: 'Instagram',
+				    rules: 'valid_url'
+				},{
+				    name: 'skype',
+				    display: 'Skype',
+				    rules: 'valid_url'
+				}], function(errors, event) {
+					$(".error").hide();
+					console.log(errors)
+					if(errors.length>0){
+						for(var i=0; i<errors.length;i++){
+					    	var err=$("input[name="+errors[i].name+"]").parents(".inp_blck").find('.error');
+					    	err.show();
+					    	err.find(".error_txt").text(errors[i].message);
+				    	}
+				    	return false;
+					}
+				    return errors.length;
+				});
+				var error=generalValidator._validateForm(e);
+				_parentForm.ajaxSubmit(function(data){
 					if(data.status==0){
-					
+						_mainForm.find(".buttonBars").find(".successMsg").remove();
+						_mainForm.find(".buttonBars").append("<div class='pos_abs successMsg'>Thanks for updating yur information</div>");
+						setTimeout(function(){
+							_mainForm.find(".buttonBars").find(".successMsg").hide()		
+						},2000)
 					}
 				});
 			});

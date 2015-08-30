@@ -46,7 +46,13 @@ h4.__snti_lne_cmbk {
     color: #777;
     font-weight: normal;
 }
-
+.successMsg {
+    font-size: 10px;
+    padding: 8px 15px;
+    background-color: #2bbb9e;
+    color: #fff;
+    border-radius: 13px;
+}
 .__tb_reg.active:before {
     content: "";    width: 0;  height: 0;      border-top: 0;    
     border-left: 15px solid rgba(255, 255, 255, 0);  
@@ -113,11 +119,11 @@ section#rg_chnnl {
     min-height: 25px;
     padding: 5px;
     margin: 0 10px 3px;
+    position: relative;
 }
 ._lbl_tgs {
     width: 40%;
 }
-
 .input_flds {
     width: 55%;
     border: 1px solid #DDDDDD;
@@ -125,7 +131,6 @@ section#rg_chnnl {
     margin-left: 2%;
     background: #fff;
 }
-
 .input_flds input {
     font-size: 14px;
     color: #555;
