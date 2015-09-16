@@ -72,6 +72,7 @@ module.exports = function routes() {
 	
 	this.match("/gb/srvc/remove-work/:id/:pid",{controller:"registration/srvc/registrationService",action:"removeWorkLoad",via:"POST"});
 	this.match("/gb/srvc/remove-education/:id/:eid",{controller:"registration/srvc/registrationService",action:"removeEducation",via:"POST"});
+	this.match("/gb/srvc/remove-achievement/:id/:aid",{controller:"registration/srvc/registrationService",action:"removeGlory",via:"POST"});
 
 
 // Profile Landing page 

@@ -74,6 +74,11 @@
 					<input type="radio" class="reg_radio_btn" name="gender" value="Other" <%if (gender!='' && gender=='Other'){ %>checked<%}%>/>
 					<label>Other</label>	
 				</div>
+				<div class="pos_abs error dsp_nn">
+					<img src="../img/error.png"/>
+					<p class="error_txt pos_abs dsp_nn">
+					</p>
+				</div>
 			</div>
 		</div>
 		<div class="inlineparent inp_blck">
@@ -142,7 +147,7 @@
 				<span>Max 100 Character.</span>
 			</div>
 			<div class="input_flds">
-				<textarea placeholder="Address your persoanality" name="shortDesc"><%= (shortDesc!=undefined || shortDesc!=null?shortDesc:'') %></textarea>
+				<textarea placeholder="Address your persoanality" maxLength='100' name="shortDesc"><%= (shortDesc!=undefined || shortDesc!=null?shortDesc:'') %></textarea>
 			</div>
 		</div>
 		<div class="inlineparent inp_blck">
@@ -197,6 +202,9 @@
 			}, {
 			    name: 'emailId',
 			    rules: 'valid_email',
+			},{
+			    name: 'gender',
+			    rules: 'required',
 			}, {
 			    name: 'area',
 			    rules: 'required',
@@ -209,6 +217,12 @@
 			}, {
 			    name: 'country',
 			    rules: 'required',
+			}, {
+			    name: 'shortDesc',
+			    rules: 'max_length[100]',
+			}, {
+			    name: 'postal',
+			    rules: 'numeric|exact_length[6]',
 			}], function(errors, event) {
 				console.log(errors, event);
 				$(".error").hide();

@@ -192,7 +192,19 @@ registrationSrvcController.removeEducation=function(){
     });
     registerSvc.removeEducationPool(_nself.req.params);      
 }
+registrationSrvcController.removeGlory=function(){
+    var _nself = this;
+    console.log(_nself.req.params)
+    if (!_nself.req.isAuthenticated())
+        return _nself.res.redirect("/gb/404");
 
+    var registerSvc = new UserRegisterSvc();
+    registerSvc.on("done", function(status,msg,result,page){
+        console.log(result)
+        _nself.processJson(status,msg,result,page);
+    });
+    registerSvc.removeAchievements(_nself.req.params);      
+}
 
 
 module.exports=registrationSrvcController;

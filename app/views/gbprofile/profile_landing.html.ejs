@@ -51,7 +51,7 @@
 				<%}%>
 				<div class="profile-image"><img src="images/profile.jpg" /></div>
 			</div>
-			<div class="content inlineparent">
+			<div class="content">
 				<div class="part1 bx_szg">
 					<%if(shortDesc!=undefined && shortDesc!=null){%>
 						<div class="testimonials bx_szg">
@@ -129,9 +129,10 @@
 							<span class="moments">Memories Lane</span>  <span class="view-all"><a href="#">View all</a></span>
 						</div>
 						<div class="testimonials bx_szg">
-							<div class="first-image"><img src="images/girl-1.jpg" /><img src="images/girl-2.jpg" /></div>
+							<!-- <div class="first-image"><img src="images/girl-1.jpg" /><img src="images/girl-2.jpg" /></div>
 							<div class="second-image"><img src="images/girl3.jpg" /></div>
-							<div class="third-image"><img src="images/girl-4.jpg" /></div>
+							<div class="third-image"><img src="images/girl-4.jpg" /></div> -->
+							Comming Soon..
 						</div>
 
 						<div class="menu">
@@ -168,7 +169,7 @@
 							<%if (media.audio==undefined || media.audio.length==0){%>
 								Video has not posted.
 							<%}%>
-							<div style="height:200px;"></div>
+							
 						</div>
 					</div>
 					<div class="testimonials bx_szg" id="explore"  data-bind="visible:(isVisibleTb()=='explore')">
@@ -181,9 +182,13 @@
 									<p class="text-small"><%=explore[i].description%></p>
 								</div>
 							<%}%>	
-						<%}%>	
+						<%}%>
+						<%if (explore==undefined ||explore==null || explore.length==0){%>
+							You don't have any exploring story yet.
+						<%}%>
 					</div>
 					<div class="testimonials bx_szg" id="achievements" data-bind="visible:(isVisibleTb()=='achivements')">
+					<%=achivements%>
 						<%if (achivements!=null && achivements.length>0){%>
 							<% for(var i=0;i<achivements.length;i++){%>
 								<div class="box">
@@ -212,10 +217,13 @@
 									</div>
 								</div>	
 							<%}%>	
+						<%}%>
+						<%if (achivements==undefined ||achivements==null || achivements.length==0){%>
+							You don't have find any Achievement yet.
 						<%}%>	
 					</div>
 				</div>
-				<div class="part2">
+				<!-- <div class="part2">
 					<div class="head">
 						<ul class="inlineparent">
 							<li class="bx_szg"><a href="#">Connection</a></li>
@@ -241,7 +249,7 @@
 						<div class="img"><img src="images/image.png" /></div>
 						<div class="name">Petra Novakova</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<input type="hidden" id="gbId" value="<%=gbId%>" />

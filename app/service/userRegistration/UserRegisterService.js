@@ -282,18 +282,23 @@ UserRegisterService.prototype.saveLifeJourney=function(dataModel){
 UserRegisterService.prototype.saveGlory=function (dataModel) {
 	var _ownObj = this;
 	console.log(dataModel)
-	var achivements=[];
-	if(dataModel.value.title!=undefined && dataModel.value.title!=null && dataModel.value.title.length>0){
-		for (var i = 0; i < dataModel.value.title.length; i++) {
-			var achObj={
-				date:_ownObj.getRealTimeForUI(dataModel.value.date[i]),	
-				title:dataModel.value.title[i],
-				description:dataModel.value.description[i]
-			};
-			achivements.push(achObj);
-		};
-	}
-	GBUserInfoModel.update({ "gbId": dataModel.value.id }, { $set: {"achivements":achivements}}, function(err, user){
+	var achivements={
+		date:_ownObj.getRealTimeForUI(dataModel.value.date),	
+		title:dataModel.value.title,
+		description:dataModel.value.description
+	};
+	// if(dataModel.value.title!=undefined && dataModel.value.title!=null){
+	// 	//for (var i = 0; i < dataModel.value.title.length; i++) {
+	// 		var achObj={
+	// 			date:_ownObj.getRealTimeForUI(dataModel.value.date[i]),	
+	// 			title:dataModel.value.title[i],
+	// 			description:dataModel.value.description[i]
+	// 		};
+	// 		//achivements.push(achObj);
+	// 	//}//;
+	// }
+
+	GBUserInfoModel.update({ "gbId": dataModel.value.id }, { $push: {"achivements":achivements}}, function(err, user){
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 		} else{
@@ -472,4 +477,21 @@ UserRegisterService.prototype.removeEducationPool = function(dataModel) {
 		}
 	});
 };
+
+UserRegisterService.prototype.removeAchievements = function(dataModel) {
+	var _ownObj = this;
+	GBUserInfoModel.update({ "gbId": dataModel.id},{$pull:{"achivements":{"_id":dataModel.aid}}},function(err,user) {
+		if (err) {
+			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+		} else{
+			console.log(user)
+			if(user>0)
+				_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
+			else
+				_ownObj.emit("done",STATUS.DATA_ERROR.stats,STATUS.DATA_ERROR.msg,null,null);
+		}
+	});
+};
+
+
 module.exports = UserRegisterService;

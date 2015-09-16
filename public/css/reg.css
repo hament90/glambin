@@ -136,6 +136,10 @@ section#rg_chnnl {
     color: #555;
     width: 100%;
 }
+.input_flds select {
+    padding: 5px;
+    border: 1px solid #ededed;
+}
 ._reg_hd_name {
     border-bottom: 1px solid #EEE;
     padding: 8px;

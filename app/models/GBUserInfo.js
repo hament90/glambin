@@ -20,7 +20,7 @@ var GBUserInfoSchema =new mongoose.Schema({
     connectedBy:[{type: String}],
     connectedTo:[{type: String}],
     isPublished:{type: Boolean ,default:false},
-    isSearchable:{type: Boolean ,default:false},
+    isSearchable:{type: Boolean ,default:true},
     connections:{
         google:String,
         yahoo:String,

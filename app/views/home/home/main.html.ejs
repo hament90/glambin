@@ -172,6 +172,12 @@
 					$("input[type=text]").val('');
 				});
 
+				$('#loginForm input[name="signUserId"], #loginForm input[name="password"]').keypress(function(e){
+					if(e.which==13){
+						$("#login_btn").click();		
+					}
+				});
+				
 				$("#login_btn").click(function(e){
 					$(this).parent("#loginForm").ajaxSubmit({
 						beforeSubmit:function (form,jqxhr,options) {
@@ -282,7 +288,10 @@
 						type:"GET",
 						success:function(data){
 							if(data.status==0){
-								$(".messageOTP").text("Your account has been verfied.")
+								$(".messageOTP").text("Your account has been verfied. Now you are verified for login in your account.");
+								setTimeout(function(){
+									window.location.reload();
+								},3000);
 							}
 						}
 					});

@@ -1,55 +1,60 @@
-<div class="registration_form">
+<div class="registration_form" id="achievement_form">
 	<div class="_reg_hd_name">
 		Achievements
 	</div>
 	<div class="achievementContainer">
 		<%if(achieve==undefined || achieve.length==0){%>
-			<form action="/gb/srvc/save-upload-achivements" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="id" value="<%=gbId%>">
-				<div class="inlineparent __center">
-					<div class="inlineparent inp_blck">
-						<div class="inlineparent achieve_md">
-							<div class="input_ttll_flds">
-								<input type="text" name="title" placeholder="How would you like to define your Journey.."/>
-							</div>
-							<textarea class="desc_area" name="description"></textarea>
-						</div>
-						<div class="inlineparent achieve_md">
-							<div class="input_ttll_flds">
-								<input type="text" name="date" placeholder="Enter your Achivement Date"/>
-							</div>
-						</div>
-						<div class="inlineparent inp_blck" style="margin-bottom:10px;">
-							<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
-						</div>
-					</div>
-				</div>	
-			</form>		
-		<%}%>
-		<%if(achieve!=undefined && achieve.length>0){%>
-			<% for(var i=0; i<achieve.length; i++) { %>
+			<div class="__ach">
 				<form action="/gb/srvc/save-upload-achivements" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="id" value="<%=gbId%>">
 					<div class="inlineparent __center">
-						<input type="hidden" name="id" value="<%=gbId%>"/>
-						<input type="hidden" name="achieveId" value="<%=achieve[i].id%>"/>
 						<div class="inlineparent inp_blck">
 							<div class="inlineparent achieve_md">
 								<div class="input_ttll_flds">
-									<input type="text" name="title" placeholder="How would you like to define your Journey.." value="<%=achieve[i].title%>"/>
+									<input type="text" name="title" placeholder="How would you like to define your Journey.."/>
 								</div>
-								<textarea class="desc_area" name="description"><%=achieve[i].description%></textarea>
+								<textarea class="desc_area" name="description"></textarea>
 							</div>
 							<div class="inlineparent achieve_md">
 								<div class="input_ttll_flds">
-									<input type="text" name="date" value="<%=achieve[i].date%>" placeholder="Enter your Achivement Date"/>
+									<input type="text" name="date" placeholder="Enter your Achivement Date"/>
 								</div>
 							</div>
 							<div class="inlineparent inp_blck" style="margin-bottom:10px;">
 								<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
 							</div>
 						</div>
-					</div>
-				</form>	
+					</div>	
+				</form>		
+			</div>
+		<%}%>
+		<%if(achieve!=undefined && achieve.length>0){%>
+			<% for(var i=0; i<achieve.length; i++) { %>
+				<div class="__ach" id="<%=achieve[i].id%>">
+					<form action="/gb/srvc/save-upload-achivements" method="post" enctype="multipart/form-data">
+						<div class="inlineparent __center">
+							<input type="hidden" name="id" value="<%=gbId%>"/>
+							<input type="hidden" name="achieveId" value="<%=achieve[i].id%>"/>
+							<div class="inlineparent inp_blck">
+								<div class="inlineparent achieve_md">
+									<div class="input_ttll_flds">
+										<input type="text" name="title" placeholder="How would you like to define your Journey.." value="<%=achieve[i].title%>"/>
+									</div>
+									<textarea class="desc_area" name="description"><%=achieve[i].description%></textarea>
+								</div>
+								<div class="inlineparent achieve_md">
+									<div class="input_ttll_flds">
+										<input type="text" name="date" value="<%=achieve[i].date%>" placeholder="Enter your Achivement Date"/>
+									</div>
+								</div>
+								<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+									<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+									<div class="_svd_sbmt __bg_button removeData" data-gid="<%=gbId%>" data-aid="<%=achieve[i]._id%>" style="margin-right:10px;">Remove</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>		
 			<%}%>	
 		<%}%>	
 	</div>	
@@ -57,27 +62,30 @@
 		<div class="_other _bttn_add_on">Add More</div>
 	</div>
 	<div class="dsp_nn" id="hiddenAchieve">
-		<form action="/gb/srvc/save-upload-achivements" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="id" value="<%=gbId%>">
-			<div class="inlineparent __center">
-				<div class="inlineparent inp_blck">
-					<div class="inlineparent achieve_md">
-						<div class="input_ttll_flds">
-							<input type="text" name="title[0]" placeholder="How would you like to define your Journey.."/>
+		<div class="__ach">
+			<form action="/gb/srvc/save-upload-achivements" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="id" value="<%=gbId%>">
+				<div class="inlineparent __center">
+					<div class="inlineparent inp_blck">
+						<div class="inlineparent achieve_md">
+							<div class="input_ttll_flds">
+								<input type="text" name="title[0]" placeholder="How would you like to define your Journey.."/>
+							</div>
+							<textarea class="desc_area" name="description[0]"></textarea>
 						</div>
-						<textarea class="desc_area" name="description[0]"></textarea>
-					</div>
-					<div class="inlineparent achieve_md">
-						<div class="input_ttll_flds">
-							<input type="text" name="date[0]" placeholder="Enter your Achivement Date"/>
+						<div class="inlineparent achieve_md">
+							<div class="input_ttll_flds">
+								<input type="text" name="date[0]" placeholder="Enter your Achivement Date"/>
+							</div>
+						</div>
+						<div class="inlineparent inp_blck" style="margin-bottom:10px;">
+							<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
+							<div class="_svd_sbmt __bg_button cancelData"style="margin-right:10px;">Cancel</div>
 						</div>
 					</div>
-					<div class="inlineparent inp_blck" style="margin-bottom:10px;">
-						<div class="_svd_sbmt __bg_button saveData">Save and Continue</div>
-					</div>
-				</div>
-			</div>	
-		</form>		
+				</div>	
+			</form>		
+		</div>	
 	</div>
 </div>
 <script type="text/javascript">
@@ -86,13 +94,39 @@
 			$(".achievementContainer").append($("#hiddenAchieve").html())
 		});
 
-		$(".saveData").click(function(){
+		$("#achievement_form").on("click",".saveData",function(){
 			var _self=$(this);
 			_self.parents("form").ajaxSubmit(function(data){
 				if(data.status==0){
-				
+					$(".achievement").click();
 				}
 			});
+		});
+
+		$("#achievement_form").off("click",".removeData");
+		$("#achievement_form").on("click",".removeData",function(){
+			var _self=$(this);
+			$.ajax({
+				url:"/gb/srvc/remove-achievement/"+_self.attr("data-gid")+"/"+_self.attr("data-aid"),
+				type:"POST",
+				success:function(data){
+					if(data.status==0){
+						var container=_self.parents(".__ach");
+						container.remove();
+						if($(".__ach").length==1){
+							$("._bttn_add_on").click()
+						}
+					}else{
+
+					}	
+				}
+			});
+		});
+
+		$("#achievement_form").off("click",".cancelData")
+		$("#achievement_form").on("click",".cancelData",function(){
+			var _self=$(this);
+			_self.parents(".__ach").remove();
 		});
 	});
 </script>

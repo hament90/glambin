@@ -43,11 +43,11 @@
 					</div>
 					<div class="passwd_cntnr wdth_100_per bx_szg inlineparent">
 						<form action="/gb/reset-password" method="post" class="wdth_100_per">
-							<input type="text" class="__pass" name="userId" placeholder="Enter your UserId"/>	
+							<input type="text" class="__pass" name="userId" placeholder="Enter your UserId (emailId or phone number)"/>	
 							<input type="password" class="__pass" name="oldPass" placeholder="Enter your old password"/>	
 							<input type="password" class="__pass" name="newPass"  placeholder="Enter your new password"/>	
 							<input type="password" class="__pass" name="conPass"  placeholder="Reconfirm your password"/>	
-							<div class="wdth_100_per txt_algn_rgt" style="margin-top:15px;">
+							<div class="wdth_100_per txt_algn_rgt buttonBars" style="margin-top:15px;">
 								<div class="_svd_sbmt __bg_button saveData">Save</div>
 							</div>
 						</form>
@@ -274,7 +274,18 @@
 						},
 						success:function(data){
 							if(data.status==0){
+								_parentForm.find(".buttonBars").find(".successMsg").remove();
+								_parentForm.find(".buttonBars").append("<div class='pos_abs successMsg'>Thanks for updating yur information. Please relogin to view effect.</div>");
+								_parentForm.find("input").val('');
+								setTimeout(function(){
+									_parentForm.find(".buttonBars").find(".successMsg").remove();
+									$(".education").click();		
+								},2000)	
 								
+							}else{
+								_parentForm.find(".buttonBars").find(".errorMsg").remove();
+								_parentForm.find(".buttonBars").append("<div class='pos_abs errorMsg error_txt'>Your Provided information does not match. please check your information.</div>");
+								_parentForm.find("input").val('');
 							}
 						}
 					});

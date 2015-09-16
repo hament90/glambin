@@ -59,7 +59,21 @@
 						</div>
 						<div class="input_flds __half inlineparent">
 							<input type="text" name="startYear" placeholder="Year"/>
-							<input type="text" name="startMonth" placeholder="Month"/>
+							<select name="startMonth">
+								<option value="">select Month</option>
+								<option value="01">01</option>
+								<option value="02">02</option>
+								<option value="03">03</option>
+								<option value="04">04</option>
+								<option value="05">05</option>
+								<option value="06">06</option>
+								<option value="07">07</option>
+								<option value="08">08</option>
+								<option value="09">09</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+							</select>
 						</div>
 						<div class="pos_abs error dsp_nn">
 							<img src="../img/error.png"/>
@@ -73,7 +87,21 @@
 						</div>
 						<div class="input_flds __half inlineparent">
 							<input type="text" name="endYear" placeholder="Year"/>
-							<input type="text" name="endMonth" placeholder="Month"/>
+							<select name="endMonth">
+								<option value="">select Month</option>
+								<option value="01">01</option>
+								<option value="02">02</option>
+								<option value="03">03</option>
+								<option value="04">04</option>
+								<option value="05">05</option>
+								<option value="06">06</option>
+								<option value="07">07</option>
+								<option value="08">08</option>
+								<option value="09">09</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+							</select>
 						</div>
 						<div class="pos_abs error dsp_nn">
 							<img src="../img/error.png"/>
@@ -98,7 +126,7 @@
 		<%if(education!=undefined && education!=null && education.length>0){%>	
 			<% for (var i=0; i<education.length ; i++){ %>
 				<div class="__edu _cntnr" id="<%=education[i]._id%>">
-					<form action="/gb/srvc/save-educate" method="post" name="education<%=i%>">
+					<form action="/gb/srvc/save-educate" method="post" name="education<%=i%><%=education[i]._id%>">
 						<input type="hidden" name="id" value="<%=gbId%>">
 						<input type="hidden" name="eid" value="<%=education[i]._id%>">
 						<div class="inlineparent inp_blck">
@@ -154,8 +182,21 @@
 							<div class="input_flds __half inlineparent">
 								
 								<input type="text" name="startYear" placeholder="Year" value='<%=education[i].period!=undefined && education[i].period.startYear!=undefined?education[i].period.startYear:"" %>'/>
-								
-								<input type="text" name="startMonth" placeholder="Month" value='<%=education[i].period!=undefined && education[i].period.startMonth!=undefined?education[i].period.startMonth:"" %>'/>
+								<select name="startMonth" value='<%=education[i].period!=undefined && education[i].period.startMonth!=undefined?education[i].period.startMonth:"" %>'>
+									<option value="">select Month</option>
+									<option value="01">01</option>
+									<option value="02">02</option>
+									<option value="03">03</option>
+									<option value="04">04</option>
+									<option value="05">05</option>
+									<option value="06">06</option>
+									<option value="07">07</option>
+									<option value="08">08</option>
+									<option value="09">09</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+								</select>
 							</div>
 							<div class="pos_abs error dsp_nn">
 								<img src="../img/error.png"/>
@@ -169,7 +210,22 @@
 							</div>
 							<div class="input_flds __half inlineparent">
 								<input type="text" name="endYear" placeholder="Year" value='<%=education[i].period!=undefined && education[i].period.endYear!=undefined?education[i].period.endYear:"" %>'/>
-								<input type="text" name="endMonth" placeholder="Month" value='<%=education[i].period!=undefined && education[i].period.endMonth!=undefined?education[i].period.endMonth:"" %>'/>
+
+								<select name="endMonth" value='<%=education[i].period!=undefined && education[i].period.endMonth!=undefined?education[i].period.endMonth:"" %>'>
+									<option value="">select Month</option>
+									<option value="01">01</option>
+									<option value="02">02</option>
+									<option value="03">03</option>
+									<option value="04">04</option>
+									<option value="05">05</option>
+									<option value="06">06</option>
+									<option value="07">07</option>
+									<option value="08">08</option>
+									<option value="09">09</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+								</select>
 							</div>
 						</div>
 						<div class="inlineparent inp_blck">
@@ -245,7 +301,21 @@
 					</div>
 					<div class="input_flds __half inlineparent">
 						<input type="text" name="startYear" placeholder="Year"/>
-						<input type="text" name="startMonth" placeholder="Month"/>
+						<select name="startMonth">
+							<option value="">select Month</option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
 					</div>
 					<div class="pos_abs error dsp_nn">
 						<img src="../img/error.png"/>
@@ -259,7 +329,21 @@
 					</div>
 					<div class="input_flds __half inlineparent">
 						<input type="text" name="endYear" placeholder="Year"/>
-						<input type="text" name="endMonth" placeholder="Month"/>
+						<select name="endMonth">
+							<option value="">select Month</option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
 					</div>
 					<div class="pos_abs error dsp_nn">
 						<img src="../img/error.png"/>
@@ -291,6 +375,7 @@
 			$("#education").on("click",".saveData",function(e){
 				var _self=$(this);
 				var _parentForm=_self.parents("form");
+				console.log(_parentForm,"sds",_parentForm.attr("name"))
 				var generalValidator = new FormValidator(_parentForm.attr("name"), [{
 				    name: 'institute',
 				    display: 'Institute',
@@ -306,15 +391,15 @@
 				}, {
 				    name: 'startYear',
 				    display: 'Started from year',
-				    rules: 'numeric|exact_match[4] '
+				    rules: 'required|numeric|exact_match[4]|max_length[4]|greater_than[1915]|less_than[2015]'
 				}, {
 				    name: 'endYear',
 				    display: 'Ended on year',
-				    rules: 'numeric|exact_match[4]'
+				    rules: 'numeric|exact_match[4]|max_length[4]|greater_than[1915]|less_than[2015]'
 				}, {
 				    name: 'startMonth',
 				    display: 'Started from month',
-				    rules: 'numeric|exact_match[2] '
+				    rules: 'required|numeric|exact_match[2]|max_length[2]'
 				}, {
 				    name: 'endMonth',
 				    display: 'Ended on month',
@@ -324,7 +409,12 @@
 					console.log(errors)
 					if(errors.length>0){
 						for(var i=0; i<errors.length;i++){
-					    	var err=$("input[name="+errors[i].name+"]").parents(".inp_blck").find('.error');
+							var err='';
+							if(errors[i].name=='startMonth' || errors[i].name=='endMonth'){
+								err=_parentForm.find("select[name="+errors[i].name+"]").parents(".inp_blck").find('.error');
+							}else{
+					    		err=_parentForm.find("input[name="+errors[i].name+"]").parents(".inp_blck").find('.error');
+							}
 					    	err.show();
 					    	err.find(".error_txt").text(errors[i].message);
 				    	}
@@ -355,6 +445,7 @@
 				});
 			});
 
+
 			$("#Edu-Reg-form").off("click",".removeData");
 			$("#Edu-Reg-form").on("click",".removeData",function(){
 				var _self=$(this);
@@ -362,14 +453,11 @@
 					url:"/gb/srvc/remove-education/"+_self.attr("data-gid")+"/"+_self.attr("data-eid"),
 					type:"POST",
 					success:function(data){
-						if(data.status){
+						if(data.status==0){
 							var container=_self.parents(".__edu._cntnr");
-							if($(".__edu._cntnr").length>1){
-								container.remove();
-							}else{
-								container.find("form")[0].reset();
-								container.find("input[name='pid']").remove();
-								container.find(".removeData").remove();
+							container.remove();
+							if($(".__edu._cntnr").length==1){
+								$("._bttn_add_on").click()
 							}
 						}else{
 

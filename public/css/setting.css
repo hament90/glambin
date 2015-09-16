@@ -88,3 +88,10 @@ div#userInfo h1 {
 .block:hover {
     box-shadow: 0px 0px 3px #9AD0A3;
 }
+.successMsg {
+    background-color: #2bbb9e;
+    border-radius: 13px;
+    color: #fff;
+    font-size: 10px;
+    padding: 8px 15px;
+}
