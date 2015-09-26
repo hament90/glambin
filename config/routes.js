@@ -37,6 +37,8 @@ module.exports = function routes() {
 
   	this.match("/gb/reset-password",{controller:"home/srvc/homeService",action:"resetPassword",via:"post"})
 	this.match("/gb/srvc/forgot-password",{controller:"home/srvc/homeService",action:"forgotPassword",via:"post"})
+	this.match("/gb/srvc/set-new-password",{controller:"home/srvc/homeService",action:"setNewForgotPassword",via:"post"})
+
 
 //search call
   	this.match("/gb/search/search-user",{controller:"search/search",action:"searchUsers",via:"post"})
@@ -80,6 +82,7 @@ module.exports = function routes() {
 
 // Profile Landing Services calls 
 	this.match("/profile-connect/:id",{controller: 'gbprofile/srvc/profileSrvc', action:'connect', via:'post'});
+	this.match("/connect-verify/"+_gb_constant.USER_STATUS.PENDING_VERFICATION+"/:pid/:connectId",{controller: 'gbprofile/srvc/profileSrvc', action:'connectVerification', via:'post'});
 	this.match("/user-srvc/list-users",{controller: 'gbprofile/srvc/profileSrvc', action:'loadProfilesForListing', via:'post'});
 
 //profile Settings service Calls

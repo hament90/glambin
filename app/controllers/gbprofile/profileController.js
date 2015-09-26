@@ -10,6 +10,7 @@ profileController.main = function() {
 	var service= new profileService();
 	service.on("done", function(status,msg,result,page){
 		if(status==STATUS.SUCCESS.stats){
+			console.log(_nself.req.session)
 			_nself.render("gbprofile/profile_landing",result);
 		}else{
 			_nself.render("home/error/page_error");

@@ -46,14 +46,18 @@
 					<%}%>
 				</div>
 				<div class="right bx_szg"><!-- <img src="/img/showCase/Anne_profile_.j" /> --></div>
-				<%if(user==undefined || user.gbId!=gbId){%>
+				<%if(user!=undefined&& user.gbId!=gbId){%>
+					<div class="btn-top"><a href="#" id="connect" class="top-btn">Connect</a></div>
+				<%}%>
+
+				<%if( user==undefined){%>
 					<div class="btn-top"><a href="#" id="connect" class="top-btn">Connect</a></div>
 				<%}%>
 				<div class="profile-image"><img src="images/profile.jpg" /></div>
 			</div>
 			<div class="content">
 				<div class="part1 bx_szg">
-					<%if(shortDesc!=undefined && shortDesc!=null){%>
+					<%if(shortDesc!=undefined || shortDesc!=null ){%>
 						<div class="testimonials bx_szg">
 							<p class="inlineparent _prf_lnd_pgmsg bx_szg" style="padding-left:35px">
 								<%=shortDesc%>
@@ -223,33 +227,6 @@
 						<%}%>	
 					</div>
 				</div>
-				<!-- <div class="part2">
-					<div class="head">
-						<ul class="inlineparent">
-							<li class="bx_szg"><a href="#">Connection</a></li>
-						</ul>
-					</div>
-					<div class="side-content">
-						<div class="img"><img src="images/image.png" /></div>
-						<div class="name">Petra Novakova</div>
-					</div>
-					<div class="side-content">
-						<div class="img"><img src="images/image1.png" /></div>
-						<div class="name">Katrina Novakova</div>
-					</div>
-					<div class="side-content">
-						<div class="img"><img src="images/image.png" /></div>
-						<div class="name">Petra Novakova</div>
-					</div>
-					<div class="side-content">
-						<div class="img"><img src="images/image1.png" /></div>
-						<div class="name">Katrina Novakova</div>
-					</div>
-					<div class="side-content">
-						<div class="img"><img src="images/image.png" /></div>
-						<div class="name">Petra Novakova</div>
-					</div>
-				</div> -->
 			</div>
 		</div>
 		<input type="hidden" id="gbId" value="<%=gbId%>" />
@@ -258,13 +235,27 @@
 			<div class="connectPop bg_eee dsp_nn">
 				<div class="conHeader inlineparent">
 					<h1>Connect</h1>
-					<img src="/img/__add.png" class="__cls" />
+					<img src="/img/__add.png" class="__cls checkClose" />
 				</div>
 				<div class="conContent inlineparent">
 					<label>Enter your EmailId or Phone number.</label>
 					<input type="text" name="userId" class="bx_szg" placeholder="Enter your EmailId or Phone number" />
+					<div class="otpSpace wdth_100_per bx_szng dsp_nn">
+						
+					</div>
 					<div class="conSubmit __cls">Submit</div>						
 				</div>
+			</div>
+			<div id="OTPPopup" class="inlineparent dsp_nn">
+				
+				<h1 class="wdth_100_per pdg_btm_lr_25 bx_szg" style="font-size:1.6em;">Enter your OTP <img src="../img/cross.png" class="closePopup floated_rgt" alt="closePopUp" style="margin-top:5px"></h1>
+				<input type="hidden" value="" id="OTPfor">
+				<div class="__eml__PH inlineparent wdth_100_per">
+					<input type="password" name="otp" placeholder="Enter your OTP." id="OTPval"/>
+				</div>
+				<p class="wdth_100_per messageOTP" >Your Code is valid for 180 seconds.</p>
+				<div class="button _pln_button __center _lgn_hmbtn" id="subMitOtp">Submit</div>
+				
 			</div>
 		<%}%>
 		<script type="text/javascript">
@@ -331,9 +322,26 @@
 						data:{xUser:userId},
 						type:"post",
 						success:function(data){
-							console.log(data);
+							if(data.status==0){
+								var connectPop=$(".connectPop");
+								var emptySpace = connectPop.find(".otpSpace");
+								emptySpace.removeClass("dsp_nn");
+								emptySpace.html("We have send link or OTP on your desired number or emailId.");
+								if(data.result.type=="mobile"){
+									$("#OTPPopup").bPopup({
+										modalClose:false,
+										escCLose:false,
+										closeClass:"closePopup"
+									});	
+									$("#OTPfor").val(data.result.connectId);
+								}
+
+								setTimeout(function(){
+									$(".checkClose").click();
+								},3000)
+							}
 						}
-					})
+					});
 				}
 			}
 
@@ -344,11 +352,10 @@
 				$(".conSubmit").click(function (argument) {
 					var _self=$(this);
 					var value=_self.parent().find("input").val();
-					if(value==undefined){
-						alert(0);
+					if(value==undefined || value.length==0){
 						return false;
 					}
-					if(isNaN(value)){
+					if(!isNaN(value)){
 
 					}else{
 
@@ -358,7 +365,7 @@
 
 				$("#connect").click(function(){
 					<% if(user!=undefined && user.gbId!=gbId){%>
-						callConnect("<%user.gbId%>");				
+						callConnect("<%=user.gbId%>");				
 					<%}else{%>
 						$(".connectPop").bPopup({
 							modalClose:false,
@@ -366,6 +373,27 @@
 							closeClass:"__cls"
 						});
 					<%}%>
+				});
+
+				$("#subMitOtp").click(function(){
+					var _self=$(this);
+					$.ajax({
+						url:"/connect-verify/pending-verification/"+$("#gbId").val()+"/"+$("#OTPfor").val(),
+						type:"POST",
+						data:{code:$(".OTPPopup").find("#OTPval").val()},
+						success:function(data){
+							if(data.status==0){
+								$(".OTPPopup").append("<h4 class='success'>Thanks for connecting</h4>.");
+								setTimeout(function(){
+									$(".OTPPopup").find(".success").remove();
+									$(".OTPPopup").find("#OTPval").val('');
+									$(".closePopup").click();
+								},3000);
+							}else{
+								alert("Please enter correct value");
+							}
+						}
+					});
 				});
 			});
 		</script>

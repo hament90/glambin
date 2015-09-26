@@ -17,8 +17,8 @@ var GBUserInfoSchema =new mongoose.Schema({
     category:[{
         type:String       
     }],
-    connectedBy:[{type: String}],
-    connectedTo:[{type: String}],
+    connectedBy:[{type: String}],// if other person wants to connect with you.
+    connectedTo:[{type: String}],//if you want to connect with other person.
     isPublished:{type: Boolean ,default:false},
     isSearchable:{type: Boolean ,default:true},
     connections:{

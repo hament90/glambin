@@ -1,19 +1,7 @@
 var Controller = require(_gb_path_cntlr+'/main/mainController');
 var rootService= require(_gb_path_service+"/root/RootService.js");
-// var passport= require("passport");
 var homeSrvcController = new Controller();
 
-
-// homeSrvcController.successlogin =function() {
-//     var _nself = this;
-//     var value=_nself.req;
-    
-//     var rootSvc = new rootService();
-//     rootSvc.on("done", function(status,msg,result,page){
-//         _nself.processJson(status,msg,result,page);
-//     });
-//     rootSvc.AuthenticationMechanism(value);
-// }
 
 homeSrvcController.resetPassword=function(){
 	var _nself = this;
@@ -29,18 +17,18 @@ homeSrvcController.resetPassword=function(){
 }
 
 homeSrvcController.forgotPassword=function(){
-  var _nself = this;
-  if (!_nself.req.isAuthenticated()){
-    var value=_nself.req.body;
-    var settingSvc = new rootService();
-    settingSvc.on("done", function(status,msg,result,page){
-        _nself.processJson(status,msg,result,page);
-    });
-    settingSvc.sendNewVerificationCode(value);
+    var _nself = this;
+    if (!_nself.req.isAuthenticated()){
+        var value=_nself.req.body;
+        var settingSvc = new rootService();
+        settingSvc.on("done", function(status,msg,result,page){
+            _nself.processJson(status,msg,result,page);
+        });
+        settingSvc.sendNewVerificationCode(value);
 
-  }else{
-    return _nself.res.redirect("/gb/404");
-  }
+    }else{
+        return _nself.res.redirect("/gb/404");
+    }
 }
 
 homeSrvcController.logout=function(){
@@ -50,6 +38,21 @@ homeSrvcController.logout=function(){
 
 	_nself.req.logout();
 	_nself.res.redirect('/');
+}
+
+homeSrvcController.setNewForgotPassword=function(){
+    var _nself = this;
+    if (!_nself.req.isAuthenticated()){
+        var value=_nself.req.body;
+        var settingSvc = new rootService();
+        settingSvc.on("done", function(status,msg,result,page){
+            _nself.processJson(status,msg,result,page);
+        });
+        settingSvc.resetForgotPassword(value);
+
+    }else{
+        return _nself.res.redirect("/gb/404");
+    } 
 }
 
 module.exports = homeSrvcController;

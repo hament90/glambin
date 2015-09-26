@@ -144,5 +144,23 @@ RegisterService.prototype.verifyUser=function (verifyObj) {
 	}
 }
 
-
+RegisterService.prototype.fetchShortBio = function(dataModel) {
+	var _ownObj=this;
+	GBUserVerificationModel.findOne({"signUserId":dataModel},{"name":1,"_id":1,"signUserId":1},function(err,user){
+		if(err){
+			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+		}else{
+			if(user!=null){
+				var result={
+					name:user.name,
+					id:user._id+_ownObj.specialUrlChar,
+					sign:user.signUserId
+				};
+				_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,result,null);
+			}else{
+				_ownObj.emit("done",STATUS.DATA_ERROR.stats,STATUS.DATA_ERROR.msg,result,null);
+			}
+		}
+	});
+};
 module.exports=RegisterService;

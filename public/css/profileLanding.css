@@ -74,12 +74,12 @@
     width: 100%;
 }
 .btn-top {
-    bottom: 20px;
+    bottom: 0;
     height: 50px;
     overflow: hidden;
     position: absolute;
-    right: 40px;
-    width: 300px;
+    right: 0;
+    width: 150px;
     z-index: 9;
 }
 .top-btn {

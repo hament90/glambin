@@ -13,34 +13,31 @@ function RootService(){
 	mainService.call(this);
 }
 RootService.prototype.__proto__=mainService.prototype ;
-// RootService.prototype.AuthenticationMechanism = function(credentials) {
-// 	var _ownObj = this;
-// 	console.log(credentials);
-// 	_ownObj.emit("done",null,null,null,null);
-// };
 
 RootService.prototype.sendNewVerificationCode=function(credentials){
 	var _ownObj = this;
 	console.log(credentials);
-	GBUserVerificationModel.findOne({"signUserId":credentials.signIn},{"name":1,"type":1},function(err,user){
+	GBUserVerificationModel.findOne({"signUserId":credentials.signIn},{"name":1,"type":1,"_id":1},function(err,user){
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 		}else{
-			console.log(user)
 			if(user!=null){
-				var newCode=_ownObj.getSixDigitCode();
-				console.log(newCode,1);
-				GBUserVerificationModel.update({"signUserId":credentials.signIn ,"isUser":VERIFICATION_STATUS.ACTIVE},{$set:{"securitySalt":hashAlgo.x2(newCode),"verificationType":VERIFICATION_STATUS.FORGET_PASSWORD}},function(err,isUpdate){
-					console.log(newCode,1,hashAlgo.x2(newCode));
+				
+				var newCode = _ownObj.getSixDigitCode();
+				
+				GBUserVerificationModel.update({"signUserId":credentials.signIn ,"isUser":VERIFICATION_STATUS.ACTIVE},{$set:{"verificationType":VERIFICATION_STATUS.FORGET_PASSWORD,"verificationCode":user._id+_ownObj.specialUrlChar+newCode},$unset:{"securitySalt":null}},function(err,isUpdate){
 					if (err) {
 						_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 					}else{
 						if(isUpdate>0){
 							if(!isNaN(credentials.signIn)){
 								_ownObj.sendRealTimeOTP("Your new password is "+newCode+". Please login with this password and reset your new password from settings",credentials.signIn);
-								console.log(newCode,1);	
 							}
-							_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,user.type,null);
+							var obj={
+								type:user.type,
+								signIn:credentials.signIn							
+							}
+							_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,obj,null);
 						}else{
 							_ownObj.emit("done",STATUS.ALREADY_EXIST.stats,STATUS.ALREADY_EXIST.msg,null,null);		
 						}
@@ -78,6 +75,21 @@ RootService.prototype.setNewPassword = function(credentials) {
 				_ownObj.emit("done",STATUS.ALREADY_EXIST.stats,STATUS.ALREADY_EXIST.msg,null,null);
 			}
 		}
+	});
+};
+
+RootService.prototype.resetForgotPassword = function(credentials) {
+	var _ownObj = this;
+	GBUserVerificationModel.update({"signUserId":credentials.signIn ,"verificationType":VERIFICATION_STATUS.FORGET_PASSWORD , "verificationCode":credentials.otpVal},{$set:{"securitySalt":hashAlgo.x2(credentials.password),"verificationType":VERIFICATION_STATUS.ACTIVE},function(err,isUpdate){
+		if (err) {
+			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+		}else{
+			if(isUpdate>0){
+				_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
+			}else{
+				_ownObj.emit("done",STATUS.DATA_ERROR.stats,STATUS.DATA_ERROR.msg,null,null);		
+			}
+		}	
 	});
 };
 module.exports= RootService;

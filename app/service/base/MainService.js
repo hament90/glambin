@@ -68,5 +68,8 @@ MainService.prototype.getVerificationUserIdCode=function(code){
 		return null;
 	}
 }
+MainService.prototype.saveForNotification = function(first_argument) {
+	// body...
+};
 
 module.exports = MainService;

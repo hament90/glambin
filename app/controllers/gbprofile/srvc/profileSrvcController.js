@@ -26,6 +26,21 @@ profileController.connect = function() {
     service.connectify(obj);
 }
 
+profileController.connectVerification=function(){
+	var _nself=this;
+	var obj={
+		connectId:_nself.req.params.pid,// you want to connect
+		gbId:_nself.req.params.connectId,// person who wish to connect. 
+		code: _nself.req.body.otp
+	};
+		var service= new profileService();
+	service.on("done", function(status,msg,result,page){
+		 console.log(result)
+        _nself.processJson(status,msg,result,page);
+    });
+    service.verifyConnectification(obj);	
+}
+
 profileController.publishUser=function() {
 	var _nself=this;
 	if (!_nself.req.isAuthenticated())

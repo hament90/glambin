@@ -48,6 +48,45 @@ ProfileServiceController.prototype.getShortProfileInfo=function(userId){
 	});
 }
 
+ProfileServiceController.prototype.verifyConnectification = function(dataModel) {
+	// body...
+	var _ownObj=this;
+	GBUserConnectModel.findOneAndUpdate({"gbId":dataModel.connectId,"users.gbUid":dataModel.gbId,"users.$.verificationCode":dataModel.code},{$unset:{"users.$.verificationCode":null},$set:{"users.$.isUser":VERIFICATION_STATUS.ACTIVE}},function(err,fuser){
+		if (err) {
+			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+		} else{
+			GBUserInfoModel.update({"gbId":dataModel.connectId},{$addToSet:{"connectedBy":dataModel.gbId}},function (err,updateCount) {
+				if (err) {
+					_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+				} else{
+					_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
+				}
+			});
+		}
+	});	
+	
+	// GBUserInfoModel.update({"gbId":dataModel.connectId},{$addToSet:{"connectedBy":dataModel.gbId}},function (err,updateCount) {
+	// 	if (err) {
+	// 		_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+	// 	} else{
+	// 		GBUserInfoModel.update({"gbId":dataModel.gbId},{$addToSet:{"connectedTo": dataModel.connectId}},function (err,updateCount) {
+	// 			if (err) {
+	// 				_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+	// 			} else{
+	// 				if(updateCount>0){
+	// 					result.measure="portal user";
+	// 				}else{
+	// 					result.measure="unauthorised user";
+	// 				}
+	// 				_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,result,null);
+	// 			}
+	// 		});
+	// 	}
+	// });
+
+
+};
+
 ProfileServiceController.prototype.connectify = function(dataModel) {
 	// body...
 	var _ownObj=this;
@@ -57,44 +96,65 @@ ProfileServiceController.prototype.connectify = function(dataModel) {
         isUser:dataModel.isUser,
         purpose:"connect" // connect or else
 	};
+	if(dataModel.isUser==VERIFICATION_STATUS.CONNECT){
+		GBUserInfoModel.findOne({"signUserId":dataModel.gbId},{"gbId":1,'name':1,"signUserId":1},function (err,result) {
+			if (err) {
+				_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+			} else{
+				if(result!=null){
+					pushObj.gbUid=result.gbId;
+					dataModel.isUser=VERIFICATION_STATUS.ACTIVE;
+				}else{
+					pushObj.verificationCode = _ownObj.getSixDigitCode();
+					console.log(pushObj.verificationCode, "GB Connect ======  Apply By ======", dataModel.gbId,' For =======',dataModel.connectId);
+				}
+			}
+		});
+	}
 
-	console.log('service========================',pushObj,"===============",dataModel)
+	// check Whether the loggedin or unauthoriesed user already connected to that profile user or not
 	GBUserConnectModel.findOne({"gbId":dataModel.connectId,"users.gbUid":dataModel.gbId},{"gbId":1},function(err,fuser){
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 		} else{
+			var result={};
 			if(fuser==null){
+				result.check="new";
+				result.type=(isNaN(dataModel.gbId)?_gb_constant.VERIFICATION_USER_REGISTER.WEB:_gb_constant.VERIFICATION_USER_REGISTER.MOBILE);
+				//	User does not exist in his system so make an entry GBUSERCONNECT Model for profile User served by loggedin or unauthoriesed user 
 				GBUserConnectModel.findOneAndUpdate({"gbId":dataModel.connectId},{$push:{"users":pushObj}},{upsert:true},function(err,user){
 					if (err) {
 						_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 					} else{
-						console.log("====================Connect=================",user,dataModel);
-						if(user!=null){
-							//if(dataModel.isUser!=VERIFICATION_STATUS.CONNECT){
-								GBUserInfoModel.update({"gbId": "gb-"+dataModel.gbId},{$addToSet:{"connectedTo":dataModel.connectId}},function (err,updateCount) {
-									if (err) {
-										_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
-									} else{
-										GBUserInfoModel.update({"gbId":dataModel.connectId},{$addToSet:{"connectedBy": "gb-"+dataModel.gbId}},function (err,updateCount) {
-											if (err) {
-												_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
-											} else{
-												_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
-											}
-										});
-									}
-								});
-
-							// }else{
-							// 	_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
-							// }
+						if(pushObj.verificationCode!=undefined){
+							result.condition="otp";
+							result.connectId=dataModel.gbId;
+							if(result.type==_gb_constant.VERIFICATION_USER_REGISTER.MOBILE){
+								_ownObj.sendRealTimeOTP("Please enter this code "+pushObj.verificationCode+" in order to verify your identity", dataModel.gbId);	
+							}
 						}else{
-							_ownObj.emit("done",STATUS.USER_ERROR.stats,STATUS.USER_ERROR.msg,null,null);
+							result.condition="maintained";
+							GBUserInfoModel.update({"gbId":dataModel.connectId},{$addToSet:{"connectedBy":dataModel.gbId}},function (err,updateCount) {
+								if (err) {
+									_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+								} else{
+									GBUserInfoModel.update({"gbId":dataModel.gbId},{$addToSet:{"connectedTo": dataModel.connectId}},function (err,updateCount) {
+										if (err) {
+											_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+										} else{
+											_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,result,null);
+										}
+									});
+								}
+							});
 						}
+						_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,result,null);
+						
 					}	
 				});
 			}else{
-				_ownObj.emit("done",STATUS.USER_ERROR.stats,STATUS.USER_ERROR.msg,null,null);
+				result.check="existing";
+				_ownObj.emit("done",STATUS.ALREADY_EXIST.stats,STATUS.ALREADY_EXIST.msg,result,null);
 			}	
 		}
 	});	
@@ -282,6 +342,5 @@ ProfileServiceController.prototype.fetchUserSettings = function(userId) {
 		}
 	});
 };
-
 
 module.exports=ProfileServiceController;
