@@ -25,7 +25,7 @@ homeController.settings=function(){
 }
 homeController.forgotPassword=function () {
 	var _nself=this;
-	var result=null;
+	var result={id:null};
 	if(_nself.req.query!=undefined && _nself.req.query.signIn!=undefined && _nself.req.query.signIn!=''){
 		var service= new profileService();
 		service.on("done", function(status,msg,result,page){
@@ -39,7 +39,7 @@ homeController.forgotPassword=function () {
 	    service.fetchShortBio(_nself.req.query.signIn);
 
 	}else{
-		_nself.render("home/forgot_Password");
+		_nself.render("home/forgot_Password",result);
 	}
 }
 

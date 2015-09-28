@@ -80,7 +80,7 @@ RootService.prototype.setNewPassword = function(credentials) {
 
 RootService.prototype.resetForgotPassword = function(credentials) {
 	var _ownObj = this;
-	GBUserVerificationModel.update({"signUserId":credentials.signIn ,"verificationType":VERIFICATION_STATUS.FORGET_PASSWORD , "verificationCode":credentials.otpVal},{$set:{"securitySalt":hashAlgo.x2(credentials.password),"verificationType":VERIFICATION_STATUS.ACTIVE},function(err,isUpdate){
+	GBUserVerificationModel.update({"signUserId":credentials.signIn ,"verificationType":VERIFICATION_STATUS.FORGET_PASSWORD , "verificationCode":credentials.otpVal},{$set:{"securitySalt":hashAlgo.x2(credentials.password),"verificationType":VERIFICATION_STATUS.ACTIVE}},function(err,isUpdate){
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 		}else{

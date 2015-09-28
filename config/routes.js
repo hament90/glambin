@@ -96,6 +96,8 @@ module.exports = function routes() {
 	this.match("/user-srvc/skip-registration",{controller: 'gbprofile/srvc/profileSrvc', action:'skipRegistration', via:'post'});
 	this.match("/user-srvc/load-settings",{controller: 'gbprofile/srvc/profileSrvc', action:'loadUserSettings', via:'post'});
 	
+// attachmnet upload to server folder 
+	this.match("/uploadattachment",{controller: 'fileUpload/uploadfileController', action:'main', via:'post'});	
 
 //Home page controller
 	this.match("/", "home/home#main",{via:"get"});
