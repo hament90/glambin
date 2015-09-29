@@ -31,7 +31,7 @@ homeController.forgotPassword=function () {
 		service.on("done", function(status,msg,result,page){
 			results=result;
 			if(status==STATUS.SUCCESS.stats){
-				_nself.render("home/forgot_Password",results);
+				_nself.render("home/forgot_password",results);
 			}else{
 				_nself.render("home/error/page_error");
 			}
@@ -39,7 +39,7 @@ homeController.forgotPassword=function () {
 	    service.fetchShortBio(_nself.req.query.signIn);
 
 	}else{
-		_nself.render("home/forgot_Password",results);
+		_nself.render("home/forgot_password",results);
 	}
 }
 
