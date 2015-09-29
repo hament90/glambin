@@ -11,7 +11,7 @@
 						<div class="inlineparent inp_blck">
 							<div class="inlineparent achieve_md">
 								<div class="input_ttll_flds">
-									<input type="text" name="title" placeholder="How would you like to define your Journey.."/>
+									<input type="text" name="title" maxLength="50" placeholder="How would you like to define your Journey.."/>
 								</div>
 								<textarea class="desc_area" name="description"></textarea>
 							</div>
@@ -38,7 +38,7 @@
 							<div class="inlineparent inp_blck">
 								<div class="inlineparent achieve_md">
 									<div class="input_ttll_flds">
-										<input type="text" name="title" placeholder="How would you like to define your Journey.." value="<%=achieve[i].title%>"/>
+										<input type="text" name="title" maxLength="50" placeholder="How would you like to define your Journey.." value="<%=achieve[i].title%>"/>
 									</div>
 									<textarea class="desc_area" name="description"><%=achieve[i].description%></textarea>
 								</div>
@@ -69,7 +69,7 @@
 					<div class="inlineparent inp_blck">
 						<div class="inlineparent achieve_md">
 							<div class="input_ttll_flds">
-								<input type="text" name="title[0]" placeholder="How would you like to define your Journey.."/>
+								<input type="text" name="title[0]" maxLength="50" placeholder="How would you like to define your Journey.."/>
 							</div>
 							<textarea class="desc_area" name="description[0]"></textarea>
 						</div>

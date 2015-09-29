@@ -11,7 +11,7 @@
 						<label for="name">Videos</label>
 					</div>
 					<div class="input_flds">
-						<input type="text" name="video[0]" value=""  placeholder="Enter YouTube Video url Only"/>
+						<input type="text" maxLength="200" name="video[0]" value=""  placeholder="Enter YouTube Video url Only"/>
 						<div class="pos_abs error dsp_nn">
 							<img src="../img/error.png"/>
 							<p class="error_txt pos_abs dsp_nn">
@@ -27,7 +27,7 @@
 							<label for="name">Videos</label>
 						</div>
 						<div class="input_flds">
-							<input type="text" name="video[<%=i%>]" value="<%=entertain.video[i]%>"   placeholder="Enter YouTube Video url Only"/>
+							<input type="text" maxLength="200" name="video[<%=i%>]" value="<%=entertain.video[i]%>"   placeholder="Enter YouTube Video url Only"/>
 							<div class="pos_abs error dsp_nn">
 								<img src="../img/error.png"/>
 								<p class="error_txt pos_abs dsp_nn">
@@ -41,7 +41,7 @@
 						<label for="name">Videos</label>
 					</div>
 					<div class="input_flds">
-						<input type="text" name="video[<%=entertain.video.length%>]" value=""   placeholder="Enter YouTube Video url Only"/>
+						<input type="text" maxLength="200" name="video[<%=entertain.video.length%>]" value=""   placeholder="Enter YouTube Video url Only"/>
 						<div class="pos_abs error dsp_nn">
 							<img src="../img/error.png"/>
 							<p class="error_txt pos_abs dsp_nn">
@@ -62,7 +62,7 @@
 						<label for="name">Audio</label>
 					</div>
 					<div class="input_flds">
-						<input type="text" name="audio[0]" value="" placeholder="Enter SoundCloud Audio url Only" />
+						<input type="text" maxLength="200" name="audio[0]" value="" placeholder="Enter SoundCloud Audio url Only" />
 						<div class="pos_abs error dsp_nn">
 							<img src="../img/error.png"/>
 							<p class="error_txt pos_abs dsp_nn">
@@ -78,7 +78,7 @@
 							<label for="name">Audio</label>
 						</div>
 						<div class="input_flds">
-							<input type="text" name="audio[<%=i%>]" value="<%=entertain.audio[i]%>"  placeholder="Enter SoundCloud Audio url Only"/>
+							<input type="text" maxLength="200" name="audio[<%=i%>]" value="<%=entertain.audio[i]%>"  placeholder="Enter SoundCloud Audio url Only"/>
 							<p></p>
 							<div class="pos_abs error dsp_nn">
 								<img src="../img/error.png"/>
@@ -93,7 +93,7 @@
 						<label for="name">Audio</label>
 					</div>
 					<div class="input_flds">
-						<input type="text" name="audio[<%=entertain.audio.length%>]" value=""  placeholder="Enter SoundCloud Audio url Only"/>
+						<input type="text" maxLength="200" name="audio[<%=entertain.audio.length%>]" value=""  placeholder="Enter SoundCloud Audio url Only"/>
 						<div class="pos_abs error dsp_nn">
 							<img src="../img/error.png"/>
 							<p class="error_txt pos_abs dsp_nn">
@@ -118,7 +118,7 @@
 				<label for="name">Videos</label>
 			</div>
 			<div class="input_flds">
-				<input type="text" value=""  placeholder="Enter YouTube Video url Only"/>
+				<input type="text" maxLength="200" value=""  placeholder="Enter YouTube Video url Only"/>
 				<div class="pos_abs error dsp_nn">
 					<img src="../img/error.png"/>
 					<p class="error_txt pos_abs dsp_nn">
@@ -133,7 +133,7 @@
 				<label for="name">Audio</label>
 			</div>
 			<div class="input_flds">
-				<input type="text" value="" placeholder="Enter SoundCloud Audio url Only" />
+				<input type="text" maxLength="200" value="" placeholder="Enter SoundCloud Audio url Only" />
 				<div class="pos_abs error dsp_nn">
 					<img src="../img/error.png"/>
 					<p class="error_txt pos_abs dsp_nn">

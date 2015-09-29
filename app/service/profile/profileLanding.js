@@ -148,7 +148,7 @@ ProfileServiceController.prototype.connectify = function(dataModel) {
 								}
 							});
 						}
-						_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,result,null);
+						// _ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,result,null);
 						
 					}	
 				});

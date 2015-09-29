@@ -155,7 +155,7 @@
 				<label for="name">Description</label>
 			</div>
 			<div class="input_flds">
-				<textarea placeholder="Address your persoanality" name="description"><%= (description!=undefined && description!=null ?description:'') %></textarea>
+				<textarea placeholder="Address your persoanality" name="description" maxLength="1000"><%= (description!=undefined && description!=null ?description:'') %></textarea>
 			</div>
 		</div>
 		<div class="inlineparent inp_blck buttonBars" style="margin-bottom:10px;">
@@ -195,28 +195,28 @@
 			var generalValidator = new FormValidator('generalForm', [{
 			    name: 'userName',
 			    display: 'Name',
-			    rules: 'required'
+			    rules: 'required|max_length[100]'
 			}, {
 			    name: 'phone',
 			    rules: 'numeric|exact_length[10]'
 			}, {
 			    name: 'emailId',
-			    rules: 'valid_email',
+			    rules: 'valid_email|max_length[100]',
 			},{
 			    name: 'gender',
 			    rules: 'required',
 			}, {
 			    name: 'area',
-			    rules: 'required',
+			    rules: 'required|max_length[100]',
 			}, {
 			    name: 'city',
-			    rules: 'required',
+			    rules: 'required|max_length[100]',
 			}, {
 			    name: 'state',
-			    rules: 'required',
+			    rules: 'required|max_length[100]',
 			}, {
 			    name: 'country',
-			    rules: 'required',
+			    rules: 'required|max_length[100]',
 			}, {
 			    name: 'shortDesc',
 			    rules: 'max_length[100]',
