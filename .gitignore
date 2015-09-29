@@ -5,5 +5,5 @@ public/uploades
 #ignore server.js
 server.js
 
-#ignoure nohup,out
+#ignoure nohup.out
 nohup.out
