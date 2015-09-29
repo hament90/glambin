@@ -30,8 +30,8 @@ module.exports = function() {
         res.setHeader('Last-Modified', (new Date()).toUTCString());
         next(); 
     });
-    console.log(Object.keys(this),"===============",Object.keys(express));
-    console.log(this.__router);
+//   console.log(Object.keys(this),"===============",Object.keys(express));
+  //  console.log(this.__router);
     // express.post('/gb/srvc/*', function(req, res, next){ 
     //     console.log(req.files)
     //     next(); 
