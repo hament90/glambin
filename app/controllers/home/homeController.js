@@ -29,9 +29,8 @@ homeController.forgotPassword=function () {
 	if(_nself.req.query!=undefined && _nself.req.query.signIn!=undefined && _nself.req.query.signIn!=''){
 		var service= new profileService();
 		service.on("done", function(status,msg,result,page){
-			var results=result;
+			results=result;
 			if(status==STATUS.SUCCESS.stats){
-				console.log(result)
 				_nself.render("home/forgot_Password",results);
 			}else{
 				_nself.render("home/error/page_error");

@@ -1,3 +1,9 @@
+#ignore node module
 node_modules/*
+public/uploades
+
+#ignore server.js
 server.js
+
+#ignoure nohup,out
 nohup.out
