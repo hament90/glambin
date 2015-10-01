@@ -49,7 +49,7 @@
 				<label for="name">Date Of Birth</label>
 			</div>
 			<div class="input_flds">
-				<input type="text" id="dob" value="<%if (birth!=undefined){ %><%= birth.getMonth()+1%>/<%= birth.getDate()%>/<%= birth.getFullYear()%><%}%>" name="birth" placeholder="Select your Date Of Birth"/>
+				<input type="text" id="dob" value="<%if (birth!=undefined){ %><%= birth.getMonth()+1%>/<%= birth.getDate()%>/<%= birth.getFullYear()%><%}%>" name="birth" placeholder="Select your Date Of Birth format MM/DD/YY"/>
 				<div class="pos_abs error dsp_nn">
 					<img src="../img/error.png"/>
 					<p class="error_txt pos_abs dsp_nn">
@@ -188,7 +188,8 @@
 		$("#dob").datepicker({
 			changeMonth: true,
 			changeYear: true,
-			dateFormat:"mm/dd/yy"
+			dateFormat:"mm/dd/yy",
+			yearRange: "-100:+0"
 		});
 
 		$("#generalForm").click(function(e){

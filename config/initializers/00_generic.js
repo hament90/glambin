@@ -16,6 +16,7 @@ module.exports = function() {
 	global._gb_path_model =  __dirname +"/../../app/models" ;
 	global._gb_path_template =  __dirname +"/../../app/templates" ;
 	global._gb_path_env =  __dirname +"/../environments" ;
+	global._gb_path_public= __dirname +"/../../public/" ;
 	global._gb_path_initializers =  __dirname;
 	global._gb_app_context = {};
 }

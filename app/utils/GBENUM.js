@@ -13,7 +13,8 @@ var VERIFICATION_STATUS={
     PENDING:"pending-verification-user",
     CONNECT:"connect-user",
     SUSPENDED:"suspended",
-    FORGET_PASSWORD :"forget-password"
+    FORGET_PASSWORD :"forget-password",
+    SURPASS_USER:"not-logged-in"
 };
 
 var VERIFICATION_USER_REGISTER={
@@ -39,6 +40,7 @@ var STATUS={
     DATA_ERROR :{stats:115,msg:"Your request can not be handled due to processing of invalid request"},
     PASSWORD_ERROR :{stats:125,msg:"Please check your password"},
     ALREADY_EXIST :{stats:130,msg:"Already in use"},
+    FILE_UPLOAD_FAILED:{stats:140,msg:"File uploading is failed"}
 };
 var MAIL_TYPE={
     INVITATION:"invitation",

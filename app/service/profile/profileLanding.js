@@ -104,10 +104,9 @@ ProfileServiceController.prototype.connectify = function(dataModel) {
 				if(result!=null){
 					pushObj.gbUid=result.gbId;
 					dataModel.isUser=VERIFICATION_STATUS.ACTIVE;
-				}else{
-					pushObj.verificationCode = _ownObj.getSixDigitCode();
-					console.log(pushObj.verificationCode, "GB Connect ======  Apply By ======", dataModel.gbId,' For =======',dataModel.connectId);
 				}
+				pushObj.verificationCode = _ownObj.getSixDigitCode();
+				console.log(pushObj.verificationCode, "GB Connect ======  Apply By ======", dataModel.gbId,' For =======',dataModel.connectId);
 			}
 		});
 	}
@@ -129,7 +128,7 @@ ProfileServiceController.prototype.connectify = function(dataModel) {
 						if(pushObj.verificationCode!=undefined){
 							result.condition="otp";
 							result.connectId=dataModel.gbId;
-							if(result.type==_gb_constant.VERIFICATION_USER_REGISTER.MOBILE){
+							if(result.type==_gb_constant.VERIFICATION_USER_REGISTER.MOBILE && pushObj.verificationCode!=undefined){
 								_ownObj.sendRealTimeOTP("Please enter this code "+pushObj.verificationCode+" in order to verify your identity", dataModel.gbId);	
 							}
 						}else{

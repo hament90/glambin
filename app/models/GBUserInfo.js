@@ -54,16 +54,23 @@ var GBUserInfoSchema =new mongoose.Schema({
         id: Schema.ObjectId,
         url:String,
         name:String,
-        created:{ type: Date },
+        created:{ type: Date,default:Date.now },
         cameFrom:String//Either gallery or direct upload
     },
     profileCoverPic:{
         id: Schema.ObjectId,
         url:String,
         name:String,
-        created:{ type: Date },
+        created:{ type: Date ,default:Date.now},
         cameFrom:String//Either gallery or direct upload
     },
+    profileGallery:[{
+        id: Schema.ObjectId,
+        url:String,
+        name:String,
+        created:{ type: Date ,default:Date.now},
+        cameFrom:String//Either gallery or direct upload
+    }],
     achivements:[{
         title:String,
         description:String,
@@ -160,5 +167,9 @@ var GBUserInfoSchema =new mongoose.Schema({
 // GBUserInfoSchema.virtual('birth').get(function () {
 //     return this.birth.getDate() + '/' +(this.birth.getMonth() +1)+"/"+this.birth.getFullYear();
 // });
+GBUserInfoSchema.statics.findAndModify = function (query, sort, doc, options, callback) {
+    return this.collection.findAndModify(query, sort, doc, options, callback);
+};
+
 GBUserInfoModel = mongoose.model('GBUserInfo', GBUserInfoSchema,'GBUserInfo');
 module.exports = GBUserInfoModel;

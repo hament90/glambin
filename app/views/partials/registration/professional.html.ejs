@@ -84,8 +84,8 @@
 							<label for="name">Years of Experience</label>
 						</div>
 						<div class="input_flds __half inlineparent">
-							<input type="text" name="start"/>
-							<input type="text" name="end"/>
+							<input type="text" name="start" placeholder="YY"/>
+							<input type="text" name="end" placeholder="MM"/>
 						</div>
 						<div class="pos_abs error dsp_nn">
 							<img src="../img/error.png"/>
@@ -172,11 +172,11 @@
 								</div>
 								<div class="__chse__opt inlineparent">
 									<div class="opt_mtn inlineparent">
-										<input type="radio" class="reg_radio_btn" name="isPresent" <% if(profession[i].isPresent==true){%> selected <%}%>/>
+										<input type="radio" class="reg_radio_btn" name="isPresent" <% if(profession[i].isPresent==true){%> checked <%}%>/>
 										<label>Working Present</label>	
 									</div>
 									<div class="opt_mtn inlineparent">
-										<input type="radio" class="reg_radio_btn" name="isPresent" <% if(profession[i].isPresent==false){%>selected<%}%>/>
+										<input type="radio" class="reg_radio_btn" name="isPresent" <% if(profession[i].isPresent==false){%>checked<%}%>/>
 										<label>Past</label>	
 									</div>
 									<div class="pos_abs error dsp_nn">
@@ -193,13 +193,13 @@
 								<div class="input_flds __half inlineparent">
 									<%if(profession[i].period!=undefined &&profession[i].period!=null){%>
 										
-										<input type="text" name="start" value="<%=profession[i].period.year!=undefined?profession[i].period.year:''%>" />
+										<input type="text" name="start" placeholder="YY" value="<%=profession[i].period.year!=undefined?profession[i].period.year:''%>" />
 
-										<input type="text" name="end" value="<%=profession[i].period.month!=undefined?profession[i].period.month:''%>" />
+										<input type="text" name="end" placeholder="MM" value="<%=profession[i].period.month!=undefined?profession[i].period.month:''%>" />
 
 									<%}else{%>
-										<input type="text" name="start"/>
-										<input type="text" name="end"/>
+										<input type="text" name="start" placeholder="YY"/>
+										<input type="text" name="end" placeholder="MM"/>
 									<%}%>
 								</div>
 								<div class="pos_abs error dsp_nn">
@@ -302,8 +302,8 @@
 						<label for="name">Years of Experience</label>
 					</div>
 					<div class="input_flds __half inlineparent">
-						<input type="text" name="start"/>
-						<input type="text" name="end"/>
+						<input type="text" name="start" placeholder="YY"/>
+						<input type="text" name="end" placeholder="MM"/>
 					</div>
 					<div class="pos_abs error dsp_nn">
 						<img src="../img/error.png"/>
@@ -332,8 +332,8 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$(document).off("click",".saveData")
-			$(document).on("click",".saveData",function(e){
+			$("#Prof-Reg-form").off("click",".saveData")
+			$("#Prof-Reg-form").on("click",".saveData",function(e){
 				var _self=$(this);
 				var _parentForm=_self.parents("form");
 				var generalValidator = new FormValidator(_parentForm.attr("name"), [{
@@ -354,12 +354,12 @@
 				    rules: 'required'
 				}, {
 				    name: 'start',
-				    display: 'Experience of months',
-				    rules: 'numeric|exact_length[2]'
+				    display: 'Experiences of years',
+				    rules: 'numeric|max_length[2]'
 				}, {
 				    name: 'end',
-				    display: 'Experience of year',
-				    rules: 'numeric|exact_length[4]'
+				    display: 'Experiences of months',
+				    rules: 'numeric|max_length[2]|less_than[13]'
 				}], function(errors, event) {
 					$(".error").hide();
 					console.log(errors)
@@ -397,8 +397,8 @@
 				});
 			});
 
-			$("#professional").off("click",".removeData")
-			$("#professional").on("click",".removeData",function(){
+			$("#Prof-Reg-form").off("click",".removeData")
+			$("#Prof-Reg-form").on("click",".removeData",function(){
 				var _self=$(this);
 				$.ajax({
 					url:"/gb/srvc/remove-work/"+_self.attr("data-gid")+"/"+_self.attr("data-pid"),
@@ -426,7 +426,7 @@
 					modalClose:false,
 					escClose:false,
 					closeClass:"cross",
-					appendTo:"#professional"
+					appendTo:"#Prof-Reg-form"
 				});
 
 			});
