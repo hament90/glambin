@@ -16,6 +16,10 @@ homeController.error = function() {
 	this.render("home/error/page_error");
 }
 
+homeController.contactUs = function() {
+	this.render("home/contactus");
+}
+
 homeController.settings=function(){
 	if (this.req.isAuthenticated()){
 		this.render("pages/settings");	

@@ -11,6 +11,10 @@ var passport = require('passport');
 module.exports = function routes() {
 
   	this.match("/gb/404",{controller:'home/home', action:'error', via:'GET'})
+  	this.match("/gb/contact-us",{controller:'home/home', action:'contactUs', via:'GET'})
+  	this.match("/gb/about-us",{controller:'home/home', action:'contactUs', via:'GET'})
+  	this.match("/gb/terms-policy",{controller:'home/home', action:'contactUs', via:'GET'})
+  	this.match("/gb/faq-help",{controller:'home/home', action:'contactUs', via:'GET'})
   // this.root('pages#main');
 
 //Register New User Url 
