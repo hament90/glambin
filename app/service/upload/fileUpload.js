@@ -32,7 +32,7 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    
 	    var tempPath = dataModel.file.path;
 	    var targetPath = path.resolve(_gb_path_public+fileTargetPostion);
-	    
+	    console.log("file Uploading",targetPath, tempPath, dataModel.file);
 	    var res= null;
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
 	        fs.rename(tempPath, targetPath, function(err) {
@@ -48,6 +48,8 @@ fileUpload.prototype.uploads = function(dataModel) {
 						fileName: newfilename,
 						filepath:fileTargetPostion
 		            };
+		            _classInstance.unlinkProfilePic(tempPath);
+		            
 	            } 
 	        });
 	    } 
