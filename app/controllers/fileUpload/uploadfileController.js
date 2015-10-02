@@ -3,8 +3,9 @@ var uploadService = require(_gb_path_service+'/upload/fileUpload.js');
 
 var fileUploadController = new Controller();
 
-fileUploadController.mainProfile = function(req,res) {
+fileUploadController.mainProfile = function() {
 	var _nself=this;
+    console.log("lsaajdksajdlkklj ============== upload")
     if (_nself.req.isAuthenticated() && _nself.req.files!=undefined && Object.keys(_nself.req.files).length>0 ){
         var obj={
             file:_nself.req.files.file,

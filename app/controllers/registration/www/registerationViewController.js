@@ -40,7 +40,6 @@ RegViewController.connection = function() {
     userRegisterSvc.on("done", function(code,msg,result,errValue){
         if(code==STATUS.SUCCESS.stats){
             _nself.title = "General Registration Form";
-            console.log(result)
             _nself.render("partials/registration/connection",result); 
         }else{
             _nself.res.redirect("/gb/404"); 
@@ -74,7 +73,7 @@ RegViewController.explore = function() {
     userRegisterSvc.on("done", function(code,msg,result,errValue){
         if(code==STATUS.SUCCESS.stats){
             _nself.title = "General Registration Form";
-            console.log(result)
+            // console.log(result)
             _nself.render("partials/registration/explore",result); 
         }else{
             _nself.res.redirect("/gb/404"); 
@@ -92,7 +91,7 @@ RegViewController.achivements = function() {
     userRegisterSvc.on("done", function(code,msg,result,errValue){
         if(code==STATUS.SUCCESS.stats){
             _nself.title = "General Registration Form";
-            console.log(result)
+            // console.log(result)
             _nself.render("partials/registration/achivements",result); 
         }else{
             _nself.res.redirect("/gb/404"); 
@@ -125,7 +124,7 @@ RegViewController.education = function() {
     userRegisterSvc.on("done", function(code,msg,result,errValue){
         if(code==STATUS.SUCCESS.stats){
             _nself.title = "General Registration Form";
-            console.log(result)
+            // console.log(result)
             _nself.render("partials/registration/education",result); 
         }else{
             _nself.res.redirect("/gb/404"); 
@@ -149,7 +148,7 @@ RegViewController.interests = function() {
     userRegisterSvc.on("done", function(code,msg,result,errValue){
         if(code==STATUS.SUCCESS.stats){
             _nself.title = "General Registration Form";
-            console.log(result)
+            // console.log(result)
             _nself.render("partials/registration/interests",result);
         }else{
             _nself.res.redirect("/gb/404"); 

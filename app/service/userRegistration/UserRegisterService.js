@@ -19,7 +19,7 @@ UserRegisterService.prototype.fetchGeneralFrom=function  (username) {
 		} else{
 			if(user.birth!=null)
 				user.birth=_ownObj.getRealTimeForUI(user.birth);
-			console.log(user)
+			// console.log(user)
 			_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,user,null);
 		}
 	});
@@ -36,7 +36,7 @@ UserRegisterService.prototype.fetchConnectionFrom=function(username){
 				connectionInfo:user.connections,
 				gbId:user.gbId
 			};
-			console.log(connections)
+			// console.log(connections)
 			_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,connections,null);
 		}
 	});	
@@ -53,7 +53,7 @@ UserRegisterService.prototype.fetchMediaForm=function(username){
 				entertain:user.media,
 				gbId:user.gbId
 			};
-			console.log(media)
+			// console.log(media)
 			_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,media,null);
 		}
 	});		
@@ -70,7 +70,7 @@ UserRegisterService.prototype.fetchLifeJourney=function(username){
 				blog:user.explore,
 				gbId:user.gbId
 			};
-			console.log(explore)
+			// console.log(explore)
 			_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,explore,null);
 		}
 	});
@@ -221,7 +221,7 @@ UserRegisterService.prototype.saveUrlConnections=function(dataModel){
         skype:dataModel.skype,
         instagram:dataModel.instagram
 	};
-	console.log(dataModel)
+	// console.log(dataModel)
 	GBUserInfoModel.update({ "gbId": dataModel.id }, { $set: {"connections":urls}}, function(err, user){
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
@@ -237,7 +237,7 @@ UserRegisterService.prototype.saveUrlConnections=function(dataModel){
 
 UserRegisterService.prototype.saveEntertainmentUrls = function(dataModel) {
 	var _ownObj = this;
-	console.log(dataModel);
+	// console.log(dataModel);
 	var data={
 		video:dataModel.video,
 		audio:dataModel.audio
@@ -271,7 +271,7 @@ UserRegisterService.prototype.saveLifeJourney=function(dataModel){
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 		} else{
-			console.log(user)
+			// console.log(user)
 			if(user>0)
 				_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
 			else
@@ -281,7 +281,7 @@ UserRegisterService.prototype.saveLifeJourney=function(dataModel){
 }
 UserRegisterService.prototype.saveGlory=function (dataModel) {
 	var _ownObj = this;
-	console.log(dataModel)
+	// console.log(dataModel)
 	var achivements={
 		date:_ownObj.getRealTimeForUI(dataModel.value.date),	
 		title:dataModel.value.title,
@@ -302,7 +302,7 @@ UserRegisterService.prototype.saveGlory=function (dataModel) {
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 		} else{
-			console.log(user)
+			// console.log(user)
 			if(user>0)
 				_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
 			else
@@ -313,7 +313,7 @@ UserRegisterService.prototype.saveGlory=function (dataModel) {
 
 UserRegisterService.prototype.saveProfessionalism=function(dataModel){
 	var _ownObj = this;
-	console.log(dataModel)
+	// console.log(dataModel)
 	var totalTime={
     	year:dataModel.start,
     	month:dataModel.end
@@ -355,12 +355,12 @@ UserRegisterService.prototype.saveProfessionalism=function(dataModel){
 			"experience.$.location":dataModel.location,
 			"experience.$.period":totalTime,
 		};
-		console.log("#@$%^#@$%^#@$%^#@$%^#@$%^#@$%^#@$%^#@$%^#@$%^#@$%^",findObj,updateObj);
+		// console.log("#@$%^#@$%^#@$%^#@$%^#@$%^#@$%^#@$%^#@$%^#@$%^#@$%^",findObj,updateObj);
 		GBUserInfoModel.update(findObj, { $set: updateObj}, function(err, user){
 			if (err) {
 				_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 			} else{
-				console.log(user)
+				// console.log(user)
 				if(user>0)
 					_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
 				else
@@ -372,7 +372,7 @@ UserRegisterService.prototype.saveProfessionalism=function(dataModel){
 			if (err) {
 				_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 			} else{
-				console.log(user)
+				// console.log(user)
 				if(user>0)
 					_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,experience._id,null);
 				else
@@ -385,7 +385,7 @@ UserRegisterService.prototype.saveProfessionalism=function(dataModel){
 
 UserRegisterService.prototype.saveEducation=function(dataModel){
 	var _ownObj = this;
-	console.log(dataModel)
+	// console.log(dataModel)
 	var totalTime={
     	startYear:dataModel.startYear,
     	startMonth:dataModel.startMonth,
@@ -405,7 +405,7 @@ UserRegisterService.prototype.saveEducation=function(dataModel){
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 		} else{
-			console.log(user)
+			// console.log(user)
 			if(user>0)
 				_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,education._id,null);	
 			else
@@ -454,7 +454,7 @@ UserRegisterService.prototype.removeCompany = function(dataModel) {
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 		} else{
-			console.log(user)
+			// console.log(user)
 			if(user>0)
 				_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
 			else
@@ -469,7 +469,7 @@ UserRegisterService.prototype.removeEducationPool = function(dataModel) {
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 		} else{
-			console.log(user)
+			// console.log(user)
 			if(user>0)
 				_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
 			else
@@ -484,7 +484,7 @@ UserRegisterService.prototype.removeAchievements = function(dataModel) {
 		if (err) {
 			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 		} else{
-			console.log(user)
+			// console.log(user)
 			if(user>0)
 				_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
 			else
