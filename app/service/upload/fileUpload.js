@@ -77,9 +77,9 @@ fileUpload.prototype.unlinkProfilePic=function(url){
 }
 
 fileUpload.prototype.profilePicUploading = function(dataModel) {
-	var _classInstance=this;
+	var _ownObj=this;
 	console.log(dataModel)
-	var uploadResult=_classInstance.uploads(dataModel);
+	var uploadResult=_ownObj.uploads(dataModel);
 	if(uploadResult==null || uploadResult.status== undefined || uploadResult.status != STATUS.SUCCESS.stats ){
 		_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,uploadResult.error,null);
 		return false;
