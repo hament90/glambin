@@ -7,9 +7,10 @@ fileUploadController.mainProfile = function() {
 	var _nself=this;
     console.log("lsaajdksajdlkklj ============== upload")
     if (_nself.req.isAuthenticated() && _nself.req.files!=undefined && Object.keys(_nself.req.files).length>0 ){
+        console.log(_nself.req)
         var obj={
             file:_nself.req.files.file,
-            gbId:_nself.req.user.gbId;
+            gbId:_nself.req.user.gbId
         };
 
         var service= new uploadService();
