@@ -28,7 +28,7 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var randomnum = Math.floor((Math.random() * 100) + 1);
 	    var newfilename = randomnum+fileName;
 	    
-	    var fileTargetPostion = _classInstance.pathFolder+dataModel.id+_classInstance.pathFolderProfile+newfilename;
+	    var fileTargetPostion = _classInstance.pathFolder+dataModel.gbId+_classInstance.pathFolderProfile+newfilename;
 	    
 	    var tempPath = dataModel.file.path;
 	    var targetPath = path.resolve(_gb_path_public+fileTargetPostion);
@@ -81,7 +81,7 @@ fileUpload.prototype.profilePicUploading = function(dataModel) {
 	console.log(dataModel)
 	var uploadResult=_ownObj.uploads(dataModel);
 	if(uploadResult==null || uploadResult.status== undefined || uploadResult.status != STATUS.SUCCESS.stats ){
-		_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,uploadResult.error,null);
+		_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
 		return false;
 	}
 
@@ -100,7 +100,7 @@ fileUpload.prototype.profilePicUploading = function(dataModel) {
 					if(user.profilePic!=undefined && user.profilePic!=null && user.profilePic.url!=undefined){
 						dataModel.unlink=user.profilePic.url;
 					}
-					_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,null,null);
+					_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,fileObj,null);
 				}else{
 					_ownObj.emit("done",STATUS.DATA_ERROR.stats,STATUS.DATA_ERROR.msg,null,null);
 				}

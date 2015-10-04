@@ -6,12 +6,12 @@ var fileUploadController = new Controller();
 fileUploadController.mainProfile = function() {
 	var _nself=this;
     if (_nself.req.isAuthenticated() && _nself.req.files!=undefined && Object.keys(_nself.req.files).length>0 ){
-        console.log("lsaajdksajdlkklj ============== upload",_nself.req,"lsaajdksajdlkklj ============== upload")
+        console.log("lsaajdksajdlkklj ============== upload",_nself.req,"lsaajdksajdlkklj ============== upload=====================",_nself.req.user,"lsaajdksajdlkklj ============== upload=====================","")
         var obj={
             file:_nself.req.files.file,
-            gbId:_nself.req.locals.user.gbId
+            gbId:_nself.req.user.gbId
         };
-
+        console.log("========================================================",obj)
         var service= new uploadService();
         service.on("done", function(status,msg,result,page){
              console.log(result)
