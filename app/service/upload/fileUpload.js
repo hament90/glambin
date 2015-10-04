@@ -11,7 +11,7 @@ function fileUpload(){
 	mainService.call(this);
 	this.miliSec= new Date();
 	this.pathStandard="/";
-	this.pathFolder= this.pathStandard+"uploades";
+	this.pathFolder= "uploades";
 	this.pathFolderProfile= "profile"
 }
 
@@ -44,29 +44,26 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var fileTargetPostion = fileTargetFolderPath+_classInstance.pathStandard+ newfilename;
 	    var tempPath = dataModel.file.path;
 	    var targetPath = path.resolve(_gb_path_public+_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
-	    var res= null;
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
 	        fs.rename(tempPath, targetPath, function(err) {
 	            if (err){
-	            	return res={
+	            	return {
 	            		status:STATUS.FILE_UPLOAD_FAILED.stats,
 						error:err,
 						errorWhere:"uploading"
 	            	};
 	            }else{
-		            res= {
+		            _classInstance.unlinkProfilePic(tempPath);
+		            return {
 						status:STATUS.SUCCESS.stats,
 						fileName: newfilename,
 						filepath:fileTargetPostion
 		            };
-    				console.log(1,res);
-		            _classInstance.unlinkProfilePic(tempPath);
 	            } 
 	        });
 	    } 
 	}
-    console.log(res);
-    return res;
+
 };
 
 fileUpload.prototype.unlinkProfilePic=function(url){
