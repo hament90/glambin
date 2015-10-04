@@ -35,8 +35,6 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var newDir=_gb_path_public+_classInstance.pathFolder;
 	    for (var i = 0; i < dirs.length; i++) {
 			newDir += _classInstance.pathStandard + dirs[i]  ;
-			console.log(newDir);
-
 			if (!fs.exists(newDir)) {
 				fs.mkdir(newDir, function(error) {
 				  console.log(error);
@@ -61,8 +59,8 @@ fileUpload.prototype.uploads = function(dataModel) {
 						fileName: newfilename,
 						filepath:fileTargetPostion
 		            };
+    				console.log(1,res);
 		            _classInstance.unlinkProfilePic(tempPath);
-		            
 	            } 
 	        });
 	    } 
@@ -93,13 +91,16 @@ fileUpload.prototype.profilePicUploading = function(dataModel) {
 	var _ownObj=this;
 	console.log(dataModel)
 	var uploadResult=_ownObj.uploads(dataModel);
+	console.log("Result here file upload=================>>>>>>>>>>>>>",uploadResult);
 	if(uploadResult==null || uploadResult.status== undefined || uploadResult.status != STATUS.SUCCESS.stats ){
 		_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
 		return false;
 	}
 
+	console.log("proceed file upload=================>>>>>>>>>>>>>");
+
 	var fileObj={};
-	if(uploadResult.filepath!=undefined &&uploadResult.filepath!=null ){
+	if(uploadResult.filepath!=undefined && uploadResult.filepath!=null ){
 		fileObj.profilePic={
 			url:uploadResult.filepath,
 	        name:uploadResult.fileName,
@@ -115,7 +116,7 @@ fileUpload.prototype.profilePicUploading = function(dataModel) {
 					}
 					_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,fileObj,null);
 				}else{
-					_ownObj.emit("done",STATUS.DATA_ERROR.stats,STATUS.DATA_ERROR.msg,null,null);
+					_ownObj.emit("done",STATUS.DATA_ERROR.stats,STATUS.DATA_ERROR.msg,"findAndModify failed",null);
 				}
 			}
 		});
