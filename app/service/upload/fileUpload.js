@@ -32,9 +32,9 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var fileTargetFolderPath=dataModel.gbId+_classInstance.pathStandard+_classInstance.pathFolderProfile;
 	    
 	    var dirs=fileTargetFolderPath.split(_classInstance.pathStandard);
-	    var newDir=_classInstance.pathFolder;
+	    var newDir=_gb_path_public+_classInstance.pathFolder;
 	    for (var i = 0; i < dirs.length; i++) {
-			newDir += dirs[i] + _classInstance.pathStandard;
+			newDir += _classInstance.pathStandard + dirs[i]  ;
 			console.log(newDir);
 
 			if (!fs.exists(newDir)) {
