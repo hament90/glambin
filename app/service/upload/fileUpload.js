@@ -29,14 +29,23 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var newfilename = randomnum+fileName;
 	    
 	    var fileTargetPostion = _classInstance.pathFolder+dataModel.gbId+_classInstance.pathFolderProfile+newfilename;
-	    fs.mkdir(_classInstance.pathFolder+dataModel.gbId+_classInstance.pathFolderProfile,function(e){
-	    	  if(!e || (e && e.code === 'EEXIST')){
-			    
-			    } else {
-			      
-			        console.log(e);
-			    }
-	    });
+	    fs.mkdirParent = function(dirPath, mode, callback) {
+		  	//Call the standard fs.mkdir
+			fs.mkdir(dirPath, mode, function(error) {
+				//When it fail in this way, do the custom steps
+				if (error && error.errno === 34) {
+					  //Create all the parents recursively
+					  fs.mkdirParent(path.dirname(dirPath), mode, callback);
+					  //And then the directory
+					  fs.mkdirParent(dirPath, mode, callback);
+				}else{
+					callback;
+				}
+				//Manually run the callback since we used our own callback to do all these
+				//callback && callback(error);
+			});
+		};
+		fs.mkdirParent(_classInstance.pathFolder+dataModel.gbId+_classInstance.pathFolderProfile);
 	    var tempPath = dataModel.file.path;
 	    var targetPath = path.resolve(_gb_path_public+fileTargetPostion);
 	    console.log("file Uploading=========================================================",targetPath, tempPath, dataModel.file,fileTargetPostion);
