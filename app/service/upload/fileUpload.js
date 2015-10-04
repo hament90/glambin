@@ -29,7 +29,14 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var newfilename = randomnum+fileName;
 	    
 	    var fileTargetPostion = _classInstance.pathFolder+dataModel.gbId+_classInstance.pathFolderProfile+newfilename;
-	    
+	    fs.mkdir(_classInstance.pathFolder+dataModel.gbId+_classInstance.pathFolderProfile,function(e){
+	    	  if(!e || (e && e.code === 'EEXIST')){
+			    
+			    } else {
+			      
+			        console.log(e);
+			    }
+	    });
 	    var tempPath = dataModel.file.path;
 	    var targetPath = path.resolve(_gb_path_public+fileTargetPostion);
 	    console.log("file Uploading=========================================================",targetPath, tempPath, dataModel.file,fileTargetPostion);
