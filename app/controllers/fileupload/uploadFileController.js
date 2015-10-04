@@ -9,7 +9,7 @@ fileUploadController.mainProfile = function() {
         console.log("lsaajdksajdlkklj ============== upload",_nself.req,"lsaajdksajdlkklj ============== upload=====================",_nself.req.user,"lsaajdksajdlkklj ============== upload=====================","")
         var obj={
             file:_nself.req.files.file,
-            gbId:_nself.req.user.gbId
+            gbId:_nself.req.user.signUserId
         };
         console.log("========================================================",obj)
         var service= new uploadService();
