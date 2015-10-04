@@ -35,6 +35,7 @@ fileUpload.prototype.uploads = function(dataModel) {
 				//When it fail in this way, do the custom steps
 				if (error && error.errno === 34) {
 					  //Create all the parents recursively
+					  console.log(path.dirname(dirPath))
 					  fs.mkdirParent(path.dirname(dirPath), mode, callback);
 					  //And then the directory
 					  fs.mkdirParent(dirPath, mode, callback);
