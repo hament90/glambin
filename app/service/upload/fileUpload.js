@@ -32,7 +32,7 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    
 	    var tempPath = dataModel.file.path;
 	    var targetPath = path.resolve(_gb_path_public+fileTargetPostion);
-	    console.log("file Uploading",targetPath, tempPath, dataModel.file);
+	    console.log("file Uploading=========================================================",targetPath, tempPath, dataModel.file,fileTargetPostion);
 	    var res= null;
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
 	        fs.rename(tempPath, targetPath, function(err) {
@@ -78,14 +78,15 @@ fileUpload.prototype.unlinkProfilePic=function(url){
 
 fileUpload.prototype.profilePicUploading = function(dataModel) {
 	var _classInstance=this;
+	console.log(dataModel)
 	var uploadResult=_classInstance.uploads(dataModel);
-	if(uploadResult!=null && uploadResult.status!= undefined && uploadResult.status != STATUS.SUCCESS.stats ){
+	if(uploadResult==null || uploadResult.status== undefined || uploadResult.status != STATUS.SUCCESS.stats ){
 		_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,uploadResult.error,null);
 		return false;
 	}
 
 	var fileObj={};
-	if(uploadResult.filepath!=undefined){
+	if(uploadResult.filepath!=undefined &&uploadResult.filepath!=null ){
 		fileObj.profilePic={
 			url:uploadResult.filepath,
 	        name:uploadResult.fileName,
