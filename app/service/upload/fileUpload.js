@@ -10,8 +10,9 @@ var path = require('path'),fs = require('fs');
 function fileUpload(){    
 	mainService.call(this);
 	this.miliSec= new Date();
-	this.pathFolder= "/uploades/"
-	this.pathFolderProfile= "/profile/"
+	this.pathStandard="/";
+	this.pathFolder= this.pathStandard+"uploades";
+	this.pathFolderProfile= "profile"
 }
 
 fileUpload.prototype.__proto__= mainService.prototype ;
@@ -28,28 +29,23 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var randomnum = Math.floor((Math.random() * 100) + 1);
 	    var newfilename = randomnum+fileName;
 	    
-	    var fileTargetPostion = _classInstance.pathFolder+dataModel.gbId+_classInstance.pathFolderProfile+newfilename;
-	    fs.mkdirParent = function(dirPath, mode, callback) {
-		  	//Call the standard fs.mkdir
-			fs.mkdir(dirPath, mode, function(error) {
-				//When it fail in this way, do the custom steps
-				if (error && error.errno === 34) {
-					  //Create all the parents recursively
-					  console.log(path.dirname(dirPath))
-					  fs.mkdirParent(path.dirname(dirPath), mode, callback);
-					  //And then the directory
-					  fs.mkdirParent(dirPath, mode, callback);
-				}else{
-					callback;
-				}
-				//Manually run the callback since we used our own callback to do all these
-				//callback && callback(error);
-			});
-		};
-		fs.mkdirParent(_classInstance.pathFolder+dataModel.gbId+_classInstance.pathFolderProfile);
+	    var fileTargetFolderPath=dataModel.gbId+_classInstance.pathStandard+_classInstance.pathFolderProfile;
+	    
+	    var dirs=fileTargetFolderPath.split(_classInstance.pathStandard);
+	    var newDir=_classInstance.pathFolder;
+	    for (var i = 0; i < dirs.length; i++) {
+			newDir += dirs[i] + _classInstance.pathStandard;
+			console.log(newDir);
+
+			if (!fs.exists(newDir)) {
+				fs.mkdir(newDir, function(error) {
+				  console.log(error);
+				});
+			}
+		}
+	    var fileTargetPostion = fileTargetFolderPath+_classInstance.pathStandard+ newfilename;
 	    var tempPath = dataModel.file.path;
-	    var targetPath = path.resolve(_gb_path_public+fileTargetPostion);
-	    console.log("file Uploading=========================================================",targetPath, tempPath, dataModel.file,fileTargetPostion);
+	    var targetPath = path.resolve(_gb_path_public+_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
 	    var res= null;
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
 	        fs.rename(tempPath, targetPath, function(err) {
