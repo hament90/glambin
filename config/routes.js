@@ -101,9 +101,9 @@ module.exports = function routes() {
 	this.match("/user-srvc/load-settings",{controller: 'gbprofile/srvc/profileSrvc', action:'loadUserSettings', via:'post'});
 	
 // attachmnet upload to server folder 
-	this.match("/gb/upload-srvc/profile",{controller: 'fileUpload/uploadFile', action:'mainProfile', via:'post'});	
-	this.match("/upload-attach/cover",{controller: 'fileUpload/uploadFile', action:'uploadCover', via:'post'});	
-	this.match("/upload-attach/gallery",{controller: 'fileUpload/uploadFile', action:'uploadGallery', via:'post'});	
+	this.match("/gb/upload-srvc/profile",{controller: 'fileupload/uploadFile', action:'mainProfile', via:'post'});	
+	this.match("/upload-attach/cover",{controller: 'fileupload/uploadFile', action:'uploadCover', via:'post'});	
+	this.match("/upload-attach/gallery",{controller: 'fileupload/uploadFile', action:'uploadGallery', via:'post'});	
 
 //Home page controller
 	this.match("/", "home/home#main",{via:"get"});
