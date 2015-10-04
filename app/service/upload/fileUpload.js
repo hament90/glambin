@@ -14,7 +14,7 @@ function fileUpload(){
 	this.pathFolderProfile= "/profile/"
 }
 
-fileUpload.prototype.__proto__=mainService.prototype ;
+fileUpload.prototype.__proto__= mainService.prototype ;
 
 fileUpload.prototype.checkUploadFileType = function(file) {
 	
@@ -86,7 +86,7 @@ fileUpload.prototype.profilePicUploading = function(dataModel) {
 
 	var fileObj={};
 	if(uploadResult.filepath!=undefined){
-		fileObj.profilePic:{
+		fileObj.profilePic={
 			url:uploadResult.filepath,
 	        name:uploadResult.fileName,
 	        cameFrom:_gb_constant.VERIFICATION_USER_REGISTER.WEB
