@@ -10,9 +10,6 @@ var path = require('path'),fs = require('fs');
 function fileUpload(){    
 	mainService.call(this);
 	this.miliSec= new Date();
-	this.pathStandard="/";
-	this.pathFolder= "./public"+this.pathStandard+"uploades";
-	this.pathFolderProfile= "profile"
 }
 
 fileUpload.prototype.__proto__= mainService.prototype ;
@@ -46,9 +43,9 @@ fileUpload.prototype.uploads = function(dataModel,callback) {
 			
 		}
 
-	    var fileTargetPostion = fileTargetFolderPath+_classInstance.pathStandard+ newfilename;
+	    var fileTargetPostion = _classInstance.pathFolder+_classInstance.pathStandard+fileTargetFolderPath+_classInstance.pathStandard+ newfilename;
 	    var tempPath = dataModel.file.path;
-	    var targetPath = path.resolve(_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
+	    var targetPath = path.resolve(fileTargetPostion);
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
 	        fs.rename(tempPath, targetPath, function(err) {
 	           	var res={};

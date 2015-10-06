@@ -151,7 +151,8 @@ UserRegisterService.prototype.fetchImages = function(username) {
 				profile:user.profilePic,
 				cover:user.profileCoverPic,
 				gallery:user.profileGallery,
-				gbId:user.gbId
+				gbId:user.gbId,
+				folder:"/uploades/"
 			};
 			_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,Gallery,null);
 		}
