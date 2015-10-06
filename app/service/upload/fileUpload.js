@@ -36,11 +36,14 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    for (var i = 0; i < dirs.length; i++) {
 	    	console.log(i,newDir)
 			newDir += _classInstance.pathStandard + dirs[i]  ;
-			if (!fs.exists(newDir)) {
-				fs.mkdir(newDir, function(error) {
-				  console.log(error);
-				});
-			}
+			if (fs.stat(newDir,function(error){
+				if(error){
+					fs.mkdir(newDir, function(error) {
+					  	console.log(error);
+					});
+				}
+			})) 
+			
 		}
 
 	    var fileTargetPostion = fileTargetFolderPath+_classInstance.pathStandard+ newfilename;
