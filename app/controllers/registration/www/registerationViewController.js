@@ -162,7 +162,17 @@ RegViewController.uploadImg = function() {
     var _nself=this;
     if (!_nself.req.isAuthenticated())
         return _nself.res.redirect("/");
-    this.render("partials/registration/upload_img");
+    var userRegisterSvc = new RegisterSvc();
+    userRegisterSvc.on("done", function(code,msg,result,errValue){
+        if(code==STATUS.SUCCESS.stats){
+            _nself.title = "General Registration Form";
+            // console.log(result)
+            _nself.render("partials/registration/upload_img",result);
+        }else{
+            _nself.res.redirect("/gb/404"); 
+        }
+    });
+    userRegisterSvc.fetchImages(_nself.req.user.gbId);
 }
 
 module.exports = RegViewController;
