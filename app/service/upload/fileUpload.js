@@ -108,7 +108,7 @@ fileUpload.prototype.profilePicUploading = function(dataModel) {
 		        name:uploadResult.fileName,
 		        cameFrom:_gb_constant.VERIFICATION_USER_REGISTER.WEB
 			}
-			GBUserInfoModel.findAndModify({"signUserId":dataModel.gbId},{},fileObj,{},function (err,user) {
+			GBUserInfoModel.findAndModify({"signUserId":dataModel.gbId},{},{$set:fileObj},{},function (err,user) {
 				if(err){
 					_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
 				}else{
