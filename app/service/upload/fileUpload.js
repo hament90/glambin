@@ -34,6 +34,7 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var dirs=fileTargetFolderPath.split(_classInstance.pathStandard);
 	    var newDir=_gb_path_public+_classInstance.pathFolder;
 	    for (var i = 0; i < dirs.length; i++) {
+	    	console.log(i,newDir)
 			newDir += _classInstance.pathStandard + dirs[i]  ;
 			if (!fs.exists(newDir)) {
 				fs.mkdir(newDir, function(error) {
@@ -41,6 +42,7 @@ fileUpload.prototype.uploads = function(dataModel) {
 				});
 			}
 		}
+
 	    var fileTargetPostion = fileTargetFolderPath+_classInstance.pathStandard+ newfilename;
 	    var tempPath = dataModel.file.path;
 	    var targetPath = path.resolve(_gb_path_public+_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
