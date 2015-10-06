@@ -20,7 +20,7 @@ fileUpload.prototype.__proto__= mainService.prototype ;
 fileUpload.prototype.checkUploadFileType = function(file) {
 	
 };
-fileUpload.prototype.uploads = function(dataModel) {
+fileUpload.prototype.uploads = function(dataModel,callback) {
 	var _classInstance=this;
 	if(dataModel.file!=undefined){
 
@@ -50,27 +50,26 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var tempPath = dataModel.file.path;
 	    var targetPath = path.resolve(_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
-	        var fileState = fs.rename(tempPath, targetPath, function(err) {
+	        fs.rename(tempPath, targetPath, function(err) {
+	           	var res={};
 	            if (err){
-	            	return {
+	            	res= {
 	            		status:STATUS.FILE_UPLOAD_FAILED.stats,
 						error:err,
 						errorWhere:"uploading"
 	            	};
 	            }else{
 		            _classInstance.unlinkProfilePic(tempPath);
-		            return {
+		            res= {
 						status:STATUS.SUCCESS.stats,
 						fileName: newfilename,
 						filepath:fileTargetPostion
 		            };
 	            } 
+	        	callback(res);
 	        });
-	        console.log("fileState",fileState);
-	        return fileState;
 	    } 
 	}
-
 };
 
 fileUpload.prototype.unlinkProfilePic=function(url){
@@ -93,8 +92,11 @@ fileUpload.prototype.unlinkProfilePic=function(url){
 
 fileUpload.prototype.profilePicUploading = function(dataModel) {
 	var _ownObj=this;
-	console.log(dataModel)
-	var uploadResult=_ownObj.uploads(dataModel);
+	var callback=function(obj){
+		console.log("callback",obj);
+		return obj;
+	}
+	var uploadResult=_ownObj.uploads(dataModel,callback);
 	console.log("Result here file upload=================>>>>>>>>>>>>>",uploadResult);
 	if(uploadResult==null || uploadResult.status== undefined || uploadResult.status != STATUS.SUCCESS.stats ){
 		_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
