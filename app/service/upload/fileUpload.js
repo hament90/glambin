@@ -92,43 +92,41 @@ fileUpload.prototype.unlinkProfilePic=function(url){
 
 fileUpload.prototype.profilePicUploading = function(dataModel) {
 	var _ownObj=this;
-	var callback=function(obj){
-		console.log("callback",obj);
-		return obj;
+	var callback=function(uploadResult){
+		console.log("callback",uploadResult);
+		if(uploadResult==null || uploadResult.status== undefined || uploadResult.status != STATUS.SUCCESS.stats ){
+			_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
+			return false;
+		}
+
+		console.log("proceed file upload=================>>>>>>>>>>>>>");
+
+		var fileObj={};
+		if(uploadResult.filepath!=undefined && uploadResult.filepath!=null ){
+			fileObj.profilePic={
+				url:uploadResult.filepath,
+		        name:uploadResult.fileName,
+		        cameFrom:_gb_constant.VERIFICATION_USER_REGISTER.WEB
+			}
+			GBUserInfoModel.findAndModify({"signUserId":dataModel.gbId},{},fileObj,{},function (err,user) {
+				if(err){
+					_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+				}else{
+					if(user!=null){
+						if(user.profilePic!=undefined && user.profilePic!=null && user.profilePic.url!=undefined){
+							dataModel.unlink=user.profilePic.url;
+						}
+						_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,fileObj,null);
+					}else{
+						_ownObj.emit("done",STATUS.DATA_ERROR.stats,STATUS.DATA_ERROR.msg,"findAndModify failed",null);
+					}
+				}
+			});
+		}else{
+			_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
+		}
 	}
 	var uploadResult=_ownObj.uploads(dataModel,callback);
-	console.log("Result here file upload=================>>>>>>>>>>>>>",uploadResult);
-	if(uploadResult==null || uploadResult.status== undefined || uploadResult.status != STATUS.SUCCESS.stats ){
-		_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
-		return false;
-	}
-
-	console.log("proceed file upload=================>>>>>>>>>>>>>");
-
-	var fileObj={};
-	if(uploadResult.filepath!=undefined && uploadResult.filepath!=null ){
-		fileObj.profilePic={
-			url:uploadResult.filepath,
-	        name:uploadResult.fileName,
-	        cameFrom:_gb_constant.VERIFICATION_USER_REGISTER.WEB
-		}
-		GBUserInfoModel.findAndModify({"signUserId":dataModel.gbId},{},fileObj,{},function (err,user) {
-			if(err){
-				_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
-			}else{
-				if(user!=null){
-					if(user.profilePic!=undefined && user.profilePic!=null && user.profilePic.url!=undefined){
-						dataModel.unlink=user.profilePic.url;
-					}
-					_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,fileObj,null);
-				}else{
-					_ownObj.emit("done",STATUS.DATA_ERROR.stats,STATUS.DATA_ERROR.msg,"findAndModify failed",null);
-				}
-			}
-		});
-	}else{
-		_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
-	}
 };
 
 module.exports=fileUpload;
