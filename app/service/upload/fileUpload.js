@@ -11,7 +11,7 @@ function fileUpload(){
 	mainService.call(this);
 	this.miliSec= new Date();
 	this.pathStandard="/";
-	this.pathFolder= "uploades";
+	this.pathFolder= "./public"+this.pathStandard+"uploades";
 	this.pathFolderProfile= "profile"
 }
 
@@ -32,20 +32,23 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var fileTargetFolderPath=dataModel.gbId+_classInstance.pathStandard+_classInstance.pathFolderProfile;
 	    
 	    var dirs=fileTargetFolderPath.split(_classInstance.pathStandard);
-	    var newDir=_gb_path_public+_classInstance.pathFolder;
+	    var newDir=_classInstance.pathFolder;
 	    for (var i = 0; i < dirs.length; i++) {
 	    	console.log(i,newDir)
 			newDir += _classInstance.pathStandard + dirs[i]  ;
-			if (!fs.exists(newDir)) {
-				fs.mkdir(newDir, function(error) {
-				  console.log(error);
-				});
-			}
+			if (fs.stat(newDir,function(error){
+				if(error){
+					fs.mkdir(newDir, function(error) {
+					  	console.log(error);
+					});
+				}
+			})) 
+			
 		}
 
 	    var fileTargetPostion = fileTargetFolderPath+_classInstance.pathStandard+ newfilename;
 	    var tempPath = dataModel.file.path;
-	    var targetPath = path.resolve(_gb_path_public+_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
+	    var targetPath = path.resolve(_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
 	        fs.rename(tempPath, targetPath, function(err) {
 	            if (err){
