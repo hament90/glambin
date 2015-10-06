@@ -50,7 +50,7 @@ fileUpload.prototype.uploads = function(dataModel) {
 	    var tempPath = dataModel.file.path;
 	    var targetPath = path.resolve(_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
-	        fs.rename(tempPath, targetPath, function(err) {
+	        var fileState = fs.rename(tempPath, targetPath, function(err) {
 	            if (err){
 	            	return {
 	            		status:STATUS.FILE_UPLOAD_FAILED.stats,
@@ -66,6 +66,8 @@ fileUpload.prototype.uploads = function(dataModel) {
 		            };
 	            } 
 	        });
+	        console.log("fileState",fileState);
+	        return fileState;
 	    } 
 	}
 
