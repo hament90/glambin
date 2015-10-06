@@ -34,7 +34,6 @@ passport.use(new LocalStrategy({
         user:user.name,
         userName:user.signUserId
       };
-      console.log(userObj,(user.securitySalt==hashPassword))
       if(user.securitySalt==hashPassword){
         userObj.msg="You have successfully verified";
         userObj.code=STATUS.SUCCESS.stats;
@@ -43,7 +42,6 @@ passport.use(new LocalStrategy({
         userObj.code=STATUS.PASSWORD_ERROR.stats;
         return done(null, false,{"message":"Failure"});
       }
-      console.log(userObj,"status Call")
       return done(null,user);  
     });
   }
@@ -57,10 +55,8 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
   GBUserVerification.findById(id, function (err, user) {
-    console.log("checkUser",user)
     if(user!=null){
       GBUserInfo.findOne({"gbId":user.gbId},{"handle":1,"gbId":1,"username":1,"shortDesc":1,"location":1,"profilePic":1,"profileCoverPic":1,"phone":1,"emailId":1,"signUserId":1},function(err,newUser){
-        console.log("newUser",newUser)
         done(err, newUser);  
       });
     }else{

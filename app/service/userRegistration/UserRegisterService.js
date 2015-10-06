@@ -140,6 +140,25 @@ UserRegisterService.prototype.fetchCategory = function(username) {
 	});		
 };
 
+UserRegisterService.prototype.fetchImages = function(username) {
+	var _ownObj = this;
+	GBUserInfoModel.findOne({ "gbId": username },
+		{"gbId":1,"profilePic":1,"profileCoverPic":1,"profileGallery":1,"username":1}, function(err, user){
+		if (err) {
+			_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+		} else{
+			var Gallery={
+				profile:user.profilePic,
+				cover:user.profileCoverPic,
+				gallery:user.profileGallery,
+				gbId:user.gbId
+			};
+			_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,Gallery,null);
+		}
+	});		
+};
+
+
 UserRegisterService.prototype.saveGeneralFrom=function(dataModel){
 	var _ownObj = this;
 	var locality={
