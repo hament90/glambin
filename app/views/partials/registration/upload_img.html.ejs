@@ -6,8 +6,13 @@
 		<div class="prf_prf_pic inlineparent">
 			<form action="/gb/upload-srvc/profile" method="post" enctype="multipart/form-data">
 				<div class="prf_prs_pic_img">
-					<img src="../img/profile_pic.png">
+					<% if(profile!=undefined && profile!=null){%>
+						<img src="<%=profile.url%>" alt="<%= profile.name%>"/>
+					<%}else{%>
+						<img src="../img/profile_pic.png">
+					<%}%>
 					<input type="file" name="file"/>
+
 				</div>		
 				
 				<div class="prf_prs_pic_opt inlineparent">

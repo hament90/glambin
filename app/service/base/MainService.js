@@ -5,7 +5,11 @@ var sms = require(_gb_path_util+'/smsutils');
 
 MainService.prototype.__proto__= GBEventEmitter.prototype ;
 function MainService(){
-   this.specialUrlChar='@_@_@_@';
+	this.specialUrlChar='@_@_@_@';
+	this.pathStandard="/";
+	this.pathImgStart="uploades";
+	this.pathFolder= "./public"+this.pathStandard+this.pathImgStart;
+	this.pathFolderProfile= "profile"
 }
 MainService.prototype.processPagenation=function(result,page){
 	if(result != null && result.length > page.pageSize){
