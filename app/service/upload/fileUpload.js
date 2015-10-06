@@ -20,32 +20,26 @@ fileUpload.prototype.checkUploadFileType = function(file) {
 fileUpload.prototype.uploads = function(dataModel,callback) {
 	var _classInstance=this;
 	if(dataModel.file!=undefined){
-
 		var fileName = dataModel.file.originalFilename;
-
 	    var randomnum = Math.floor((Math.random() * 100) + 1);
 	    var newfilename = randomnum+fileName;
-	    
-	    var fileTargetFolderPath=dataModel.gbId+_classInstance.pathStandard+_classInstance.pathFolderProfile;
-	    
+	    var fileTargetFolderPath=dataModel.gbId+_classInstance.pathStandard+dataModel.folderPath;
 	    var dirs=fileTargetFolderPath.split(_classInstance.pathStandard);
 	    var newDir=_classInstance.pathFolder;
 	    for (var i = 0; i < dirs.length; i++) {
-	    	console.log(i,newDir)
 			newDir += _classInstance.pathStandard + dirs[i]  ;
 			fs.stat(newDir,function(error){
 				if(error){
 					fs.mkdir(newDir, function(error) {
-					  	console.log(error);
+					  	console.log("directory creation error for "+newDir,error);
 					});
 				}
 			}); 
 			
 		}
-
-	    var fileTargetPostion = _classInstance.pathFolder+_classInstance.pathStandard+fileTargetFolderPath+_classInstance.pathStandard+ newfilename;
+	    var fileTargetPostion = fileTargetFolderPath+_classInstance.pathStandard+ newfilename;
 	    var tempPath = dataModel.file.path;
-	    var targetPath = path.resolve(fileTargetPostion);
+	    var targetPath = path.resolve(_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
 	        fs.rename(tempPath, targetPath, function(err) {
 	           	var res={};
@@ -60,7 +54,7 @@ fileUpload.prototype.uploads = function(dataModel,callback) {
 		            res= {
 						status:STATUS.SUCCESS.stats,
 						fileName: newfilename,
-						filepath:fileTargetPostion
+						filepath:_classInstance.pathImgStart+_classInstance.pathStandard+fileTargetPostion
 		            };
 	            } 
 	        	callback(res);
@@ -89,14 +83,12 @@ fileUpload.prototype.unlinkProfilePic=function(url){
 
 fileUpload.prototype.profilePicUploading = function(dataModel) {
 	var _ownObj=this;
+	dataModel.folderPath=_ownObj.pathFolderProfile;
 	var callback=function(uploadResult){
-		console.log("callback",uploadResult);
 		if(uploadResult==null || uploadResult.status== undefined || uploadResult.status != STATUS.SUCCESS.stats ){
 			_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
 			return false;
 		}
-
-		console.log("proceed file upload=================>>>>>>>>>>>>>");
 
 		var fileObj={};
 		if(uploadResult.filepath!=undefined && uploadResult.filepath!=null ){
@@ -125,5 +117,42 @@ fileUpload.prototype.profilePicUploading = function(dataModel) {
 	}
 	var uploadResult=_ownObj.uploads(dataModel,callback);
 };
+
+fileUpload.prototype.coverPicUploading=function(dataModel){
+	var _ownObj=this;
+	dataModel.folderPath=_ownObj.pathFolderCover;
+	var callback=function(uploadResult){
+		if(uploadResult==null || uploadResult.status== undefined || uploadResult.status != STATUS.SUCCESS.stats ){
+			_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
+			return false;
+		}
+
+		var fileObj={};
+		if(uploadResult.filepath!=undefined && uploadResult.filepath!=null ){
+			fileObj.profileCoverPic={
+				url:uploadResult.filepath,
+		        name:uploadResult.fileName,
+		        cameFrom:_gb_constant.VERIFICATION_USER_REGISTER.WEB
+			}
+			GBUserInfoModel.findAndModify({"signUserId":dataModel.gbId},{},{$set:fileObj},{},function (err,user) {
+				if(err){
+					_ownObj.emit("done",mongoErr.identifyError(err.code).stats,err,null,null);
+				}else{
+					if(user!=null){
+						if(user.profilePic!=undefined && user.profilePic!=null && user.profilePic.url!=undefined){
+							_ownObj.unlinkProfilePic(user.profilePic.url);
+						}
+						_ownObj.emit("done",STATUS.SUCCESS.stats,STATUS.SUCCESS.msg,fileObj,null);
+					}else{
+						_ownObj.emit("done",STATUS.DATA_ERROR.stats,STATUS.DATA_ERROR.msg,"findAndModify failed",null);
+					}
+				}
+			});
+		}else{
+			_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
+		}
+	}
+	var uploadResult=_ownObj.uploads(dataModel,callback);
+}
 
 module.exports=fileUpload;

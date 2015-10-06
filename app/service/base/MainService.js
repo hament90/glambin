@@ -7,9 +7,10 @@ MainService.prototype.__proto__= GBEventEmitter.prototype ;
 function MainService(){
 	this.specialUrlChar='@_@_@_@';
 	this.pathStandard="/";
-	this.pathImgStart="uploades";
-	this.pathFolder= "./public"+this.pathStandard+this.pathImgStart;
+	this.pathImgStart=this.pathStandard+"uploades";
+	this.pathFolder= "./public"+this.pathImgStart;
 	this.pathFolderProfile= "profile"
+	this.pathFolderCover= "coverpic"
 }
 MainService.prototype.processPagenation=function(result,page){
 	if(result != null && result.length > page.pageSize){

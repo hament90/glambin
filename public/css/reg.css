@@ -26,9 +26,11 @@ h4.__snti_lne_cmbk {
     margin: 10px;
     color: #FFF;
 }
-
 .__tb_reg.inlineparent.active,.__tb_reg.inlineparent:hover{
     background: #395662;
+}
+.prf_prs_pic_img > img,.prf_cvr_pic_img > img {
+    height: 175px;
 }
 .__tb_reg.inlineparent {
     width: 100px;
