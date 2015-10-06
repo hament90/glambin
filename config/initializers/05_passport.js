@@ -56,8 +56,8 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  console.log("login",id)
   GBUserVerification.findById(id, function (err, user) {
+    console.log(user)
     if(user!=null){
       GBUserInfo.findOne({"gbId":user.gbId},{"handle":1,"gbId":1,"username":1,"shortDesc":1,"location":1,"profilePic":1,"profileCoverPic":1,"phone":1,"emailId":1,"signUserId":1},function(err,newUser){
         console.log(newUser)

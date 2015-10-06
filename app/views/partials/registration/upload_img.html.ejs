@@ -78,7 +78,7 @@
 			$("#imgGalleryPage").on("click",".prflPic",function(){
 				var _self=$(this);
 				_self.parents("form").ajaxSubmit(function(data){
-					if(data.stats==0){
+					if(data.status==0){
 						alert("file successfully uploaded");
 					}else{
 						alert("file failed");

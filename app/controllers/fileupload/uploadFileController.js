@@ -11,7 +11,6 @@ fileUploadController.mainProfile = function() {
             file:_nself.req.files.file,
             gbId:_nself.req.user.signUserId
         };
-        console.log("========================================================",obj)
         var service= new uploadService();
         service.on("done", function(status,msg,result,page){
              console.log(result)
