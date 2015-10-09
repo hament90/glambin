@@ -1,0 +1,13 @@
+"Domain verification record set:"
+"Record name","Record type","Record Value"
+"_amazonses.gmail.com","TXT","7ba0R4o5gys/0tm8QzLDTEyk4lcR7+2XUKpwErPy+XQ="
+
+"Alternate domain verification record:"
+"Record name","Record type","Record Value"
+"gmail.com","TXT","amazonses:7ba0R4o5gys/0tm8QzLDTEyk4lcR7+2XUKpwErPy+XQ="
+
+"DKIM record set:"
+"Record name","Record type","Record Value"
+"oaeckusvc7p477ysyvg2reolg2dm7tgx._domainkey.gmail.com","CNAME","oaeckusvc7p477ysyvg2reolg2dm7tgx.dkim.amazonses.com"
+"u5epiru5ufyplsz2dgrdkhvdmr35vbyn._domainkey.gmail.com","CNAME","u5epiru5ufyplsz2dgrdkhvdmr35vbyn.dkim.amazonses.com"
+"2q6btq62ftgahnmmojhfujmfn42sr5ib._domainkey.gmail.com","CNAME","2q6btq62ftgahnmmojhfujmfn42sr5ib.dkim.amazonses.com"

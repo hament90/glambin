@@ -55,6 +55,13 @@ RegisterService.prototype.registerUser = function(dataModel) {
 						console.log("====================================================================================","http://localhost:3000/gb/user-verify/"+verificationData.verificationType+"/"+verificationData.verificationCode,"====================================================================================")
 						if(!isNaN(dataModel.emailId)){
 							_ownObj.sendRealTimeOTP("Your Registration Code is "+ _ownObj.getVerificationCode(verificationData.verificationCode),dataModel.emailId);
+						}else{
+							var mailObj={
+								to:dataModel.emailId,
+								subject:"Welcome to Glambin",
+								link:"http://52.27.241.174/gb/user-verify/"+verificationData.verificationType+"/"+verificationData.verificationCode
+							};
+							_ownObj.sendEmail(mailObj);
 						}
 						var responseObj=null;
 						if(verificationData.type==_gb_constant.VERIFICATION_USER_REGISTER.MOBILE){

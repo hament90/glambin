@@ -32,6 +32,13 @@ RootService.prototype.sendNewVerificationCode=function(credentials){
 						if(isUpdate>0){
 							if(!isNaN(credentials.signIn)){
 								_ownObj.sendRealTimeOTP("Your new password is "+newCode+". Please login with this password and reset your new password from settings",credentials.signIn);
+							}else{
+								var mailObj={
+									to:credentials.signIn,
+									subject:"Reset Password Using Code",
+									link:newCode
+								};
+								_ownObj.sendEmail(mailObj);
 							}
 							var obj={
 								type:user.type,
