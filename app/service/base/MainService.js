@@ -91,8 +91,8 @@ MainService.prototype.sendEmail=function(dataModel){
 		from: 'lovetoleo.1986@gmail.com',
 		to: dataModel.to, // list of receivers
 		subject: dataModel.subject, // Subject line
-		html: '<p>Please click the link</p>', // html body
-		text:dataModel.link
+		html: '<p>Please click the link</p> ====> '+dataModel.link // html body
+		
 	};
 
 		// send mail with defined transport object
