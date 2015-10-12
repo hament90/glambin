@@ -28,11 +28,14 @@ fileUpload.prototype.uploads = function(dataModel,callback) {
 	    var newDir=_classInstance.pathFolder;
 	    for (var i = 0; i < dirs.length; i++) {
 			newDir += _classInstance.pathStandard + dirs[i]  ;
+			console.log(i,newDir);
 			fs.stat(newDir,function(error){
 				if(error){
 					fs.mkdir(newDir, function(error) {
 					  	console.log("directory creation error for "+newDir,error);
 					});
+				}else{
+					console.log("Exists =========> "+newDir);
 				}
 			}); 
 			
@@ -41,7 +44,9 @@ fileUpload.prototype.uploads = function(dataModel,callback) {
 	    var tempPath = dataModel.file.path;
 	    var targetPath = path.resolve(_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
+	        
 	        fs.rename(tempPath, targetPath, function(err) {
+	           	console.log(err);
 	           	var res={};
 	            if (err){
 	            	res= {
@@ -89,7 +94,7 @@ fileUpload.prototype.profilePicUploading = function(dataModel) {
 			_ownObj.emit("done",STATUS.FILE_UPLOAD_FAILED.stats,STATUS.FILE_UPLOAD_FAILED.msg,null,null);
 			return false;
 		}
-
+		console.log("callback starts===========> DB entry executes",uploadResult);
 		var fileObj={};
 		if(uploadResult.filepath!=undefined && uploadResult.filepath!=null ){
 			fileObj.profilePic={
