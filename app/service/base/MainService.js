@@ -3,7 +3,7 @@ var GBEventEmitter = require('events').EventEmitter;
 var mongodb = require('mongodb');
 var sms = require(_gb_path_util+'/smsutils');
 var nodemailer = require('nodemailer');
-var sesTransport = require('nodemailer-ses-transport');
+// var sesTransport = require('nodemailer-ses-transport');
 var emailTemplates = require('email-templates');
 
 MainService.prototype.__proto__= GBEventEmitter.prototype ;

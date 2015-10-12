@@ -5,7 +5,7 @@ var MAIL_TYPE = _gb_constant.MAIL_TYPE;
 var STATUS = _gb_constant._gb_status;
 var GBUserInfoModel = require(_gb_path_model+"/GBUserInfo.js");
 var mongoose = require('mongoose');
-var path = require('path'),fs = require('fs');
+var path = require('path'),mv = require('mv'),fs= require("fs");
 
 function fileUpload(){    
 	mainService.call(this);
@@ -20,32 +20,33 @@ fileUpload.prototype.checkUploadFileType = function(file) {
 fileUpload.prototype.uploads = function(dataModel,callback) {
 	var _classInstance=this;
 	if(dataModel.file!=undefined){
+	    var tempPath = dataModel.file.path;
+		
 		var fileName = dataModel.file.originalFilename;
 	    var randomnum = Math.floor((Math.random() * 100) + 1);
 	    var newfilename = randomnum+fileName;
-	    var fileTargetFolderPath=dataModel.gbId+_classInstance.pathStandard+dataModel.folderPath;
-	    var dirs=fileTargetFolderPath.split(_classInstance.pathStandard);
-	    var newDir=_classInstance.pathFolder;
-	    for (var i = 0; i < dirs.length; i++) {
-			newDir += _classInstance.pathStandard + dirs[i]  ;
-			console.log(i,newDir);
-			fs.stat(newDir,function(error){
-				if(error){
-					fs.mkdir(newDir, function(error) {
-					  	console.log("directory creation error for "+newDir,error);
-					});
-				}else{
-					console.log("Exists =========> "+newDir);
-				}
-			}); 
+	    //var fileTargetFolderPath=dataModel.gbId+_classInstance.pathStandard+dataModel.folderPath;
+	    
+	    // var dirs=fileTargetFolderPath.split(_classInstance.pathStandard);
+	    // var newDir=_classInstance.pathFolder;
+	    //    for (var i = 0; i < dirs.length; i++) {
+		// 	newDir += _classInstance.pathStandard + dirs[i]  ;
+		// 	console.log(i,newDir);
+		// 	fs.stat(newDir,function(error){
+		// 		if(error){
+		// 			fs.mkdir(newDir, function(error) {
+		// 			  	console.log("directory creation error for "+newDir,error);
+		// 			});
+		// 		}else{
+		// 			console.log("Exists =========> "+newDir);
+		// 		}
+		// 	}); 
 			
-		}
-	    var fileTargetPostion = fileTargetFolderPath+_classInstance.pathStandard+ newfilename;
-	    var tempPath = dataModel.file.path;
+		// }
+	    var fileTargetPostion = dataModel.gbId+_classInstance.pathStandard+dataModel.folderPath+_classInstance.pathStandard+ newfilename;
 	    var targetPath = path.resolve(_classInstance.pathFolder+_classInstance.pathStandard+fileTargetPostion);
 	    if (path.extname(fileName).toLowerCase() === '.png' ||path.extname(fileName).toLowerCase() === '.jpg' ||path.extname(fileName).toLowerCase() === '.gif') {
-	        
-	        fs.rename(tempPath, targetPath, function(err) {
+	    	mv(tempPath, targetPath, {mkdirp: true,clobber:true}, function(err) {
 	           	console.log(err);
 	           	var res={};
 	            if (err){
@@ -63,7 +64,9 @@ fileUpload.prototype.uploads = function(dataModel,callback) {
 		            };
 	            } 
 	        	callback(res);
-	        });
+			});
+	        // fs.rename(tempPath, targetPath, function(err) {
+	        // });
 	    } 
 	}
 };
