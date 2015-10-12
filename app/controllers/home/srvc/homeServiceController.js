@@ -22,6 +22,7 @@ homeSrvcController.forgotPassword=function(){
         var value=_nself.req.body;
         var settingSvc = new rootService();
         settingSvc.on("done", function(status,msg,result,page){
+        	
             _nself.processJson(status,msg,result,page);
         });
         settingSvc.sendNewVerificationCode(value);

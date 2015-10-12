@@ -94,8 +94,7 @@ MainService.prototype.sendEmail=function(dataModel){
 		html: '<p>Please click the link</p> ====> '+dataModel.link // html body
 		
 	};
-
-		// send mail with defined transport object
+		
 	transporter.sendMail(mailOptions, function(error, info){
 		if(error){
 		  	console.log("mail error",error,"============================",dataModel);
@@ -104,6 +103,7 @@ MainService.prototype.sendEmail=function(dataModel){
 		}
 	});
 }
+
 MainService.prototype.getVerificationUserIdCode=function(code){
 
 	if(code !=undefined){
