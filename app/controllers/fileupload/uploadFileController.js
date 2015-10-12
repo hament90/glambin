@@ -10,11 +10,13 @@ fileUploadController.mainProfile = function() {
             file:_nself.req.files.file,
             gbId:_nself.req.user.signUserId
         };
+        console.log("kksksksskskkskskskskskssk------------------------------------------------------------------------------------------------------------------------------------------------")
         var service= new uploadService();
         service.on("done", function(status,msg,result,page){
              console.log(result)
             _nself.processJson(status,msg,result,page);
         });
+        console.log("kksksksskskkskskskskskssk------------------------------------------------------------------------------------------------------------------------------------------------")
         service.profilePicUploading(obj);
     }else{
          return _nself.res.redirect("/gb/404");
