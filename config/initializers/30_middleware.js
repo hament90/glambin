@@ -13,7 +13,7 @@ module.exports = function() {
     this.use(poweredBy('Locomotive'));
     this.use(express.favicon());
     this.use(express.static(__dirname + '/../../public'));
-    this.use(express.timeout(5000))
+    this.use(express.timeout(8000))
     this.use(express.bodyParser());
     this.use(express.cookieParser());
     this.use(express.methodOverride());
